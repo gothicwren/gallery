@@ -34,7 +34,7 @@
    ========================================================================== */
 
 window.SITE = {
-  name: "flightless",
+  name: "♡flightless♡",
   tagline: "bots, scenarios & the towns they live in",
   issue: "@flightless on DreamJourney",
   messages: "",            // leave "" and the site adds up the chat counts below
