@@ -44,7 +44,7 @@ window.SITE = {
   dreamjourney: "https://dreamjourneyai.com/profile/flightless",
   backdrop: "images/backdrop.jpg",   // the big image behind the masthead ("" for none)
   featured: "the-pitt",    // id of the bot to spotlight at the top ("" for none)
-  formKey: "",             // your Web3Forms access key — see README step 6
+  formKey: "37bc78c6-5dfa-4667-babb-dccc815ba22c",             // your Web3Forms access key — see README step 6
   collections: ["Rust Harbour", "Ashfall", "Standalone Romances", "Scenarios", "Fandom"],
 };
 
