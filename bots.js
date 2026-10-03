@@ -34,19 +34,18 @@
    ========================================================================== */
 
 window.SITE = {
-  name: "Wren",
+  name: "flightless",
   tagline: "bots, scenarios & the towns they live in",
   issue: "@flightless on DreamJourney",
   messages: "",            // leave "" and the site adds up the chat counts below
   note:
-    "This is where the bots live when they're not on the platform: their pictures, their scenes, and the towns they share. " +
+    "TYSM for taking the time to check out my bots :) i'm so thankful for this community! " +
     "Request a scene or say hello at the bottom of the page.",
   dreamjourney: "https://dreamjourneyai.com/profile/flightless",
   backdrop: "images/backdrop.jpg",   // the big image behind the masthead ("" for none)
   featured: "the-pitt",    // id of the bot to spotlight at the top ("" for none)
   formKey: "",             // your Web3Forms access key — see README step 6
-  collections: ["Rust Harbour", "Ashfall", "Standalones", "Scenarios", "Fandom"],
-  guide: "https://kitana2010-commits.github.io/DJguide/"
+  collections: ["Rust Harbour", "Ashfall", "Standalone Romances", "Scenarios", "Fandom"],
 };
 
 window.BOTS = [
