@@ -93,7 +93,7 @@ window.BOTS = [
   },
   {
     id: "tideline-rescue", name: "Tideline Rescue", title: "Driftwood Pier Station 7",
-    collection: "Rust Harbour", category: "Romance", status: "live", chats: 0,
+    collection: "Rust Harbour", category: "Romance", status: "live", chats: 152,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["gritty", "modernday", "sliceoflife", "rescue crew", "ensemble"],
     blurb: "🚑 Driftwood Pier Station 7 — Rust Harbour. Better known, affectionately, as Tideline Rescue. One ambulance. One small fire truck. Four people who'd run into anything for each other — and now, maybe, for you too.",
@@ -157,7 +157,7 @@ window.BOTS = [
   },
   {
     id: "gabi-and-jae", name: "Gabriella and Jaein", title: "The Velvet Echo",
-    collection: "Standalones", category: "OC", status: "live", chats: 6370,
+    collection: "Standalones", category: "OC", status: "live", chats: 6518,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["urban", "modernday", "sliceoflife", "polyamory", "record store"],
     blurb: "Two people, one record store. Gabi notices what you need before you ask; Jae's already talking. They've loved each other five years and talked about loving someone alongside them. They've just never met them. Maybe that's you.",
@@ -195,9 +195,17 @@ window.BOTS = [
     blurb: "Autumn 1993. AnyPOV. Slow burn.",
     scenes: [], link: "https://dreamjourneyai.com/creation/93023ac8-d6a8-449a-909e-3f17e9910e23", cover: "images/dez-kovacs.jpg", focus: "58% 30%", gallery: []
   },
+   {
+    id: "teddy-king", name: "Teddy King", title: "Single Dad Next Door",
+    collection: "Standalones", category: "OC", status: "live", chats: 1396,
+    pov: "AnyPOV", adult: false, warnings: [],
+    tags: ["modernday", "sliceoflife", "romance", "parent trap", "boy next door"],
+    blurb: "His six-year-old keeps climbing the fence to tell you secrets about her dad. Today he comes over to apologize.",
+    scenes: [], link: "https://dreamjourneyai.com/creation/eee4833c-81e0-4db8-afe0-b2e9fd109ffb", cover: "images/teddy-king.jpg", focus: "50% 30%", gallery: []
+  },
   {
     id: "fen-selvaggio", name: "Fenris \"Fen\" Selvaggio", title: "",
-    collection: "Standalones", category: "OC", status: "live", chats: 1322,
+    collection: "Standalones", category: "OC", status: "live", chats: 1346,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["modernday", "sliceoflife", "romance", "best friend", "stoner"],
     blurb: "Fen's your stoner best friend and a gaming technology specialist at a children's hospital in Olympia, WA. They're also, hopelessly and stupidly, in love with you.",
@@ -228,7 +236,7 @@ window.BOTS = [
   },
   {
     id: "june-brandt", name: "June Brandt", title: "",
-    collection: "Standalones", category: "OC", status: "live", chats: 1148,
+    collection: "Standalones", category: "OC", status: "live", chats: 1288,
     pov: "", adult: false, warnings: [],
     tags: ["urban", "modernday", "sliceoflife", "girlfriend", "trans"],
     blurb: "34, piano tuner, Ridgewood, NYC, trans woman — out fifteen years, whimsigoth girlie 🖤✨",
@@ -236,7 +244,7 @@ window.BOTS = [
   },
   {
     id: "amos-haugen", name: "Amos Haugen", title: "",
-    collection: "Standalones", category: "Other", status: "live", chats: 1010,
+    collection: "Standalones", category: "Other", status: "live", chats: 1036,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["modernday", "sliceoflife", "rural", "rancher"],
     blurb: "Rancher. Makes breakfast at every hour and treats \"no thanks\" like the opening round of negotiations. The only thing that shuts Amos up is a question he's not ready to answer.",
@@ -331,8 +339,8 @@ window.BOTS = [
   },
   {
     id: "adriana-waring", name: "Adriana Waring", title: "The Interval",
-    collection: "Standalones", category: "Other", status: "live", chats: 308,
-    pov: "FemPOV", adult: true, warnings: [],
+    collection: "Standalones", category: "Other", status: "live", chats: 324,
+    pov: "FemPOV", adult: true, warnings: ["sex worker"],
     tags: ["gritty", "hiddensocieties", "sapphic", "charleston"],
     blurb: "The woman who sells temporary love to Charleston's married women. She won't lie to you and she won't chase you. She'll just arrange it so you stay.",
     scenes: [], link: "https://dreamjourneyai.com/creation/e06b1040-4e23-4d11-bc6c-b5d720a3c134", cover: "images/adriana-waring.jpg", focus: "50% 35%", gallery: []
@@ -347,7 +355,7 @@ window.BOTS = [
   },
   {
     id: "the-wind-in-the-wheat", name: "The Wind in the Wheat", title: "Aunt Charlie",
-    collection: "Standalones", category: "Romance", status: "live", chats: 0,
+    collection: "Standalones", category: "Romance", status: "live", chats: 162,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["romance", "lighthearted", "modernday", "ireland", "found family"],
     blurb: "☘ your Aunt Charlie won't ask why you came home. Doolin will ☘ Cozy open-world found family on the wild coast of Ireland, with six townies to fall for ☘",
@@ -355,7 +363,7 @@ window.BOTS = [
   },
   {
     id: "camden-walsh", name: "Camden Walsh", title: "",
-    collection: "Standalones", category: "OC", status: "live", chats: 0,
+    collection: "Standalones", category: "OC", status: "live", chats: 156,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["gritty", "modernday", "sports", "baseball"],
     blurb: "Cam Walsh had everything: a major-league arm, a prospect's fame, a pretty face, and a long trail of broken hearts. Then his elbow gave out before he could reach Boston. Now the golden boy has nothing left to hide behind but himself.",
@@ -379,7 +387,7 @@ window.BOTS = [
   },
   {
     id: "kenai-bevers", name: "Kenai Bevers", title: "Smokejumper",
-    collection: "Standalones", category: "Other", status: "live", chats: 64,
+    collection: "Standalones", category: "Other", status: "live", chats: 78,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["gritty", "modernday", "rural", "alaska", "firefighter"],
     blurb: "🐺❤️‍🔥 golden retriever energy smokejumper with a runaway husky, an A-frame in the birches, and a nervous stutter only love can trigger ❤️‍🔥🐺",
@@ -396,8 +404,8 @@ window.BOTS = [
 
   /* ======================= SCENARIOS ======================= */
   {
-    id: "station-halcyon", name: "Station: Halcyon", title: "",
-    collection: "Scenarios", category: "Romance", status: "live", chats: 7820,
+    id: "station-halcyon", name: "Station: Halcyon", title: "40 Meters Below",
+    collection: "Scenarios", category: "Romance", status: "live", chats: 7842,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["modernday", "gritty", "underwater"],
     blurb: "Station Halcyon | 40 Meters Below",
@@ -413,7 +421,7 @@ window.BOTS = [
   },
   {
     id: "half-measures", name: "[half-measures]", title: "indie-alt band",
-    collection: "Scenarios", category: "Romance", status: "live", chats: 0,
+    collection: "Scenarios", category: "Romance", status: "live", chats: 8,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["artist", "bard", "modernday", "band"],
     blurb: "They were never supposed to become famous. Four university friends built a band out of loneliness, late nights, and borrowed equipment. Now Half-Measures has a viral record, a demanding manager, and one question: can they survive success?",
@@ -427,7 +435,11 @@ window.BOTS = [
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["urban", "modernday", "gritty", "medical"],
     blurb: "You're arriving at Pittsburgh Trauma Medical Center — affectionately known as The Pitt. You can be an employee, a visitor, or a patient — your choice :)",
-    scenes: [], link: "https://dreamjourneyai.com/creation/cf82b195-8f5d-404b-b318-6c549c04c213", cover: "images/the-pitt.jpg", focus: "50% 30%", gallery: []
+    scenes: [
+       { name: "medical intern path", line: "if you wish to start as a medical intern" },
+       { name: "Waiting Room", line: "For if you'd like to start in the waiting room as a patient" },
+    ], 
+     link: "https://dreamjourneyai.com/creation/cf82b195-8f5d-404b-b318-6c549c04c213", cover: "images/the-pitt.jpg", focus: "50% 30%", gallery: []
   },
   {
     id: "howls-moving-castle", name: "Howl's Moving Castle", title: "",
@@ -438,16 +450,27 @@ window.BOTS = [
     scenes: [], link: "https://dreamjourneyai.com/creation/6ddd4b1b-efba-4b49-9ebf-05a3a9336f26", cover: "images/howls-moving-castle.jpg", focus: "68% 50%", gallery: []
   },
   {
-    id: "susannah-oshea", name: "Susannah O'Shea", title: "Sunburn",
+    id: "susannah-oshea", name: "Susannah O'Shea", title: "Sunburn- Post-Canon",
     collection: "Fandom", category: "Book", status: "live", chats: 674,
     pov: "FemPOV", adult: false, warnings: [],
     tags: ["historical", "love", "rural", "romance", "sapphic"],
     blurb: "Crossmore, 1995. You wouldn't be seen with her, so she let you go. Now you're back at her door. Post-canon Sunburn (Chloe Michelle Howarth). You stand where Lucy stood; your past is yours to write. See comment for more info 💛",
-    scenes: [], link: "https://dreamjourneyai.com/creation/71e88a69-9c98-433e-947a-c7673f38f590", cover: "images/susannah-oshea.jpg", focus: "35% 20%", gallery: []
+    scenes: [
+      { name: "Clearing of the House", line: "Late March. You let yourself into the big house and find her upstairs at her mother's wardrobe, where she has taken nothing out since ten o'clock." },
+      { name: "Sunday in the Village", line: "Sunday in April. She is on the wall opposite the church in gold eyeshadow, in full view of the parish coming out of Mass, with a space beside her." },
+      { name: "Room to Let - No Est. History", line: "May, pouring rain. A card in the shop window says room to let. You knock, she opens the door on the chain, and she has no idea who you are." },
+      { name: "The Letter Back", line: "You pushed it through her door and went. Five weeks on, four pages come back in her handwriting, written at one in the morning and not at all like her." }
+      { name: "Civil", line: "You meet her in Kealy's shop with the whole village listening. She is perfectly pleasant to you for four minutes and gives you nothing at all." }
+      { name: "Seen", line: "Saturday in the town. Susannah comes out of the hotel with a woman you do not know, and she does not step away from her when she sees you." }
+      { name: "The Bus Went Without Her", line: "The bench outside the old post office, a packed bag at her feet, and the half eleven bus to Cork gone twenty minutes ago without her on it." }
+      { name: "The Function Room", line: "A twenty-first in a hotel function room outside Crossmore, half the parish there, a karaoke machine, and Susannah O'Shea four gins in and already up on the stage once." }
+      { name: "Dublin", line: "A bar in Dublin, and Susannah O'Shea is at a corner table on her own, two hundred miles from where she is supposed to be." }
+    ], 
+     link: "https://dreamjourneyai.com/creation/71e88a69-9c98-433e-947a-c7673f38f590", cover: "images/susannah-oshea.jpg", focus: "35% 20%", gallery: []
   },
   {
     id: "under-silverpelt", name: "Under Silverpelt", title: "Warrior Cat Demi-humans",
-    collection: "Fandom", category: "Fantasy", status: "live", chats: 294,
+    collection: "Fandom", category: "Fantasy", status: "live", chats: 312,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["book", "gritty", "kemonomimi", "warrior cats", "clans"],
     blurb: "a Warrior Cats-inspired roleplay in the Old Forest, no humans, no cats — all hybrids.",
@@ -471,15 +494,7 @@ window.BOTS = [
   /* ======================= NOT PUBLIC (status: "hidden") =======================
      These don't show anywhere on the site. When one goes public, change
      its status to "live" and fill in its chats. */
-  {
-    id: "teddy-king", name: "Teddy King", title: "Single Dad Next Door",
-    collection: "Standalones", category: "OC", status: "hidden", chats: 148,
-    pov: "AnyPOV", adult: false, warnings: [],
-    tags: ["romance", "modernday", "single dad", "firefighter"],
-    blurb: "His six-year-old keeps climbing the fence to tell you secrets about her dad. Today he comes over to apologize.",
-    scenes: [], link: "https://dreamjourneyai.com/creation/eee4833c-81e0-4db8-afe0-b2e9fd109ffb", cover: "images/teddy-king.jpg", focus: "50% 30%", gallery: []
-  },
-  {
+   {
     id: "rhys-calloway", name: "Rhys Calloway", title: "Eastside Community Center",
     collection: "Rust Harbour", category: "OC", status: "hidden", chats: 56,
     pov: "AnyPOV", adult: false, warnings: [],
