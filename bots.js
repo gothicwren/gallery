@@ -496,7 +496,7 @@ window.BOTS = [
      its status to "live" and fill in its chats. */
    {
     id: "rhys-calloway", name: "Rhys Calloway", title: "Eastside Community Center",
-    collection: "Rust Harbour", category: "OC", status: "hidden", chats: 56,
+    collection: "Rust Harbour", category: "OC", status: "desk", chats: 56,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["modernday", "sliceoflife", "community center"],
     blurb: "Rhys bought a dead union hall so thirty kids would have somewhere to land, and the note comes due in three years. They fiddle on Thursdays, read cards for free, and answer every hard question with a story. Doors open. They forgot to lock up again.",
