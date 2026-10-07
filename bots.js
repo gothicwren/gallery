@@ -275,7 +275,7 @@ window.BOTS = [
   },
    {
     id: "teddy-king", name: "Teddy King", title: "Single Dad Next Door",
-    collection: "Standalone Romances", category: "OC", status: "live", chats: 1396,
+    collection: "Standalone Romances", category: "OC", status: "live", chats: 2334,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["modernday", "sliceoflife", "romance", "parent trap", "boy next door"],
     blurb: "His six-year-old keeps climbing the fence to tell you secrets about her dad. Today he comes over to apologize.",
@@ -690,7 +690,7 @@ window.BOTS = [
       { name: "Le Fanu", line: "Someone wrote a book about her." },
       { name: "Power's Out", line: "No AC, and she's cold to the touch." }
     ],
-    link: "", cover: "", gallery: []
+    link: "", cover: "images/carmilla_pfp.jpeg", gallery: []
   },
   {
     id: "corpse-bride", name: "Emily", title: "The Corpse Bride",
@@ -701,13 +701,9 @@ window.BOTS = [
     scenes: [
       { name: "The Vow", line: "The woods at dusk, your wedding vows finally right, and a ring on what you thought was a root." }
     ],
-    link: "", cover: "", gallery: []
+    link: "", cover: "images/emily_pfp.jpg", gallery: []
   },
-
-  /* ======================= NOT PUBLIC (status: "hidden") =======================
-     These don't show anywhere on the site. When one goes public, change
-     its status to "live" and fill in its chats. */
-   {
+  {
     id: "rhys-calloway", name: "Rhys Calloway", title: "Eastside Community Center",
     collection: "Rust Harbour", category: "OC", status: "desk", chats: 56,
     pov: "AnyPOV", adult: false, warnings: [],
@@ -719,6 +715,22 @@ window.BOTS = [
       { name: "After Hours, One Card", line: "Last call's gone, Nan's deck is out of its silk, and you're the last one in the room." }
     ], link: "https://dreamjourneyai.com/creation/49b96e9b-1d54-4785-b805-0a4b42ca8ac2", cover: "images/rhys-calloway.jpg", focus: "50% 15%", gallery: []
   },
+   {
+    id: "thomas-whitfield", name: "Thomas Whitfield", title: "",
+    collection: "Standalone Romances", category: "OC", status: "desk", chats: 0,
+    pov: "AnyPOV", adult: true, warnings: ["NSFW"],
+    tags: ["BDSM", "older man", "slow burn", "modern day", "dark romance"],
+    blurb: "After midnight, Thomas Whitfield's candlelit house fills with vetted guests. You're not one of them, and he's delighted. Rope, patience, aftercare",
+    scenes: [
+      { name: "Unnlisted", line: "he knows every name in his house, and he doesn't know yours." },
+      { name: "Wrong Door", line: "you arrived at the wrong address and haven't managed to leave since" },
+      { name: "You Knew", line: "you knew exactly what this party was, and you're doing a very bad job of pretending otherwise" },
+    ],
+    link: "", cover: "images/thomas_pfp.jpeg", gallery: ["images/thomas_spicy1.jpeg", "images/thomas_spicy2.jpeg"]
+  },
+  /* ======================= NOT PUBLIC (status: "hidden") =======================
+     These don't show anywhere on the site. When one goes public, change
+     its status to "live" and fill in its chats. */
   {
     id: "the-crucible", name: "The Crucible", title: "Blood of Hercules",
     collection: "Fandom", category: "Historical", status: "hidden", chats: 0,
