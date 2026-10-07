@@ -690,7 +690,7 @@ window.BOTS = [
       { name: "Le Fanu", line: "Someone wrote a book about her." },
       { name: "Power's Out", line: "No AC, and she's cold to the touch." }
     ],
-    link: "", cover: "images/carmilla_pfp.jpeg", gallery: []
+    link: "", cover: "images/carmilla_pfp.png", gallery: []
   },
   {
     id: "corpse-bride", name: "Emily", title: "The Corpse Bride",
@@ -701,7 +701,7 @@ window.BOTS = [
     scenes: [
       { name: "The Vow", line: "The woods at dusk, your wedding vows finally right, and a ring on what you thought was a root." }
     ],
-    link: "", cover: "images/emily_pfp.jpg", gallery: []
+    link: "", cover: "images/emily_pfp.png", gallery: []
   },
   {
     id: "rhys-calloway", name: "Rhys Calloway", title: "Eastside Community Center",
@@ -726,7 +726,7 @@ window.BOTS = [
       { name: "Wrong Door", line: "you arrived at the wrong address and haven't managed to leave since" },
       { name: "You Knew", line: "you knew exactly what this party was, and you're doing a very bad job of pretending otherwise" },
     ],
-    link: "", cover: "images/thomas_pfp.jpeg", gallery: ["images/thomas_spicy1.jpeg", "images/thomas_spicy2.jpeg"]
+    link: "", cover: "images/thomas_pfp.png", gallery: ["images/thomas_spicy1.png", "images/thomas_spicy2.png"]
   },
   /* ======================= NOT PUBLIC (status: "hidden") =======================
      These don't show anywhere on the site. When one goes public, change
