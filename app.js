@@ -28,7 +28,7 @@
 
   /* ---- masthead ---- */
   document.title = (SITE.name || "Wren") + "'s Gallery";
-  $("#site-name").textContent = SITE.name || "Wren";
+  $("#site-name").innerHTML = (SITE.name || "Wren").replace(/[♡♥]/g, '<span class="heart">$&</span>');
   $("#issue").textContent = SITE.issue || "";
   $("#tagline").textContent = SITE.tagline || "";
   const totalChats = live.reduce((t, b) => t + (Number(b.chats) || 0), 0);
@@ -41,7 +41,7 @@
     if (SITE.dreamjourney) a.href = SITE.dreamjourney; else a.hidden = true;
   });
   $("#note").innerHTML = SITE.note
-    ? `<p>${esc(SITE.note)}</p><p class="sig">${esc(SITE.name || "Wren")}</p>` : "";
+    ? `<p>${esc(SITE.note)}</p><p class="sig">${esc(SITE.name || "Wren").replace(/[♡♥]/g, '<span class="heart">$&</span>')}</p>` : "";
   if (SITE.backdrop) document.documentElement.style.setProperty("--backdrop", `url("${SITE.backdrop}")`);
 
   /* ---- collections (the folders) ---- */
@@ -396,7 +396,7 @@
         const out = await res.json();
         if (!out.success) throw new Error(out.message || "Not sent");
         form.reset();
-        status.textContent = "Sent. Thank you.";
+        status.textContent = "Sent ♡ thank you for trusting me with it.";
       } catch (err) {
         status.textContent = "That didn't send. Check your connection and try again.";
         status.classList.add("err");

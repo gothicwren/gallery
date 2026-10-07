@@ -7,7 +7,7 @@
   <meta name="description" content="DreamJourney bots, scenarios and the towns they live in.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Pirata+One&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Tangerine:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -38,21 +38,24 @@
     <div class="view" id="view-home">
       <section class="featured" id="featured" aria-label="Top bot" hidden></section>
 
-      <div class="ornament" aria-hidden="true"><svg viewBox="0 0 260 24" width="260" height="24"><path d="M0 12H96M164 12H260" stroke="currentColor" stroke-width="1"/><circle cx="104" cy="12" r="2.2" fill="currentColor"/><circle cx="156" cy="12" r="2.2" fill="currentColor"/><path d="M130 2l10 10-10 10-10-10z" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M130 7l5 5-5 5-5-5z" fill="currentColor"/></svg></div>
+      <div class="ornament" aria-hidden="true"><svg viewBox="0 0 260 24" width="260" height="24"><path d="M0 13C22 10,50 15,76 11M104 12.5C108 10,110 14,114 11.5M146 11C152 14,156 9,162 12.5M182 11C210 15,232 9,260 13" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" fill="none"/><circle cx="90" cy="12" r="8" fill="currentColor"/><circle cx="93.5" cy="9" r="6.4" fill="var(--paper)"/><path d="M130 2l10 10-10 10-10-10z" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M130 7l5 5-5 5-5-5z" fill="currentColor"/><path d="M172 8L173.2 10.8L176 12L173.2 13.2L172 16L170.8 13.2L168 12L170.8 10.8Z" fill="currentColor"/></svg></div>
 
       <section class="folders-section" aria-labelledby="folders-h">
+        <p class="eyebrow">☾ pick a world ✦</p>
         <div class="row-head">
           <h2 id="folders-h">Collections</h2>
           <form class="search" id="home-search" role="search">
             <label class="visually-hidden" for="home-q">Search every bot</label>
             <input id="home-q" type="search" placeholder="Search every bot…" autocomplete="off">
+            <kbd aria-hidden="true">/</kbd>
           </form>
         </div>
         <ul class="folders" id="folders"></ul>
       </section>
 
       <section class="desk-preview" id="desk-preview" aria-labelledby="desk-h" hidden>
-        <div class="ornament" aria-hidden="true"><svg viewBox="0 0 260 24" width="260" height="24"><path d="M0 12H96M164 12H260" stroke="currentColor" stroke-width="1"/><circle cx="104" cy="12" r="2.2" fill="currentColor"/><circle cx="156" cy="12" r="2.2" fill="currentColor"/><path d="M130 2l10 10-10 10-10-10z" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M130 7l5 5-5 5-5-5z" fill="currentColor"/></svg></div>
+        <div class="ornament" aria-hidden="true"><svg viewBox="0 0 260 24" width="260" height="24"><path d="M0 13C22 10,50 15,76 11M104 12.5C108 10,110 14,114 11.5M146 11C152 14,156 9,162 12.5M182 11C210 15,232 9,260 13" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" fill="none"/><circle cx="90" cy="12" r="8" fill="currentColor"/><circle cx="93.5" cy="9" r="6.4" fill="var(--paper)"/><path d="M130 2l10 10-10 10-10-10z" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M130 7l5 5-5 5-5-5z" fill="currentColor"/><path d="M172 8L173.2 10.8L176 12L173.2 13.2L172 16L170.8 13.2L168 12L170.8 10.8Z" fill="currentColor"/></svg></div>
+        <p class="eyebrow">✒ still being written ✦</p>
         <div class="row-head">
           <h2 id="desk-h">On the desk</h2>
           <a class="more" id="desk-more" href="#/desk">See everything on the desk</a>
@@ -65,6 +68,7 @@
     <!-- ============ A FOLDER / ALL BOTS / THE DESK ============ -->
     <div class="view" id="view-list" hidden>
       <nav class="crumbs" aria-label="Breadcrumb"><a href="#/">← All collections</a></nav>
+      <p class="eyebrow">☾ the archive ✦</p>
       <div class="list-head">
         <h2 id="list-title"></h2>
         <p class="list-meta" id="list-meta"></p>
@@ -83,7 +87,7 @@
     </div>
   </main>
 
-  <div class="ornament" aria-hidden="true"><svg viewBox="0 0 260 24" width="260" height="24"><path d="M0 12H96M164 12H260" stroke="currentColor" stroke-width="1"/><circle cx="104" cy="12" r="2.2" fill="currentColor"/><circle cx="156" cy="12" r="2.2" fill="currentColor"/><path d="M130 2l10 10-10 10-10-10z" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M130 7l5 5-5 5-5-5z" fill="currentColor"/></svg></div>
+  <div class="ornament" aria-hidden="true"><svg viewBox="0 0 260 24" width="260" height="24"><path d="M0 13C22 10,50 15,76 11M104 12.5C108 10,110 14,114 11.5M146 11C152 14,156 9,162 12.5M182 11C210 15,232 9,260 13" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" fill="none"/><circle cx="90" cy="12" r="8" fill="currentColor"/><circle cx="93.5" cy="9" r="6.4" fill="var(--paper)"/><path d="M130 2l10 10-10 10-10-10z" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M130 7l5 5-5 5-5-5z" fill="currentColor"/><path d="M172 8L173.2 10.8L176 12L173.2 13.2L172 16L170.8 13.2L168 12L170.8 10.8Z" fill="currentColor"/></svg></div>
 
   <footer class="colophon">
     <div class="actions">
