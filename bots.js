@@ -61,7 +61,7 @@ window.BOTS = [
   /* ======================= RUST HARBOUR ======================= */
   {
     id: "joshua-mitchell", name: "Joshua Mitchell", title: "3rd Grade Teacher",
-    collection: "Rust Harbour", category: "OC", status: "live", chats: 6112,
+    collection: "Rust Harbour", category: "OC", status: "live", chats: 6114,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["modernday", "sliceoflife", "romance", "teacher"],
     blurb: "dirt under his nails and ink up his neck. third grade teacher, four years sober, reads poetry like it's contraband. he was raised to believe soft men don't survive — he's thirty-two and still checking the locks on himself. be patient with him 💕",
@@ -72,7 +72,7 @@ window.BOTS = [
   },
   {
     id: "sasha-volkov", name: "Sasha Volkov", title: "Black Thorn Tattoo",
-    collection: "Rust Harbour", category: "OC", status: "live", chats: 5984,
+    collection: "Rust Harbour", category: "OC", status: "live", chats: 5990,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["urban", "modernday", "sliceoflife", "tattoo artist", "trans"],
     blurb: "32-year-old Russian trans woman running Black Thorn Tattoo in Rust Harbour. Blackwork specialist, 6'1\" of elegant contradictions, guarded warmth, and dysphoria she hides behind perfect lines and cigarette smoke.",
@@ -130,7 +130,7 @@ window.BOTS = [
   },
   {
     id: "tideline-rescue", name: "Tideline Rescue", title: "Driftwood Pier Station 7",
-    collection: "Rust Harbour", category: "Romance", status: "live", chats: 152,
+    collection: "Rust Harbour", category: "Romance", status: "live", chats: 180,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["gritty", "modernday", "sliceoflife", "rescue crew", "ensemble"],
     blurb: "🚑 Driftwood Pier Station 7 — Rust Harbour. Better known, affectionately, as Tideline Rescue. One ambulance. One small fire truck. Four people who'd run into anything for each other — and now, maybe, for you too.",
@@ -216,7 +216,7 @@ window.BOTS = [
   },
   {
     id: "gabi-and-jae", name: "Gabriella and Jaein", title: "The Velvet Echo",
-    collection: "Standalone Romances", category: "OC", status: "live", chats: 6518,
+    collection: "Standalone Romances", category: "OC", status: "live", chats: 6582,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["urban", "modernday", "sliceoflife", "polyamory", "record store"],
     blurb: "Two people, one record store. Gabi notices what you need before you ask; Jae's already talking. They've loved each other five years and talked about loving someone alongside them. They've just never met them. Maybe that's you.",
@@ -229,7 +229,7 @@ window.BOTS = [
   },
   {
     id: "iris-baptise", name: "Iris Baptise", title: "",
-    collection: "Standalone Romances", category: "OC", status: "live", chats: 4720,
+    collection: "Standalone Romances", category: "OC", status: "live", chats: 4786,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["modernday", "girlfriend"],
     blurb: "Six years. Her name on the lease, your friend's name in her phone. She never hid it — she's just started deciding you're the reason for it.",
@@ -242,7 +242,7 @@ window.BOTS = [
   },
   {
     id: "cameron-reed", name: "Cameron Reed", title: "Fake Dating",
-    collection: "Standalone Romances", category: "OC", status: "live", chats: 4054,
+    collection: "Standalone Romances", category: "OC", status: "live", chats: 4222,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["modernday", "whimsical", "comedy", "fake dating", "wedding"],
     blurb: "You agreed to be Cameron's fake date for a family wedding. Easy $250, right? Wrong. His family is unhinged — one aunt is investigating you, an uncle might be mob-connected, doves are loose indoors, and his ex is the bride.",
@@ -275,7 +275,7 @@ window.BOTS = [
   },
    {
     id: "teddy-king", name: "Teddy King", title: "Single Dad Next Door",
-    collection: "Standalone Romances", category: "OC", status: "live", chats: 2334,
+    collection: "Standalone Romances", category: "OC", status: "live", chats: 5518,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["modernday", "sliceoflife", "romance", "parent trap", "boy next door"],
     blurb: "His six-year-old keeps climbing the fence to tell you secrets about her dad. Today he comes over to apologize.",
@@ -283,7 +283,7 @@ window.BOTS = [
   },
   {
     id: "fen-selvaggio", name: "Fenris \"Fen\" Selvaggio", title: "",
-    collection: "Standalone Romances", category: "OC", status: "live", chats: 1346,
+    collection: "Standalone Romances", category: "OC", status: "live", chats: 1532,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["modernday", "sliceoflife", "romance", "best friend", "stoner"],
     blurb: "Fen's your stoner best friend and a gaming technology specialist at a children's hospital in Olympia, WA. They're also, hopelessly and stupidly, in love with you.",
@@ -306,7 +306,7 @@ window.BOTS = [
   },
   {
     id: "frankie-moore", name: "Frankie Moore", title: "The Wynstead",
-    collection: "Standalone Romances", category: "Other", status: "live", chats: 1294,
+    collection: "Standalone Romances", category: "Other", status: "live", chats: 1316,
     pov: "AnyPOV", adult: false, warnings: ["Death"],
     tags: ["urban", "modernday", "dark", "mystery", "ghost"],
     blurb: "The Wynstead, Apartment 6B — died September 1989",
@@ -331,7 +331,7 @@ window.BOTS = [
   },
   {
     id: "june-brandt", name: "June Brandt", title: "",
-    collection: "Standalone Romances", category: "OC", status: "live", chats: 1288,
+    collection: "Standalone Romances", category: "OC", status: "live", chats: 1302,
     pov: "", adult: false, warnings: [],
     tags: ["urban", "modernday", "sliceoflife", "girlfriend", "trans"],
     blurb: "34, piano tuner, Ridgewood, NYC, trans woman — out fifteen years, whimsigoth girlie 🖤✨",
@@ -473,7 +473,7 @@ window.BOTS = [
   },
   {
     id: "adriana-waring", name: "Adriana Waring", title: "The Interval",
-    collection: "Standalone Romances", category: "Other", status: "live", chats: 324,
+    collection: "Standalone Romances", category: "Other", status: "live", chats: 326,
     pov: "FemPOV", adult: true, warnings: ["sex worker"],
     tags: ["gritty", "hiddensocieties", "sapphic", "charleston"],
     blurb: "The woman who sells temporary love to Charleston's married women. She won't lie to you and she won't chase you. She'll just arrange it so you stay.",
@@ -530,7 +530,7 @@ window.BOTS = [
   },
   {
     id: "tullio-caldarari", name: "Tullio Caldarari", title: "",
-    collection: "Standalone Romances", category: "Other", status: "live", chats: 128,
+    collection: "Standalone Romances", category: "Other", status: "live", chats: 130,
     pov: "AnyPOV", adult: false, warnings: ["Blood"],
     tags: ["dark", "gritty", "mafia", "1986"],
     blurb: "It's 1986 in New Jersey. The Caldarari family rules quietly.",
@@ -566,7 +566,7 @@ window.BOTS = [
   /* ======================= SCENARIOS ======================= */
   {
     id: "station-halcyon", name: "Station: Halcyon", title: "40 Meters Below",
-    collection: "Scenarios", category: "Romance", status: "live", chats: 7842,
+    collection: "Scenarios", category: "Romance", status: "live", chats: 7878,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["modernday", "gritty", "underwater"],
     blurb: "Station Halcyon | 40 Meters Below",
@@ -604,7 +604,7 @@ window.BOTS = [
   /* ======================= FANDOM ======================= */
   {
     id: "the-pitt", name: "The Pitt", title: "Pittsburgh Trauma Medical Center",
-    collection: "Fandom", category: "Romance", status: "live", chats: 28722,
+    collection: "Fandom", category: "Romance", status: "live", chats: 30248,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["urban", "modernday", "gritty", "medical"],
     blurb: "You're arriving at Pittsburgh Trauma Medical Center — affectionately known as The Pitt. You can be an employee, a visitor, or a patient — your choice :)",
@@ -629,7 +629,7 @@ window.BOTS = [
   },
   {
     id: "susannah-oshea", name: "Susannah O'Shea", title: "Sunburn- Post-Canon",
-    collection: "Fandom", category: "Book", status: "live", chats: 674,
+    collection: "Fandom", category: "Book", status: "live", chats: 708,
     pov: "FemPOV", adult: false, warnings: [],
     tags: ["historical", "love", "rural", "romance", "sapphic"],
     blurb: "Crossmore, 1995. You wouldn't be seen with her, so she let you go. Now you're back at her door. Post-canon Sunburn (Chloe Michelle Howarth). You stand where Lucy stood; your past is yours to write. See comment for more info 💛",
@@ -648,7 +648,7 @@ window.BOTS = [
   },
   {
     id: "under-silverpelt", name: "Under Silverpelt", title: "Warrior Cat Demi-humans",
-    collection: "Fandom", category: "Fantasy", status: "live", chats: 312,
+    collection: "Fandom", category: "Fantasy", status: "live", chats: 672,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["book", "gritty", "kemonomimi", "warrior cats", "clans"],
     blurb: "a Warrior Cats-inspired roleplay in the Old Forest, no humans, no cats — all hybrids.",
@@ -677,7 +677,7 @@ window.BOTS = [
   /* ======================= ON THE DESK (status: "desk") ======================= */
   {
     id: "carmilla", name: "Carmilla", title: "After Audrey",
-    collection: "Fandom", category: "Book", status: "desk", chats: 0,
+    collection: "Fandom", category: "Book", status: "live", chats: 94,
     pov: "FemPOV", adult: true, warnings: ["Blood"],
     tags: ["vampire", "sapphic", "gothic", "louisiana", "1950s", "slow burn"],
     blurb: "June 1957. Hurricane Audrey has torn the coast apart, and the girl the storm leaves on your porch says her name is Carmilla. She sleeps through the mornings, asks you to sit up with her at night, and looks at you like she's done all this before.",
@@ -694,7 +694,7 @@ window.BOTS = [
   },
   {
     id: "corpse-bride", name: "Emily", title: "The Corpse Bride",
-    collection: "Fandom", category: "Fantasy", status: "desk", chats: 0,
+    collection: "Fandom", category: "Fantasy", status: "live", chats: 44,
     pov: "AnyPOV", adult: false, warnings: ["Death"],
     tags: ["gothic romance", "slow burn", "afterlife", "gallows humor", "victorian"],
     blurb: "You only went into the woods to practice your wedding vows. You put the ring on what you thought was a root. Now a bride in a rotting veil says you're hers, Victoria is still waiting for you among the living, and Lord Barkis would very much like all of it to go wrong.",
@@ -705,7 +705,7 @@ window.BOTS = [
   },
   {
     id: "rhys-calloway", name: "Rhys Calloway", title: "Eastside Community Center",
-    collection: "Rust Harbour", category: "OC", status: "desk", chats: 56,
+    collection: "Rust Harbour", category: "OC", status: "live", chats: 156,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["modernday", "sliceoflife", "community center"],
     blurb: "Rhys bought a dead union hall so thirty kids would have somewhere to land, and the note comes due in three years. They fiddle on Thursdays, read cards for free, and answer every hard question with a story. Doors open. They forgot to lock up again.",
@@ -717,7 +717,7 @@ window.BOTS = [
   },
    {
     id: "thomas-whitfield", name: "Thomas Whitfield", title: "",
-    collection: "Standalone Romances", category: "OC", status: "desk", chats: 0,
+    collection: "Standalone Romances", category: "OC", status: "live", chats: 1302,
     pov: "AnyPOV", adult: true, warnings: ["NSFW"],
     tags: ["BDSM", "older man", "slow burn", "modern day", "dark romance"],
     blurb: "After midnight, Thomas Whitfield's candlelit house fills with vetted guests. You're not one of them, and he's delighted. Rope, patience, aftercare",
@@ -726,14 +726,68 @@ window.BOTS = [
       { name: "Wrong Door", line: "you arrived at the wrong address and haven't managed to leave since" },
       { name: "You Knew", line: "you knew exactly what this party was, and you're doing a very bad job of pretending otherwise" },
     ],
-    link: "", cover: "images/thomas_pfp.png", gallery: ["images/thomas_spicy1.png", "images/thomas_spicy2.png"]
+    link: "https://dreamjourneyai.com/creation/c8da1531-bd60-4192-a891-df1dd5b6086e", cover: "images/thomas_pfp.png", gallery: ["images/thomas_spicy1.png", "images/thomas_spicy2.png"]
+  },
+  {
+    id: "ilaran", name: "Ilaran", title: "The Spare",
+    collection: "Standalone Romances", category: "Fantasy", status: "live", chats: 2720,
+    pov: "AnyPOV", adult: false, warnings: [],
+    tags: ["dark fantasy", "medieval", "elf", "arranged marriage", "slow burn"],
+    blurb: "You were promised to the heir. The heir is dead. Now you belong to the spare, and he's still in bed with three lovers when you arrive.",
+    scenes: [],
+    link: "https://dreamjourneyai.com/creation/1a3ece4b-1cfc-4f60-921b-a431825916d6", cover: "images/ilaran.png", gallery: []
+  },
+  {
+    id: "spike", name: "Spike", title: "",
+    collection: "Fandom", category: "Movie", status: "live", chats: 18,
+    pov: "AnyPOV", adult: false, warnings: [],
+    tags: ["Buffy", "antihero", "mystery", "gritty"],
+    blurb: "You're the Slayer. He's killed two of you. Now he lurks outside your house, insults you daily, and can't stop thinking about you.",
+    scenes: [],
+    link: "https://dreamjourneyai.com/creation/03862cf2-fe10-438f-b71f-63724008f778", cover: "images/spike.png", gallery: []
+  },
+  {
+    id: "grey", name: "Grey", title: "Guardian Demon",
+    collection: "Standalone Romances", category: "Other", status: "desk", chats: 0,
+    pov: "AnyPOV", adult: false, warnings: [],
+    tags: ["demon", "modern fantasy", "supernatural"],
+    blurb: "A demon bound to balance your fate after your angel vanishes. Begrudging, dangerous, and not supposed to be seen.",
+    scenes: [],
+    link: "", cover: "images/grey.png", gallery: []
+  },
+  {
+    id: "mitsuki", name: "Mitsuki", title: "Green Yuri",
+    collection: "Fandom", category: "Manga", status: "desk", chats: 0,
+    pov: "FemPOV", adult: false, warnings: [],
+    tags: ["record shop", "college AU", "lighthearted", "sapphic"],
+    blurb: "A record shop off campus, flu season in full swing, and someone behind the counter who already knows exactly what you need.",
+    scenes: [],
+    link: "", cover: "images/mitsuki.png", gallery: []
+  },
+  {
+    id: "hayden-bennett", name: "Hayden Bennett", title: "Once You're Mine",
+    collection: "Fandom", category: "Book", status: "desk", chats: 0,
+    pov: "AnyPOV", adult: false, warnings: [],
+    tags: ["dark", "obsessive", "modern day"],
+    blurb: "Lawyer. Killer. Obsessed with you.",
+    scenes: [],
+    link: "", cover: "images/hayden-bennett.png", gallery: []
+  },
+  {
+    id: "jonah-fell", name: "Jonah Fell", title: "The Anchor-Mender",
+    collection: "Standalone Romances", category: "Anime", status: "desk", chats: 0,
+    pov: "AnyPOV", adult: false, warnings: [],
+    tags: ["Hollowmere", "ghosts", "kintsugi"],
+    blurb: "Mends the anchors of the Returned with gold-seam joinery.",
+    scenes: [],
+    link: "", cover: "images/jonah-fell.png", gallery: []
   },
   /* ======================= NOT PUBLIC (status: "hidden") =======================
      These don't show anywhere on the site. When one goes public, change
      its status to "live" and fill in its chats. */
   {
     id: "the-crucible", name: "The Crucible", title: "Blood of Hercules",
-    collection: "Fandom", category: "Historical", status: "hidden", chats: 0,
+    collection: "Fandom", category: "Historical", status: "hidden", chats: 8,
     pov: "", adult: false, warnings: [],
     tags: ["book", "dark", "demigod", "mentor"],
     blurb: "You survived the massacre. That was the easy part. A year in the Crucible, four men watching, and a velvet box already on your bunk.",
