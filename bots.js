@@ -773,14 +773,21 @@ window.BOTS = [
     scenes: [],
     link: "", cover: "images/hayden-bennett.png", gallery: []
   },
-  {
+   {
     id: "jonah-fell", name: "Jonah Fell", title: "The Anchor-Mender",
-    collection: "Standalone Romances", category: "Anime", status: "desk", chats: 0,
-    pov: "AnyPOV", adult: false, warnings: [],
-    tags: ["Hollowmere", "ghosts", "kintsugi"],
-    blurb: "Mends the anchors of the Returned with gold-seam joinery.",
-    scenes: [],
-    link: "", cover: "images/jonah-fell.png", gallery: []
+    collection: "Standalone Romances", category: "Other", status: "live", chats: 0,
+    pov: "AnyPOV", adult: false, warnings: ["Death/Loss"],
+    tags: ["Hollowmere", "ghosts", "kintsugi", "cozy gothic", "slow burn", "hurt/comfort", "any faction"],
+    blurb: "every ghost in hollowmere is tied to the one thing they loved, and if it breaks, they fade. jonah fell puts it back together with gold. he doesn't take money — he takes stories, any story, and writes every one down, because listening is the closest he gets to living. he's started mending himself the same way. there's a shattered pocket watch in a locked drawer under his bench. don't ask 🕯️",
+    scenes: [
+      { name: "Fading", line: "You're one of the Returned, your anchor is cracked, and you're running out of edges." },
+      { name: "Battery Life", line: "You walked out of the fog with a dying phone, and the Lamplighter captain swears he can fix anything." },
+      { name: "Apprenticed", line: "The Gravediggers have decided the town needs a spare mender. They've picked you. Nobody asked him." },
+      { name: "Not for Sale", line: "Your family on the hill wants his ledgers, and you're the one they sent to buy them." },
+      { name: "Out of the Fog", line: "You stepped out of his alley holding a ring that faded decades ago, mended in his dead teacher's gold." }
+    ],
+    link: "https://dreamjourneyai.com/creation/7ebb0f22-5557-451c-a71c-0861cbbabb25", cover: "images/jonah-fell.png", focus: "50% 20%",
+    gallery: ["images/jonah-shop.png", "images/jonah-gilt-row.png", "images/jonah-fading.png", "images/jonah-battery-life.png", "images/jonah-apprenticed.png", "images/jonah-not-for-sale.png", "images/jonah-out-of-the-fog.png"]
   },
   /* ======================= NOT PUBLIC (status: "hidden") =======================
      These don't show anywhere on the site. When one goes public, change
