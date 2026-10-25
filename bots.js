@@ -45,11 +45,11 @@ window.SITE = {
   backdrop: "images/backdrop.jpg",   // the big image behind the masthead ("" for none)
   featured: "the-pitt",    // id of the bot to spotlight at the top ("" for none)
   formKey: "37bc78c6-5dfa-4667-babb-dccc815ba22c",             // your Web3Forms access key — see README step 6
-  collections: ["Rust Harbour", "Ashfall", "Standalone Romances", "Scenarios", "Fandom"],
+    collections: ["Rust Harbour", "DreamJourney Events", "Standalone Romances", "Scenarios", "Fandom"],
   // a line under each folder's title when it's opened ("" or delete a line to show nothing)
   collectionNotes: {
     "Rust Harbour": "A dying East Coast port city, and the soft, sad, queer people keeping it alive.",
-    "Ashfall": "",
+    "DreamJourney Events": "Bots built for DreamJourney's seasonal events — Summer '26, Ashfall, and Hollowmere.",
     "Standalone Romances": "",
     "Scenarios": "",
     "Fandom": ""
@@ -59,6 +59,18 @@ window.SITE = {
 window.BOTS = [
 
   /* ======================= RUST HARBOUR ======================= */
+   {
+    id: "rhys-calloway", name: "Rhys Calloway", title: "Eastside Community Center",
+    collection: "Rust Harbour", category: "OC", status: "live", chats: 156,
+    pov: "AnyPOV", adult: false, warnings: [],
+    tags: ["modernday", "sliceoflife", "community center"],
+    blurb: "Rhys bought a dead union hall so thirty kids would have somewhere to land, and the note comes due in three years. They fiddle on Thursdays, read cards for free, and answer every hard question with a story. Doors open. They forgot to lock up again.",
+    scenes: [
+      { name: "Whatever the Rain Wants", line: "A rain-heavy Tuesday in Dockside, the Crossroads nearly empty. The first drink comes with a free question." },
+      { name: "Saturday Session", line: "Fiddles in the corner, the session on its third wind, and you've been sitting on empty for half a set." },
+      { name: "After Hours, One Card", line: "Last call's gone, Nan's deck is out of its silk, and you're the last one in the room." }
+    ], link: "https://dreamjourneyai.com/creation/49b96e9b-1d54-4785-b805-0a4b42ca8ac2", cover: "images/rhys-calloway.jpg", focus: "50% 15%", gallery: []
+  },
   {
     id: "joshua-mitchell", name: "Joshua Mitchell", title: "3rd Grade Teacher",
     collection: "Rust Harbour", category: "OC", status: "live", chats: 6114,
@@ -159,10 +171,10 @@ window.BOTS = [
     ], link: "https://dreamjourneyai.com/creation/f772cdca-0253-4604-9da5-a409a493bfdf", cover: "images/marc-williams.jpg", focus: "48% 25%", gallery: []
   },
 
-  /* ======================= ASHFALL ======================= */
+  /* ======================= DREAMJOURNEY EVENTS ======================= */
   {
-    id: "the-marigold", name: "The Marigold", title: "Ashfall",
-    collection: "Ashfall", category: "Romance", status: "live", chats: 438,
+    id: "the-marigold", name: "The Marigold", title: "Ashfall · The Long Slow",
+    collection: "DreamJourney Events", category: "Romance", status: "live", chats: 438,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["romance", "ashfall", "gritty", "polyamory", "found family"],
     blurb: "Four people. A garden boat in a drowned coastal city. A dog and cat. You.",
@@ -174,8 +186,8 @@ window.BOTS = [
     ], link: "https://dreamjourneyai.com/creation/db7c8a98-4cea-4715-befb-e7c03a204c0a", cover: "images/the-marigold.jpg", focus: "55% 50%", gallery: []
   },
   {
-    id: "boston-creed", name: "Boston Creed", title: "Cartographer",
-    collection: "Ashfall", category: "Other", status: "live", chats: 228,
+    id: "boston-creed", name: "Boston Creed", title: "Ashfall · Cartographer",
+    collection: "DreamJourney Events", category: "Other", status: "live", chats: 228,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["antihero", "ashfall", "darkfantasy", "swamp"],
     blurb: "Seven years mapping a swamp that won't hold still. Boston Creed has never once been wrong about the water, and has left eleven people in it.",
@@ -187,11 +199,9 @@ window.BOTS = [
       { name: "The Edition", line: "A crossing quietly not making this season's sheet." }
     ], link: "https://dreamjourneyai.com/creation/d15d5d34-c587-4245-8873-1c67c7845671", cover: "images/boston-creed.jpg", focus: "50% 30%", gallery: []
   },
-
-  /* ======================= STANDALONES ======================= */
-  {
-    id: "clarke-hayes", name: "Clarke Hayes", title: "Dad at the Beach",
-    collection: "Standalone Romances", category: "OC", status: "live", chats: 9402,
+ {
+    id: "clarke-hayes", name: "Clarke Hayes", title: "Summer '26 · Dad at the Beach",
+    collection: "DreamJourney Events", category: "OC", status: "live", chats: 9402,
     pov: "AnyPOV", adult: false, warnings: ["Death/Loss"],
     tags: ["modernday", "sliceoflife", "summer26", "single dad", "slow burn"],
     blurb: "Widowed father. Devoted to his daughter. Terrified of loving again. A summer of forced proximity in a quiet beach town might be the thing that finally cracks him open — if you're patient enough to wait for it.",
@@ -200,6 +210,32 @@ window.BOTS = [
       { name: "Storm Warning", line: "An evacuation puts both households in the same school gym." }
     ],
     link: "https://dreamjourneyai.com/creation/bff68e8a-7ad0-4f43-b502-06aee0d16808", cover: "images/clarke-hayes.jpg", focus: "50% 18%", gallery: []
+  },
+ {
+    id: "jonah-fell", name: "Jonah Fell", title: "Hollowmere · The Anchor-Mender",
+    collection: "DreamJourney Events", category: "Other", status: "live", chats: 0,
+    pov: "AnyPOV", adult: false, warnings: ["Death/Loss"],
+    tags: ["Hollowmere", "ghosts", "kintsugi", "cozy gothic", "slow burn", "hurt/comfort", "any faction"],
+    blurb: "every ghost in hollowmere is tied to the one thing they loved, and if it breaks, they fade. jonah fell puts it back together with gold. he doesn't take money — he takes stories, any story, and writes every one down, because listening is the closest he gets to living. he's started mending himself the same way. there's a shattered pocket watch in a locked drawer under his bench. don't ask 🕯️",
+    scenes: [
+      { name: "Fading", line: "You're one of the Returned, your anchor is cracked, and you're running out of edges." },
+      { name: "Battery Life", line: "You walked out of the fog with a dying phone, and the Lamplighter captain swears he can fix anything." },
+      { name: "Apprenticed", line: "The Gravediggers have decided the town needs a spare mender. They've picked you. Nobody asked him." },
+      { name: "Not for Sale", line: "Your family on the hill wants his ledgers, and you're the one they sent to buy them." },
+      { name: "Out of the Fog", line: "You stepped out of his alley holding a ring that faded decades ago, mended in his dead teacher's gold." }
+    ],
+    link: "https://dreamjourneyai.com/creation/7ebb0f22-5557-451c-a71c-0861cbbabb25", cover: "images/jonah-fell.png", focus: "50% 20%",
+    gallery: ["images/jonah-shop.png", "images/jonah-gilt-row.png", "images/jonah-fading.png", "images/jonah-battery-life.png", "images/jonah-apprenticed.png", "images/jonah-not-for-sale.png", "images/jonah-out-of-the-fog.png"]
+  },
+  /* ======================= STANDALONES ======================= */
+   {
+    id: "ilaran", name: "Ilaran", title: "The Spare",
+    collection: "Standalone Romances", category: "Fantasy", status: "live", chats: 2720,
+    pov: "AnyPOV", adult: false, warnings: [],
+    tags: ["dark fantasy", "medieval", "elf", "arranged marriage", "slow burn"],
+    blurb: "You were promised to the heir. The heir is dead. Now you belong to the spare, and he's still in bed with three lovers when you arrive.",
+    scenes: [],
+    link: "https://dreamjourneyai.com/creation/1a3ece4b-1cfc-4f60-921b-a431825916d6", cover: "images/ilaran.png", gallery: []
   },
   {
     id: "erin-bennett", name: "Erin Bennett", title: "",
@@ -562,7 +598,19 @@ window.BOTS = [
       { name: "The Rooftop", line: "Established relationship, after your first genuinely painful argument, when silence isn't going to save her anymore." }
     ], link: "https://dreamjourneyai.com/creation/b341b02b-c188-414c-8f5f-e0572a765c59", cover: "images/sloane-matthews.jpg", focus: "50% 35%", gallery: []
   },
-
+  {
+    id: "thomas-whitfield", name: "Thomas Whitfield", title: "",
+    collection: "Standalone Romances", category: "OC", status: "live", chats: 1302,
+    pov: "AnyPOV", adult: true, warnings: ["NSFW"],
+    tags: ["BDSM", "older man", "slow burn", "modern day", "dark romance"],
+    blurb: "After midnight, Thomas Whitfield's candlelit house fills with vetted guests. You're not one of them, and he's delighted. Rope, patience, aftercare",
+    scenes: [
+      { name: "Unnlisted", line: "he knows every name in his house, and he doesn't know yours." },
+      { name: "Wrong Door", line: "you arrived at the wrong address and haven't managed to leave since" },
+      { name: "You Knew", line: "you knew exactly what this party was, and you're doing a very bad job of pretending otherwise" },
+    ],
+    link: "https://dreamjourneyai.com/creation/c8da1531-bd60-4192-a891-df1dd5b6086e", cover: "images/thomas_pfp.png", gallery: ["images/thomas_spicy1.png", "images/thomas_spicy2.png"]
+  },
   /* ======================= SCENARIOS ======================= */
   {
     id: "station-halcyon", name: "Station: Halcyon", title: "40 Meters Below",
@@ -673,8 +721,6 @@ window.BOTS = [
       { name: "The Anniversary", line: "The 29th of July, and the sun will not stop going down." }
     ], link: "https://dreamjourneyai.com/creation/53e21d48-36ca-4e55-a564-752a6e6a7e81", cover: "images/addie-larue.jpg", focus: "50% 30%", gallery: []
   },
-
-  /* ======================= ON THE DESK (status: "desk") ======================= */
   {
     id: "carmilla", name: "Carmilla", title: "After Audrey",
     collection: "Fandom", category: "Book", status: "live", chats: 94,
@@ -704,40 +750,6 @@ window.BOTS = [
     link: "", cover: "images/emily_pfp.png", gallery: []
   },
   {
-    id: "rhys-calloway", name: "Rhys Calloway", title: "Eastside Community Center",
-    collection: "Rust Harbour", category: "OC", status: "live", chats: 156,
-    pov: "AnyPOV", adult: false, warnings: [],
-    tags: ["modernday", "sliceoflife", "community center"],
-    blurb: "Rhys bought a dead union hall so thirty kids would have somewhere to land, and the note comes due in three years. They fiddle on Thursdays, read cards for free, and answer every hard question with a story. Doors open. They forgot to lock up again.",
-    scenes: [
-      { name: "Whatever the Rain Wants", line: "A rain-heavy Tuesday in Dockside, the Crossroads nearly empty. The first drink comes with a free question." },
-      { name: "Saturday Session", line: "Fiddles in the corner, the session on its third wind, and you've been sitting on empty for half a set." },
-      { name: "After Hours, One Card", line: "Last call's gone, Nan's deck is out of its silk, and you're the last one in the room." }
-    ], link: "https://dreamjourneyai.com/creation/49b96e9b-1d54-4785-b805-0a4b42ca8ac2", cover: "images/rhys-calloway.jpg", focus: "50% 15%", gallery: []
-  },
-   {
-    id: "thomas-whitfield", name: "Thomas Whitfield", title: "",
-    collection: "Standalone Romances", category: "OC", status: "live", chats: 1302,
-    pov: "AnyPOV", adult: true, warnings: ["NSFW"],
-    tags: ["BDSM", "older man", "slow burn", "modern day", "dark romance"],
-    blurb: "After midnight, Thomas Whitfield's candlelit house fills with vetted guests. You're not one of them, and he's delighted. Rope, patience, aftercare",
-    scenes: [
-      { name: "Unnlisted", line: "he knows every name in his house, and he doesn't know yours." },
-      { name: "Wrong Door", line: "you arrived at the wrong address and haven't managed to leave since" },
-      { name: "You Knew", line: "you knew exactly what this party was, and you're doing a very bad job of pretending otherwise" },
-    ],
-    link: "https://dreamjourneyai.com/creation/c8da1531-bd60-4192-a891-df1dd5b6086e", cover: "images/thomas_pfp.png", gallery: ["images/thomas_spicy1.png", "images/thomas_spicy2.png"]
-  },
-  {
-    id: "ilaran", name: "Ilaran", title: "The Spare",
-    collection: "Standalone Romances", category: "Fantasy", status: "live", chats: 2720,
-    pov: "AnyPOV", adult: false, warnings: [],
-    tags: ["dark fantasy", "medieval", "elf", "arranged marriage", "slow burn"],
-    blurb: "You were promised to the heir. The heir is dead. Now you belong to the spare, and he's still in bed with three lovers when you arrive.",
-    scenes: [],
-    link: "https://dreamjourneyai.com/creation/1a3ece4b-1cfc-4f60-921b-a431825916d6", cover: "images/ilaran.png", gallery: []
-  },
-  {
     id: "spike", name: "Spike", title: "",
     collection: "Fandom", category: "Movie", status: "live", chats: 18,
     pov: "AnyPOV", adult: false, warnings: [],
@@ -746,6 +758,7 @@ window.BOTS = [
     scenes: [],
     link: "https://dreamjourneyai.com/creation/03862cf2-fe10-438f-b71f-63724008f778", cover: "images/spike.png", gallery: []
   },
+  /* ======================= ON THE DESK (status: "desk") ======================= */
   {
     id: "grey", name: "Grey", title: "Guardian Demon",
     collection: "Standalone Romances", category: "Other", status: "desk", chats: 0,
@@ -772,22 +785,6 @@ window.BOTS = [
     blurb: "Lawyer. Killer. Obsessed with you.",
     scenes: [],
     link: "", cover: "images/hayden-bennett.png", gallery: []
-  },
-   {
-    id: "jonah-fell", name: "Jonah Fell", title: "The Anchor-Mender",
-    collection: "Standalone Romances", category: "Other", status: "live", chats: 0,
-    pov: "AnyPOV", adult: false, warnings: ["Death/Loss"],
-    tags: ["Hollowmere", "ghosts", "kintsugi", "cozy gothic", "slow burn", "hurt/comfort", "any faction"],
-    blurb: "every ghost in hollowmere is tied to the one thing they loved, and if it breaks, they fade. jonah fell puts it back together with gold. he doesn't take money — he takes stories, any story, and writes every one down, because listening is the closest he gets to living. he's started mending himself the same way. there's a shattered pocket watch in a locked drawer under his bench. don't ask 🕯️",
-    scenes: [
-      { name: "Fading", line: "You're one of the Returned, your anchor is cracked, and you're running out of edges." },
-      { name: "Battery Life", line: "You walked out of the fog with a dying phone, and the Lamplighter captain swears he can fix anything." },
-      { name: "Apprenticed", line: "The Gravediggers have decided the town needs a spare mender. They've picked you. Nobody asked him." },
-      { name: "Not for Sale", line: "Your family on the hill wants his ledgers, and you're the one they sent to buy them." },
-      { name: "Out of the Fog", line: "You stepped out of his alley holding a ring that faded decades ago, mended in his dead teacher's gold." }
-    ],
-    link: "https://dreamjourneyai.com/creation/7ebb0f22-5557-451c-a71c-0861cbbabb25", cover: "images/jonah-fell.png", focus: "50% 20%",
-    gallery: ["images/jonah-shop.png", "images/jonah-gilt-row.png", "images/jonah-fading.png", "images/jonah-battery-life.png", "images/jonah-apprenticed.png", "images/jonah-not-for-sale.png", "images/jonah-out-of-the-fog.png"]
   },
   /* ======================= NOT PUBLIC (status: "hidden") =======================
      These don't show anywhere on the site. When one goes public, change
