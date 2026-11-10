@@ -44,7 +44,7 @@ window.SITE = {
     "thank you for letting them live in yours too. " +
     "every chat and every star means more than i know how to say, and this little corner of the internet is so warm because of you. " +
     "pull up a chair and stay as long as you like. " +
-    "if a scene's been living rent-free in your head, leave me a prompt or a hello at the bottom of the page. " +
+    "if a scene's been living rent-free in your head, leave me a prompt or a hello ~ i love to build things catered to people. " +
     "and yes, i will absolutely yearn about it.",
   dreamjourney: "https://dreamjourneyai.com/profile/flightless",
   backdrop: "images/study.jpg",   // the big image behind the masthead ("" for none)
@@ -66,9 +66,9 @@ window.SITE = {
   avatarAlt: "An illustrated portrait: messy brown hair, round glasses, a dark sweater vest over a white collar with silver chains, gold constellations behind.",
   monogram: "W",                       // the letter pressed into the wax seals
   about: [   // ← placeholder in your voice; rewrite it however you like
-    "hi, i'm wren. i've been writing poetry for almost twenty years, and somewhere along the way i started making fanzines, then fic, then… a whole town's worth of bots.",
+    "hi, i'm wren. i've been writing (mostly fanfic and poetry) for almost twenty years, and somewhere along the way i started making fanzines, then… a whole town's worth of bots.",
     "i like slow burns, people who are soft but guarded, and places that feel lived in. fandom & original. i will tag like it's AO3.",
-    "come say hi on discord. i don't start conversations, but i love being in them."
+    "come say hi on discord. i love making friends."
   ],
   vibes: ["slow burn", "soft but guarded", "fandom & original", "tags like it's AO3"],
   // typed out one at a time on the paper slip under the masthead.
@@ -96,14 +96,14 @@ window.SITE = {
 
   // the D&D stat block in About ← placeholder, edit freely (or delete the whole sheet to hide it)
   sheet: {
-    name: "♡flightless♡",
-    type: "Medium humanoid (bard), chaotic soft",
+    name: "♡ wren ♡",
+    type: "Medium half-elf (druid - bard), chaotic soft",
     lines: [
-      ["Armor Class", "14 (cardigan; soft but guarded)"],
+      ["Armor Class", "14 (sweater; soft but guarded)"],
       ["Hit Points", "plenty, mostly emotional"],
       ["Speed", "slow (burn)"],
       ["Skills", "Yearning +8, Lore +10, Tagging +12 (like it's AO3)"],
-      ["Languages", "Common, Fandom, Em-dash"],
+      ["Languages", "Common, Fandom, AO3"],
       ["Challenge", "20 (years of poetry)"]
     ],
     scores: [["YRN", 18], ["LORE", 20], ["ANGST", 15], ["FLUFF", 14], ["PLOT", 16], ["SLEEP", 4]],
@@ -935,7 +935,7 @@ window.BOTS = [
   {
     id: "blackthorn-estate", name: "Blackthorn Estate", title: "The Hunt",
     collection: "Scenarios", category: "Other", status: "desk", chats: 42,
-    pov: "AnyPOV", adult: false, warnings: [],
+    pov: "AnyPOV", adult: false, warnings: ["Dead Dove"],
     tags: ["romance", "dark", "hidden societies", "multi-character", "maine"],
     blurb: "Four old Boston families. Every fifth year, they hunt five people for three nights. This year, you're the fifth.",
     scenes: [
