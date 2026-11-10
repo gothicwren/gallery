@@ -42,7 +42,7 @@ window.SITE = {
     "TYSM for taking the time to check out my bots :) i'm so thankful for this community! " +
     "Request a scene or say hello at the bottom of the page.",
   dreamjourney: "https://dreamjourneyai.com/profile/flightless",
-  backdrop: "images/backdrop.jpg",   // the big image behind the masthead ("" for none)
+  backdrop: "images/study.jpg",   // the big image behind the masthead ("" for none)
   featured: "the-pitt",    // id of the bot to spotlight at the top ("" for none)
   formKey: "37bc78c6-5dfa-4667-babb-dccc815ba22c",             // your Web3Forms access key — see README step 6
     collections: ["Rust Harbour", "DreamJourney Events", "Standalone Romances", "Scenarios", "Fandom"],
