@@ -4,102 +4,226 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Wren's Gallery</title>
-  <meta name="description" content="DreamJourney bots, scenarios and the towns they live in.">
+  <meta name="description" content="bots, scenarios & the towns they live in. romance, slice of life, and a touch of angst.">
+  <meta name="theme-color" content="#0c0e1a">
+  <meta property="og:title" content="♡flightless♡ · bots, scenarios & the towns they live in">
+  <meta property="og:description" content="romance, slice of life, and a touch of angst. slow burn · soft but guarded · fandom & original.">
+  <meta property="og:image" content="images/backdrop.jpg">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='46' fill='%236b2232'/><text x='50' y='68' font-size='52' text-anchor='middle' fill='%23e9cf8a'>☾</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Pirata+One&family=Tangerine:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Pirata+One&family=Tangerine:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Special+Elite&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <a class="skip" href="#shelf">Skip to the bots</a>
+  <a class="skip" href="#archive">skip to the bots</a>
+  <canvas class="sky" id="sky" aria-hidden="true"></canvas>
 
-  <header class="hero" id="hero">
-    <div class="hero-inner">
+  <!-- ============ TOP BAR ============ -->
+  <header class="topbar" id="topbar">
+    <a class="brand" href="#/" id="brand"></a>
+    <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav">
+      <span class="visually-hidden">Menu</span><span aria-hidden="true">☰</span>
+    </button>
+    <nav class="nav" id="nav" aria-label="Sections">
+      <a href="#loved" data-jump>most loved</a>
+      <a href="#collections" data-jump>worlds</a>
+      <a href="#archive" data-jump>the archive</a>
+      <a href="#desk" data-jump id="nav-desk">on the desk</a>
+      <a href="#about" data-jump>about me</a>
+      <a class="nav-dj" id="nav-dj" href="#" target="_blank" rel="noopener">dreamjourney ↗</a>
+    </nav>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="home" aria-labelledby="site-name">
+    <div class="hero-inner reveal">
       <p class="issue" id="issue"></p>
-      <h1 class="nameplate"><span id="site-name">Wren</span></h1>
+      <h1 class="nameplate" id="site-name">Wren</h1>
       <p class="tagline" id="tagline"></p>
-      <div class="masthead-foot">
-        <p class="count" id="count"></p>
-        <a class="dj" id="dj-link" href="#" target="_blank" rel="noopener">Find me on DreamJourney</a>
+      <p class="hand hero-hand" aria-hidden="true">romance, slice of life &amp; a touch of angst ↓</p>
+      <div class="hero-cta">
+        <a class="btn" href="#archive" data-jump>☾ dig through the archive</a>
+        <button class="btn btn-ghost" data-surprise>❦ open to a random page</button>
       </div>
+      <dl class="stats" id="stats"></dl>
     </div>
-    <aside class="slip" aria-label="A note from me">
+    <aside class="letter reveal" aria-label="A note from me">
+      <span class="tape tape-l" aria-hidden="true"></span>
+      <span class="seal" aria-hidden="true"><span id="seal-letter">W</span></span>
+      <span class="sprig sprig-letter" aria-hidden="true"></span>
+      <p class="letter-head">dear reader,</p>
       <div id="note"></div>
       <div class="actions">
-        <button class="btn" data-open="request">✦ Request a scene</button>
-        <button class="btn btn-ghost" data-open="contact">✉ Contact me</button>
+        <button class="btn" data-open="request">✦ request a scene</button>
+        <button class="btn btn-ghost" data-open="contact">✉ write to me</button>
       </div>
     </aside>
-  </header>
+  </section>
+
+  <div class="ticker" aria-hidden="true"><div class="ticker-track" id="ticker"></div></div>
 
   <main id="shelf">
 
-    <!-- ============ HOME ============ -->
-    <div class="view" id="view-home">
-      <section class="featured" id="featured" aria-label="Top bot" hidden></section>
+    <!-- 01 FEATURED -->
+    <section class="sect" id="featured-sect" aria-label="Featured bot">
+      <p class="num reveal"><span>pg. 01</span> — the one everyone's talking about</p>
+      <div class="featured reveal" id="featured" hidden></div>
+    </section>
 
-      <div class="ornament" aria-hidden="true"><svg viewBox="0 0 260 24" width="260" height="24"><path d="M0 13C22 10,50 15,76 11M104 12.5C108 10,110 14,114 11.5M146 11C152 14,156 9,162 12.5M182 11C210 15,232 9,260 13" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" fill="none"/><circle cx="90" cy="12" r="8" fill="currentColor"/><circle cx="93.5" cy="9" r="6.4" fill="var(--paper)"/><path d="M130 2l10 10-10 10-10-10z" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M130 7l5 5-5 5-5-5z" fill="currentColor"/><path d="M172 8L173.2 10.8L176 12L173.2 13.2L172 16L170.8 13.2L168 12L170.8 10.8Z" fill="currentColor"/></svg></div>
-
-      <section class="folders-section" aria-labelledby="folders-h">
-        <p class="eyebrow">☾ pick a world ✦</p>
-        <div class="row-head">
-          <h2 id="folders-h">Collections</h2>
-          <form class="search" id="home-search" role="search">
-            <label class="visually-hidden" for="home-q">Search every bot</label>
-            <input id="home-q" type="search" placeholder="Search every bot…" autocomplete="off">
-            <kbd aria-hidden="true">/</kbd>
-          </form>
+    <!-- 02 MOST LOVED -->
+    <section class="sect" id="loved" aria-labelledby="loved-h">
+      <p class="num reveal"><span>pg. 02</span> — most loved</p>
+      <div class="row-head reveal">
+        <div class="head-with-note">
+          <h2 id="loved-h">the top nine</h2>
+          <p class="hand margin-note" aria-hidden="true">no favorites. ok, some favorites.</p>
         </div>
-        <ul class="folders" id="folders"></ul>
-      </section>
+        <button class="btn btn-ghost btn-sm" data-surprise>❦ open to a random page</button>
+      </div>
+      <p class="sect-sub reveal">the ones you keep coming back to. ranked by chats.*</p>
+      <ol class="nine" id="nine"></ol>
+      <p class="footnote reveal">* counted by hand off my dreamjourney page, so they lag a little.</p>
+    </section>
 
-      <section class="desk-preview" id="desk-preview" aria-labelledby="desk-h" hidden>
-        <div class="ornament" aria-hidden="true"><svg viewBox="0 0 260 24" width="260" height="24"><path d="M0 13C22 10,50 15,76 11M104 12.5C108 10,110 14,114 11.5M146 11C152 14,156 9,162 12.5M182 11C210 15,232 9,260 13" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" fill="none"/><circle cx="90" cy="12" r="8" fill="currentColor"/><circle cx="93.5" cy="9" r="6.4" fill="var(--paper)"/><path d="M130 2l10 10-10 10-10-10z" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M130 7l5 5-5 5-5-5z" fill="currentColor"/><path d="M172 8L173.2 10.8L176 12L173.2 13.2L172 16L170.8 13.2L168 12L170.8 10.8Z" fill="currentColor"/></svg></div>
-        <p class="eyebrow">✒ still being written ✦</p>
-        <div class="row-head">
-          <h2 id="desk-h">On the desk</h2>
-          <a class="more" id="desk-more" href="#/desk">See everything on the desk</a>
+    <div class="ornament reveal" aria-hidden="true"></div>
+
+    <!-- 03 COLLECTIONS -->
+    <section class="sect" id="collections" aria-labelledby="folders-h">
+      <p class="num reveal"><span>pg. 03</span> — pick a world</p>
+      <div class="row-head reveal">
+        <div class="head-with-note">
+          <h2 id="folders-h">worlds</h2>
+          <p class="hand margin-note" aria-hidden="true">some of them share a town. you'll see.</p>
         </div>
-        <p class="desk-sub">Still being written. Ask about any of them.</p>
-        <ul class="desk-cards" id="desk-cards"></ul>
-      </section>
-    </div>
+      </div>
+      <ul class="folders" id="folders"></ul>
+    </section>
 
-    <!-- ============ A FOLDER / ALL BOTS / THE DESK ============ -->
-    <div class="view" id="view-list" hidden>
-      <nav class="crumbs" aria-label="Breadcrumb"><a href="#/">← All collections</a></nav>
-      <p class="eyebrow">☾ the archive ✦</p>
-      <div class="list-head">
-        <h2 id="list-title"></h2>
+    <div class="ornament reveal" aria-hidden="true"></div>
+
+    <!-- 04 ARCHIVE -->
+    <section class="sect" id="archive" aria-labelledby="archive-h">
+      <p class="num reveal"><span>pg. 04</span> — the archive</p>
+      <div class="row-head reveal">
+        <h2 id="archive-h">every bot</h2>
         <p class="list-meta" id="list-meta"></p>
       </div>
       <p class="list-blurb" id="list-blurb" hidden></p>
-      <div class="controls">
+
+      <div class="filters reveal" id="filters">
         <label class="search">
-          <span class="visually-hidden">Search bots, tags or tropes</span>
-          <input id="search" type="search" placeholder="Search names, tags, tropes…" autocomplete="off">
+          <span class="visually-hidden">Search names, tags or tropes</span>
+          <input id="search" type="search" placeholder="search names, tags, tropes… (yes, “slow burn” works)" autocomplete="off">
           <kbd aria-hidden="true">/</kbd>
         </label>
+        <div class="selects">
+          <label><span>category</span><select id="f-cat"></select></label>
+          <label><span>pov</span><select id="f-pov"></select></label>
+          <label><span>rating</span>
+            <select id="f-rating">
+              <option value="">all</option>
+              <option value="sfw">sfw only</option>
+              <option value="adult">18+ only</option>
+            </select>
+          </label>
+          <label><span>sort</span>
+            <select id="f-sort">
+              <option value="chats">most chatted</option>
+              <option value="az">a → z</option>
+              <option value="scenes">most scenes</option>
+            </select>
+          </label>
+        </div>
         <nav class="tabs" id="tabs" aria-label="Collections"></nav>
+        <div class="view-toggle" role="group" aria-label="Layout">
+          <button data-layout="grid" aria-pressed="true" title="Cards">▦ <span class="visually-hidden">Cards</span></button>
+          <button data-layout="list" aria-pressed="false" title="List">☰ <span class="visually-hidden">List</span></button>
+        </div>
       </div>
+      <p class="active-filters" id="active-filters" hidden></p>
+
       <ul class="grid" id="grid"></ul>
-      <p class="empty" id="empty" hidden>Nothing matches that. Try a shorter word, or open a different collection.</p>
-    </div>
+      <p class="empty" id="empty" hidden>nothing here. try a shorter word, or <button class="linkish" id="clear-filters">clear the filters</button>.</p>
+      <div class="more-wrap"><button class="btn btn-ghost" id="show-more" hidden>turn the page</button></div>
+    </section>
+
+    <!-- 05 DESK -->
+    <section class="sect" id="desk" aria-labelledby="desk-h" hidden>
+      <div class="ornament reveal" aria-hidden="true"></div>
+      <p class="num reveal"><span>pg. 05</span> — the quest log</p>
+      <div class="row-head reveal">
+        <div class="head-with-note">
+          <h2 id="desk-h">on the desk</h2>
+          <p class="hand margin-note" aria-hidden="true">don't look at the coffee rings.</p>
+        </div>
+      </div>
+      <p class="sect-sub reveal" id="desk-sub">active quests. half-inked and drying. ask about any of them.</p>
+      <div class="desk-layout" id="desk-layout">
+        <ul class="desk-cards" id="desk-cards"></ul>
+        <aside class="poll reveal" id="poll" aria-labelledby="poll-h" hidden>
+          <span class="tape tape-c" aria-hidden="true"></span>
+          <p class="eyebrow">⚔ party vote</p>
+          <h3 id="poll-h">which quest do i finish first?</h3>
+          <form data-form="Desk vote" id="poll-form">
+            <fieldset id="poll-options"><legend class="visually-hidden">Pick one</legend></fieldset>
+            <input type="checkbox" name="botcheck" class="visually-hidden" tabindex="-1" autocomplete="off">
+            <button class="btn" type="submit">seal my vote</button>
+            <p class="form-status" role="status"></p>
+          </form>
+          <p class="poll-note">votes go straight to my inbox. i read every one.</p>
+        </aside>
+      </div>
+      <div class="bulletin reveal" id="bulletin" hidden>
+        <p class="eyebrow">☾ currently plotting</p>
+        <p id="bulletin-text"></p>
+      </div>
+    </section>
+
+    <!-- 06 ABOUT -->
+    <section class="sect" id="about" aria-labelledby="about-h">
+      <div class="ornament reveal" aria-hidden="true"></div>
+      <p class="num reveal"><span id="about-num">pg. 06</span> — character sheet</p>
+      <div class="about reveal">
+        <span class="tape tape-r" aria-hidden="true"></span>
+        <span class="sprig sprig-about" aria-hidden="true"></span>
+        <div class="about-portrait" id="about-portrait"></div>
+        <div class="about-text">
+          <h2 id="about-h">about me</h2>
+          <div id="about-body"></div>
+          <ul class="vibes" id="vibes"></ul>
+          <div class="statblock" id="statblock" hidden></div>
+          <div class="actions">
+            <button class="btn" id="copy-discord" hidden>♡ copy my discord</button>
+            <a class="btn btn-ghost" id="about-dj" href="#" target="_blank" rel="noopener">dreamjourney ↗</a>
+          </div>
+          <p class="form-status" id="copy-status" role="status"></p>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <div class="ornament" aria-hidden="true"><svg viewBox="0 0 260 24" width="260" height="24"><path d="M0 13C22 10,50 15,76 11M104 12.5C108 10,110 14,114 11.5M146 11C152 14,156 9,162 12.5M182 11C210 15,232 9,260 13" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" fill="none"/><circle cx="90" cy="12" r="8" fill="currentColor"/><circle cx="93.5" cy="9" r="6.4" fill="var(--paper)"/><path d="M130 2l10 10-10 10-10-10z" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M130 7l5 5-5 5-5-5z" fill="currentColor"/><path d="M172 8L173.2 10.8L176 12L173.2 13.2L172 16L170.8 13.2L168 12L170.8 10.8Z" fill="currentColor"/></svg></div>
-
   <footer class="colophon">
-    <div class="actions">
-      <button class="btn" data-open="request">✦ Request a scene</button>
-      <button class="btn btn-ghost" data-open="contact">✉ Contact me</button>
-    </div>
-    <a class="dj" id="dj-link-foot" href="#" target="_blank" rel="noopener">Find me on DreamJourney</a>
+    <div class="foot-brand" id="foot-brand"></div>
+    <p class="credit" id="credit">made with ink, lore &amp; questionable sleep.</p>
+    <nav class="foot-links" aria-label="Footer">
+      <a href="#loved" data-jump>top nine</a>
+      <a href="#archive" data-jump>archive</a>
+      <button class="linkish" data-open="request">request a scene</button>
+      <button class="linkish" data-open="contact">write to me</button>
+      <a href="#home" data-jump>back to the top ↑</a>
+    </nav>
   </footer>
+
+  <div class="roll-toast" id="roll-toast" role="status" aria-live="polite" hidden></div>
+
+  <button class="to-top" id="to-top" aria-label="Back to top" hidden>↑</button>
 
   <!-- Bot detail -->
   <dialog class="spread" id="bot-dialog" aria-labelledby="bot-name">
     <button class="close" data-close aria-label="Close">×</button>
+    <button class="spread-nav spread-prev" id="bot-prev" aria-label="Previous bot">‹</button>
+    <button class="spread-nav spread-next" id="bot-next" aria-label="Next bot">›</button>
     <div class="spread-inner" id="bot-body"></div>
   </dialog>
 
@@ -114,28 +238,30 @@
 
   <!-- 18+ gate -->
   <dialog class="gate" id="gate" aria-labelledby="gate-title">
+    <span class="seal seal-sm" aria-hidden="true"><span>18</span></span>
     <h2 id="gate-title">18+ only</h2>
-    <p>Some bots here are for adults. Confirm you're 18 or older to see them.</p>
+    <p>some of these are for grown-ups. confirm you're 18 or older and i'll let you through.</p>
     <div class="actions">
-      <button class="btn" id="gate-yes">I'm 18 or older</button>
-      <button class="btn btn-ghost" data-close>Go back</button>
+      <button class="btn" id="gate-yes">i'm 18 or older</button>
+      <button class="btn btn-ghost" data-close>take me back</button>
     </div>
   </dialog>
 
   <!-- Request a scene -->
   <dialog class="form-dialog" id="request" aria-labelledby="request-title">
     <button class="close" data-close aria-label="Close">×</button>
-    <h2 id="request-title">Request a scene</h2>
-    <p class="form-sub">Leave a prompt. Your name is optional; add a Discord handle or email if you want a reply.</p>
+    <p class="eyebrow">✦ a prompt, by post</p>
+    <h2 id="request-title">request a scene</h2>
+    <p class="form-sub">leave me a prompt. your name's optional; add a discord handle or email if you want a reply.</p>
     <form data-form="Scene request">
-      <label>Your name <input name="name" autocomplete="nickname"></label>
-      <label>Discord handle or email <input name="reply_to"></label>
-      <label>Which bot <select name="bot" id="request-bot"></select></label>
-      <label>The scene
-        <textarea name="message" rows="6" required placeholder="Where are we, what's the mood, what do you want to happen?"></textarea>
+      <label>your name <input name="name" autocomplete="nickname"></label>
+      <label>discord or email <input name="reply_to"></label>
+      <label>which bot <select name="bot" id="request-bot"></select></label>
+      <label>the scene
+        <textarea name="message" rows="6" required placeholder="where are we, what's the mood, what do you want to happen?"></textarea>
       </label>
       <input type="checkbox" name="botcheck" class="visually-hidden" tabindex="-1" autocomplete="off">
-      <button class="btn" type="submit">Send request</button>
+      <button class="btn" type="submit">send it</button>
       <p class="form-status" role="status"></p>
     </form>
   </dialog>
@@ -143,22 +269,23 @@
   <!-- Contact -->
   <dialog class="form-dialog" id="contact" aria-labelledby="contact-title">
     <button class="close" data-close aria-label="Close">×</button>
-    <h2 id="contact-title">Contact me</h2>
-    <p class="form-sub">Feedback, a character request, a question, or just hello.</p>
+    <p class="eyebrow">✉ correspondence</p>
+    <h2 id="contact-title">write to me</h2>
+    <p class="form-sub">feedback, a character request, a question, or just hi.</p>
     <form data-form="Contact">
-      <label>What's it about
+      <label>what's it about
         <select name="topic">
           <option>Feedback</option>
           <option>Character request</option>
           <option>Question</option>
-          <option>Something else</option>
+          <option>Just saying hi</option>
         </select>
       </label>
-      <label>Your name <input name="name" autocomplete="nickname"></label>
-      <label>Discord handle or email <input name="reply_to"></label>
-      <label>Message <textarea name="message" rows="6" required></textarea></label>
+      <label>your name <input name="name" autocomplete="nickname"></label>
+      <label>discord or email <input name="reply_to"></label>
+      <label>message <textarea name="message" rows="6" required></textarea></label>
       <input type="checkbox" name="botcheck" class="visually-hidden" tabindex="-1" autocomplete="off">
-      <button class="btn" type="submit">Send message</button>
+      <button class="btn" type="submit">send it</button>
       <p class="form-status" role="status"></p>
     </form>
   </dialog>

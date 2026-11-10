@@ -1,22 +1,28 @@
-/* The machinery. You shouldn't need to edit this file — bots go in bots.js. */
+/* The machinery. You shouldn't need to edit this file — bots and settings go in bots.js. */
 (function () {
   "use strict";
 
   const SITE = window.SITE || {};
   const BOTS = (window.BOTS || []).filter(b => b && b.id && b.name && b.status !== "hidden");
   const $ = (s, root = document) => root.querySelector(s);
+  const $$ = (s, root = document) => Array.from(root.querySelectorAll(s));
   const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c =>
     ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   // blurbs: escape, then turn ~~words~~ into struck-through text
   const prose = s => esc(s).replace(/~~(.+?)~~/g, "<s>$1</s>");
   const fmt = n => Number(n).toLocaleString("en-US");
   const slug = s => String(s).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  const hearts = s => esc(s).replace(/[♡♥]/g, '<span class="heart">$&</span>');
+  const plural = (n, w) => `${fmt(n)} ${w}${n === 1 ? "" : "s"}`;
+  const reduceMotion = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
   const byChats = list => list.map((b, i) => ({ b, i }))
     .sort((x, y) => (y.b.chats || 0) - (x.b.chats || 0) || x.i - y.i).map(x => x.b);
 
   // most-chatted first, like your DreamJourney profile
   const live = byChats(BOTS.filter(b => b.status !== "desk"));
   const desk = BOTS.filter(b => b.status === "desk");
+  const NAME = SITE.name || "Wren";
+
 
   /* ---- adult confirmation, remembered for this visit only ---- */
   let adultOK = false;
@@ -26,32 +32,63 @@
     try { sessionStorage.setItem("adultOK", "1"); } catch (e) {}
   }
 
-  /* ---- masthead ---- */
-  document.title = (SITE.name || "Wren") + "'s Gallery";
-  $("#site-name").innerHTML = (SITE.name || "Wren").replace(/[♡♥]/g, '<span class="heart">$&</span>');
+  /* ================= MASTHEAD ================= */
+  document.title = NAME.replace(/[♡♥]/g, "").trim() + " · Gallery";
+  $("#site-name").innerHTML = hearts(NAME);
+  $("#brand").innerHTML = `<span class="brand-moon" aria-hidden="true">☾</span> ${hearts(NAME)}`;
+  $("#foot-brand").innerHTML = hearts(NAME);
   $("#issue").textContent = SITE.issue || "";
   $("#tagline").textContent = SITE.tagline || "";
+  $("#seal-letter").textContent = (SITE.monogram || NAME.replace(/[^A-Za-z]/g, "").charAt(0) || "W").toUpperCase();
+  if (SITE.credit) $("#credit").textContent = SITE.credit;
+
   const totalChats = live.reduce((t, b) => t + (Number(b.chats) || 0), 0);
-  const countBits = [live.length + " bots"];
-  if (SITE.messages) countBits.push(SITE.messages + " messages");
-  else if (totalChats) countBits.push(fmt(totalChats) + " chats");
-  $("#count").textContent = countBits.join(", ");
-  ["#dj-link", "#dj-link-foot"].forEach(sel => {
+  const totalScenes = BOTS.reduce((t, b) => t + (b.scenes || []).length, 0);
+
+  ["#nav-dj", "#about-dj"].forEach(sel => {
     const a = $(sel); if (!a) return;
     if (SITE.dreamjourney) a.href = SITE.dreamjourney; else a.hidden = true;
   });
+  if (SITE.avatar) {
+    const seal = $(".letter .seal");
+    seal.outerHTML = `<span class="letter-pfp" aria-hidden="true"><img src="${esc(SITE.avatar)}" alt=""></span>`;
+  }
   $("#note").innerHTML = SITE.note
-    ? `<p>${esc(SITE.note)}</p><p class="sig">${esc(SITE.name || "Wren").replace(/[♡♥]/g, '<span class="heart">$&</span>')}</p>` : "";
+    ? `<p>${esc(SITE.note)}</p><p class="sig">${hearts(NAME)}</p>` : "";
   if (SITE.backdrop) document.documentElement.style.setProperty("--backdrop", `url("${SITE.backdrop}")`);
+  if (SITE.backdropTint !== false) document.documentElement.classList.add("tint");
+
+  /* ---- ticker ---- */
+  const tickerWords = SITE.ticker && SITE.ticker.length ? SITE.ticker
+    : ["slow burn", "soft but guarded", "fandom & original", "will tag like it's AO3", "for the love of lore", "come for the angst, stay for the yearning"];
+  const tickerRun = tickerWords.map(w => `<span>${esc(w)}</span><i>✦</i>`).join("");
+  $("#ticker").innerHTML = tickerRun + tickerRun; // doubled so the loop is seamless
+
+  /* ---- ornaments (one drawing, reused) ---- */
+  const ORNAMENT = '<svg viewBox="0 0 260 24" width="260" height="24"><path d="M0 13C22 10,50 15,76 11M104 12.5C108 10,110 14,114 11.5M146 11C152 14,156 9,162 12.5M182 11C210 15,232 9,260 13" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" fill="none"/><circle cx="90" cy="12" r="8" fill="currentColor"/><circle cx="93.5" cy="9" r="6.4" fill="var(--paper)"/><path d="M130 2l10 10-10 10-10-10z" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M130 7l5 5-5 5-5-5z" fill="currentColor"/><path d="M172 8L173.2 10.8L176 12L173.2 13.2L172 16L170.8 13.2L168 12L170.8 10.8Z" fill="currentColor"/></svg>';
+  $$(".ornament").forEach(o => { o.innerHTML = ORNAMENT; });
+  // a pressed sprig, drawn in gold ink
+  const SPRIG = '<svg viewBox="0 0 120 160" width="120" height="160" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><path d="M60 158C58 120 62 80 54 40C52 28 50 18 52 6"/><path d="M57 120C44 114 36 104 34 92C46 96 54 106 57 120Z" fill="currentColor" fill-opacity=".18"/><path d="M59 98C72 92 80 82 82 70C70 74 62 84 59 98Z" fill="currentColor" fill-opacity=".18"/><path d="M56 74C44 68 38 58 37 48C48 52 54 62 56 74Z" fill="currentColor" fill-opacity=".18"/><path d="M55 52C64 46 70 38 71 30C62 33 57 41 55 52Z" fill="currentColor" fill-opacity=".18"/><circle cx="52" cy="10" r="7" fill="var(--blood-lit)" fill-opacity=".8" stroke="none"/><path d="M47 9c3-4 8-4 10 0M48 13c3 2 6 2 9 0" stroke-width="1"/><circle cx="40" cy="30" r="2.2" fill="currentColor" stroke="none"/><circle cx="74" cy="52" r="1.8" fill="currentColor" stroke="none"/></svg>';
+  $$(".sprig").forEach(o => { o.innerHTML = SPRIG; });
 
   /* ---- collections (the folders) ---- */
   const collections = (SITE.collections || []).filter(c => live.some(b => b.collection === c));
   live.forEach(b => { if (b.collection && !collections.includes(b.collection)) collections.push(b.collection); });
   const notes = SITE.collectionNotes || {};
 
-  /* ---- covers ---- */
+  /* ---- stats ---- */
+  const stats = [
+    [live.length, "bots"],
+    [SITE.messages || (totalChats ? fmt(totalChats) : ""), "chats"],
+    [collections.length, "worlds"],
+    [totalScenes, "scenes"]
+  ].filter(s => s[0]);
+  $("#stats").innerHTML = stats.map(s =>
+    `<div><dt>${esc(s[1])}</dt><dd data-count="${typeof s[0] === "number" ? s[0] : ""}">${esc(typeof s[0] === "number" ? fmt(s[0]) : s[0])}</dd></div>`).join("");
+
+  /* ================= COVERS & CARDS ================= */
   function typeset(b) {
-    return `<div class="typeset" aria-hidden="true"><span class="initial">${esc(b.name.charAt(0))}</span></div>`;
+    return `<div class="typeset" aria-hidden="true"><span class="initial">${esc(b.name.charAt(0))}</span><span class="art-soon">art soon</span></div>`;
   }
   function imgHTML(b, src, lazy = true) {
     const st = [b.focus ? `object-position:${b.focus}` : "", b.fit === "whole" ? "object-fit:contain" : ""].filter(Boolean).join(";");
@@ -59,209 +96,392 @@
     const bleed = b.fit === "whole" ? `<img class="bleed" src="${esc(src)}" alt="" aria-hidden="true"${lazy ? ' loading="lazy"' : ""}>` : "";
     return `${bleed}<img src="${esc(src)}" alt=""${lazy ? ' loading="lazy"' : ""}${pos} onerror="this.replaceWith(document.createRange().createContextualFragment(this.dataset.fallback))" data-fallback="${esc(typeset(b))}">`;
   }
+  // 18+ covers aren't blurred — the gate still asks before one opens
   function coverHTML(b, src) {
-    const blurred = b.adult && !adultOK ? " blurred" : "";
-    return `<div class="cover${blurred}">${b.adult ? '<span class="adult-flag">18+</span>' : ""}${src ? imgHTML(b, src) : typeset(b)}</div>`;
+    return `<div class="cover">${b.adult ? '<span class="adult-flag">18+</span>' : ""}${src ? imgHTML(b, src) : typeset(b)}</div>`;
   }
   function chipsHTML(b, n) {
     return `<span class="chips">${b.category ? `<span class="chip cat">${esc(b.category)}</span>` : ""}${
       (b.tags || []).slice(0, n).map(t => `<span class="chip">${esc(t)}</span>`).join("")}</span>`;
   }
-  function cardHTML(b) {
-    return `<li class="card">
-      <button data-bot="${esc(b.id)}" aria-label="${esc(b.name)}${b.title ? ", " + esc(b.title) : ""}${b.adult ? ", 18+" : ""}">
+  const label = b => `${esc(b.name)}${b.title ? ", " + esc(b.title) : ""}${b.adult ? ", 18+" : ""}`;
+
+  function cardHTML(b, i) {
+    const sc = (b.scenes || []).length;
+    return `<li class="card" style="--i:${i % 12}">
+      <button data-bot="${esc(b.id)}" aria-label="${label(b)}">
         ${coverHTML(b, b.cover)}
         <span class="card-body">
+          <span class="card-coll">${esc(b.collection || "")}</span>
           <span class="card-name">${esc(b.name)}</span>
           ${b.title ? `<span class="card-title">${esc(b.title)}</span>` : ""}
           ${b.blurb ? `<span class="card-blurb">${prose(b.blurb)}</span>` : ""}
           ${chipsHTML(b, 3)}
-          ${b.chats ? `<span class="card-chats">${fmt(b.chats)} chats</span>` : ""}
+          <span class="card-foot">
+            ${b.chats ? `<span>♡ ${fmt(b.chats)} chats</span>` : "<span>new</span>"}
+            ${sc ? `<span class="sc">${plural(sc, "scene")}</span>` : ""}
+          </span>
         </span>
       </button>
     </li>`;
   }
+  function rowHTML(b, i) {
+    const sc = (b.scenes || []).length;
+    return `<li class="row" style="--i:${i % 12}">
+      <button data-bot="${esc(b.id)}" aria-label="${label(b)}">
+        <span class="row-thumb">${coverHTML(b, b.cover)}</span>
+        <span class="row-main">
+          <span class="row-name">${esc(b.name)}${b.title ? ` <em>${esc(b.title)}</em>` : ""}</span>
+          <span class="row-meta">${[b.collection, b.category, b.pov, b.adult ? "18+" : ""].filter(Boolean).map(esc).join(" · ")}</span>
+        </span>
+        <span class="row-num">${b.chats ? `♡ ${fmt(b.chats)}` : ""}${sc ? `<small>${plural(sc, "scene")}</small>` : ""}</span>
+      </button>
+    </li>`;
+  }
 
-  /* ================= HOME ================= */
+  /* ================= 01 FEATURED ================= */
   const featured = live.find(b => b.id === SITE.featured) || live[0];
   function renderFeatured() {
     const el = $("#featured");
-    if (!featured) { el.hidden = true; return; }
-    const b = featured, blur = b.adult && !adultOK;
+    if (!featured) { $("#featured-sect").hidden = true; return; }
+    const b = featured, sc = (b.scenes || []).length;
     el.hidden = false;
     el.innerHTML = `
-      <button class="f-art${blur ? " cover blurred" : ""}" data-bot="${esc(b.id)}" aria-label="Open ${esc(b.name)}">
+      <button class="f-art" data-bot="${esc(b.id)}" data-list="archive" aria-label="Open ${esc(b.name)}">
+        ${b.adult ? '<span class="adult-flag">18+</span>' : ""}
         ${b.cover ? imgHTML(b, b.cover, false) : typeset(b)}
       </button>
       <div class="f-text">
-        <p class="f-label">${b.id === SITE.featured ? "Featured" : "Most chatted"}${b.chats ? ` · ${fmt(b.chats)} chats` : ""}</p>
+        <p class="f-label">${b.id === SITE.featured ? "✦ featured" : "✦ most chatted"}${b.chats ? ` · ${fmt(b.chats)} chats` : ""}${sc ? ` · ${plural(sc, "scene")}` : ""}</p>
         <h2>${esc(b.name)}</h2>
         ${b.title ? `<p class="f-sub">${esc(b.title)}</p>` : ""}
         ${b.blurb ? `<p class="f-blurb">${prose(b.blurb)}</p>` : ""}
         ${chipsHTML(b, 5)}
         <div class="actions">
-          <button class="btn" data-bot="${esc(b.id)}">Read more</button>
-          ${b.link ? `<a class="btn btn-ghost" href="${esc(b.link)}" target="_blank" rel="noopener">Chat on DreamJourney</a>` : ""}
+          <button class="btn" data-bot="${esc(b.id)}" data-list="archive">read more</button>
+          ${b.link ? `<a class="btn btn-ghost" href="${esc(b.link)}" target="_blank" rel="noopener">chat on dreamjourney ↗</a>` : ""}
         </div>
       </div>`;
   }
 
-  function folderPeek(list) {
-    const pics = list.filter(b => b.cover).slice(0, 3);
-    while (pics.length < 3 && list[pics.length]) pics.push(list[pics.length]);
-    return pics.map((b, i) => {
-      const blur = b.adult && !adultOK ? " blurred" : "";
-      return `<span class="peek peek-${i}${blur}">${b.cover ? imgHTML(b, b.cover) : typeset(b)}</span>`;
-    }).join("");
-  }
-  function renderFolders() {
-    const folders = collections.map(c => {
-      const list = live.filter(b => b.collection === c);
-      return { name: c, href: "#/folder/" + slug(c), list };
-    });
-    folders.push({ name: "Every bot", href: "#/all", list: live, all: true });
-    $("#folders").innerHTML = folders.map(f => {
-      const chats = f.list.reduce((t, b) => t + (Number(b.chats) || 0), 0);
-      return `<li class="folder${f.all ? " folder-all" : ""}">
-        <a href="${f.href}">
-          <span class="folder-tab" aria-hidden="true"></span>
-          <span class="folder-peek" aria-hidden="true">${folderPeek(f.list)}</span>
-          <span class="folder-name">${esc(f.name)}</span>
-          <span class="folder-meta">${f.list.length} bot${f.list.length === 1 ? "" : "s"}${chats ? ` · ${fmt(chats)} chats` : ""}</span>
-        </a>
-      </li>`;
-    }).join("");
-  }
-
-  function renderDeskPreview() {
-    const el = $("#desk-preview");
-    el.hidden = desk.length === 0;
-    $("#desk-more").hidden = desk.length <= 3;
-    $("#desk-cards").innerHTML = desk.slice(0, 3).map(b => `<li>
-      <button class="desk-card" data-bot="${esc(b.id)}">
-        <span class="desk-thumb">${coverHTML(b, b.cover)}</span>
-        <span class="desk-text">
-          <span class="wip">In progress</span>
-          <span class="d-name">${esc(b.name)}</span>
-          ${b.title ? `<span class="d-title">${esc(b.title)}</span>` : ""}
-          ${b.blurb ? `<span class="d-blurb">${prose(b.blurb)}</span>` : ""}
+  /* ================= 02 TOP NINE ================= */
+  const nine = live.filter(b => b.chats).slice(0, 9);
+  const ROMAN = ["i", "ii", "iii", "iv", "v", "vi", "vii", "viii", "ix"];
+  function renderNine() {
+    if (!nine.length) { $("#loved").hidden = true; return; }
+    $("#nine").innerHTML = nine.map((b, i) => `<li class="n-card" style="--i:${i}">
+      <button data-bot="${esc(b.id)}" data-list="nine" aria-label="Number ${i + 1}: ${label(b)}">
+        ${coverHTML(b, b.cover)}
+        <span class="rank" aria-hidden="true">${ROMAN[i]}</span>
+        <span class="n-body">
+          <span class="n-name">${esc(b.name)}</span>
+          ${b.title ? `<span class="n-title">${esc(b.title)}</span>` : ""}
+          <span class="n-meta">${esc(b.collection || b.category || "")}${b.chats ? ` · ♡ ${fmt(b.chats)}` : ""}</span>
         </span>
       </button>
     </li>`).join("");
   }
 
-  $("#home-search").addEventListener("submit", e => {
-    e.preventDefault();
-    const q = $("#home-q").value.trim();
-    pendingQuery = q;
-    location.hash = "#/all";
-  });
+  /* ================= 03 COLLECTIONS ================= */
+  function folderPeek(list) {
+    const pics = list.filter(b => b.cover).slice(0, 3);
+    while (pics.length < 3 && list[pics.length]) pics.push(list[pics.length]);
+    return pics.map((b, i) => `<span class="peek peek-${i}">${b.cover ? imgHTML(b, b.cover) : typeset(b)}</span>`).join("");
+  }
+  function renderFolders() {
+    const folders = collections.map(c => ({ name: c, href: "#/folder/" + slug(c), list: live.filter(b => b.collection === c), note: notes[c] }));
+    folders.push({ name: "every bot", href: "#/all", list: live, all: true, note: "the whole archive, most-chatted first." });
+    $("#folders").innerHTML = folders.map((f, i) => {
+      const chats = f.list.reduce((t, b) => t + (Number(b.chats) || 0), 0);
+      return `<li class="folder${f.all ? " folder-all" : ""}" style="--i:${i}">
+        <a href="${f.href}">
+          <span class="folder-tab" aria-hidden="true"></span>
+          <span class="folder-peek" aria-hidden="true">${folderPeek(f.list)}</span>
+          <span class="folder-name">${esc(f.name)}</span>
+          <span class="folder-meta">${plural(f.list.length, "bot")}${chats ? ` · ${fmt(chats)} chats` : ""}</span>
+          ${f.note ? `<span class="folder-note">${esc(f.note)}</span>` : ""}
+        </a>
+      </li>`;
+    }).join("");
+  }
 
-  /* ================= LIST VIEW (a folder, every bot, or the desk) ================= */
-  let mode = { type: "all" };
-  let query = "";
-  let pendingQuery = null;
+  /* ================= 04 ARCHIVE ================= */
+  const PAGE = 12;
+  const filter = { col: "", cat: "", pov: "", rating: "", sort: "chats", q: "" };
+  let shownCount = PAGE;
+  let layout = "grid";
+  try { layout = localStorage.getItem("layout") === "list" ? "list" : "grid"; } catch (e) {}
+  let archiveList = [];
   const searchEl = $("#search");
+
+  const uniq = arr => Array.from(new Set(arr.filter(Boolean)));
+  const cats = uniq(live.map(b => b.category)).sort();
+  const povs = uniq(live.map(b => b.pov)).sort();
+  $("#f-cat").innerHTML = `<option value="">all</option>` + cats.map(c => `<option>${esc(c)}</option>`).join("");
+  $("#f-pov").innerHTML = `<option value="">any</option>` + povs.map(c => `<option>${esc(c)}</option>`).join("");
+  if (!live.some(b => b.adult)) $("#f-rating").closest("label").hidden = true;
 
   function haystack(b) {
     return [b.name, b.title, b.collection, b.category, b.pov, b.blurb, ...(b.tags || []), ...(b.warnings || []),
       ...(b.scenes || []).map(s => s.name + " " + (s.line || ""))].join(" ").toLowerCase();
   }
   function matches(b) {
-    if (!query) return true;
+    if (filter.col && b.collection !== filter.col) return false;
+    if (filter.cat && b.category !== filter.cat) return false;
+    if (filter.pov && b.pov !== filter.pov) return false;
+    if (filter.rating === "sfw" && b.adult) return false;
+    if (filter.rating === "adult" && !b.adult) return false;
+    if (!filter.q) return true;
     const h = haystack(b);
-    return query.toLowerCase().split(/\s+/).filter(Boolean).every(w => h.includes(w));
+    return filter.q.toLowerCase().split(/\s+/).filter(Boolean).every(w => h.includes(w));
   }
-  function baseList() {
-    if (mode.type === "desk") return desk;
-    if (mode.type === "folder") return live.filter(b => b.collection === mode.name);
-    return live;
+  function sorted(list) {
+    const l = list.slice();
+    if (filter.sort === "az") l.sort((a, b) => a.name.localeCompare(b.name));
+    else if (filter.sort === "scenes") l.sort((a, b) => (b.scenes || []).length - (a.scenes || []).length || (b.chats || 0) - (a.chats || 0));
+    return l; // "chats" is the default order already
   }
   function renderTabs() {
-    const tabs = [{ label: "Every bot", href: "#/all", on: mode.type === "all", n: live.length }]
-      .concat(collections.map(c => ({ label: c, href: "#/folder/" + slug(c), on: mode.type === "folder" && mode.name === c,
+    const tabs = [{ label: "every bot", href: "#/all", on: !filter.col, n: live.length }]
+      .concat(collections.map(c => ({ label: c, href: "#/folder/" + slug(c), on: filter.col === c,
         n: live.filter(b => b.collection === c).length })));
-    if (desk.length) tabs.push({ label: "On the desk", href: "#/desk", on: mode.type === "desk", n: desk.length });
     $("#tabs").innerHTML = tabs.map(t =>
       `<a class="tab" href="${t.href}"${t.on ? ' aria-current="page"' : ""}>${esc(t.label)} <span class="n">${t.n}</span></a>`).join("");
   }
-  function renderList() {
-    const base = baseList();
-    const shown = base.filter(matches);
-    const title = mode.type === "desk" ? "On the desk" : mode.type === "folder" ? mode.name : "Every bot";
-    $("#list-title").textContent = title;
+  function renderList(keepCount) {
+    if (!keepCount) shownCount = PAGE;
+    archiveList = sorted(live.filter(matches));
+    const shown = archiveList.slice(0, shownCount);
+    $("#archive-h").textContent = filter.col || "every bot";
+    const base = filter.col ? live.filter(b => b.collection === filter.col) : live;
     const chats = base.reduce((t, b) => t + (Number(b.chats) || 0), 0);
-    $("#list-meta").textContent = `${base.length} bot${base.length === 1 ? "" : "s"}${chats && mode.type !== "desk" ? ` · ${fmt(chats)} chats` : ""}`;
-    const blurb = mode.type === "folder" ? notes[mode.name] : mode.type === "desk" ? "Still being written. Ask about any of them." : "";
+    const narrowed = archiveList.length !== base.length;
+    $("#list-meta").textContent = (narrowed ? `${archiveList.length} of ` : "") + plural(base.length, "bot") + (chats ? ` · ${fmt(chats)} chats` : "");
+    const blurb = filter.col ? notes[filter.col] : "";
     $("#list-blurb").hidden = !blurb;
     $("#list-blurb").textContent = blurb || "";
-    $("#grid").innerHTML = shown.map(cardHTML).join("");
-    $("#empty").hidden = shown.length > 0;
+
+    const active = [];
+    if (filter.q) active.push(`“${esc(filter.q)}”`);
+    if (filter.cat) active.push(esc(filter.cat));
+    if (filter.pov) active.push(esc(filter.pov));
+    if (filter.rating) active.push(filter.rating === "sfw" ? "sfw only" : "18+ only");
+    $("#active-filters").hidden = !active.length;
+    $("#active-filters").innerHTML = active.length
+      ? `showing ${active.join(" · ")} <button class="linkish" data-clear>clear</button>` : "";
+
+    const grid = $("#grid");
+    grid.className = layout === "list" ? "rows" : "grid";
+    grid.innerHTML = shown.map(layout === "list" ? rowHTML : cardHTML).join("");
+    $$("button[data-bot]", grid).forEach(btn => { btn.dataset.list = "archive"; });
+    $("#empty").hidden = archiveList.length > 0;
+    const left = archiveList.length - shown.length;
+    $("#show-more").hidden = left <= 0;
+    $("#show-more").textContent = `turn the page · ${left} more`;
+    $$(".view-toggle button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.layout === layout)));
   }
-  searchEl.addEventListener("input", () => { query = searchEl.value.trim(); renderList(); });
+  function clearFilters() {
+    Object.assign(filter, { cat: "", pov: "", rating: "", q: "" });
+    searchEl.value = ""; $("#f-cat").value = ""; $("#f-pov").value = ""; $("#f-rating").value = "";
+    renderList();
+  }
+  searchEl.addEventListener("input", () => { filter.q = searchEl.value.trim(); renderList(); });
+  [["#f-cat", "cat"], ["#f-pov", "pov"], ["#f-rating", "rating"], ["#f-sort", "sort"]].forEach(([sel, key]) => {
+    $(sel).addEventListener("change", e => { filter[key] = e.target.value; renderList(); });
+  });
+  $("#show-more").addEventListener("click", () => { shownCount += PAGE; renderList(true); });
+  $("#clear-filters").addEventListener("click", clearFilters);
+  $("#active-filters").addEventListener("click", e => { if (e.target.closest("[data-clear]")) clearFilters(); });
+  $$(".view-toggle button").forEach(b => b.addEventListener("click", () => {
+    layout = b.dataset.layout;
+    try { localStorage.setItem("layout", layout); } catch (e) {}
+    renderList(true);
+  }));
   document.addEventListener("keydown", e => {
     if (e.key === "/" && !/input|textarea|select/i.test(document.activeElement.tagName) && !document.querySelector("dialog[open]")) {
       e.preventDefault();
-      (!$("#view-list").hidden ? searchEl : $("#home-q")).focus();
+      jump("#archive", false);
+      searchEl.focus({ preventScroll: true });
     }
   });
 
+  /* ================= 05 DESK + POLL ================= */
+  function renderDesk() {
+    const sect = $("#desk");
+    sect.hidden = desk.length === 0;
+    $("#nav-desk").hidden = desk.length === 0;
+    if (!desk.length) { $("#about-num").textContent = "pg. 05"; return; }
+    $("#desk-cards").innerHTML = desk.map((b, i) => `<li style="--i:${i}">
+      <button class="desk-card" data-bot="${esc(b.id)}" data-list="desk">
+        <span class="desk-thumb">${coverHTML(b, b.cover)}</span>
+        <span class="desk-text">
+          <span class="wip">draft</span>
+          <span class="d-name">${esc(b.name)}</span>
+          ${b.title ? `<span class="d-title">${esc(b.title)}</span>` : ""}
+          ${b.blurb ? `<span class="d-blurb">${prose(b.blurb)}</span>` : ""}
+        </span>
+      </button>
+    </li>`).join("");
+    const opts = desk.map(b => b.name + (b.title ? " — " + b.title : "")).concat(["something brand new"]);
+    const polling = desk.length >= 2;
+    $("#poll").hidden = !polling;
+    $("#desk-layout").classList.toggle("solo", !polling);
+    if (polling) $("#poll-options").insertAdjacentHTML("beforeend", opts.map((o, i) =>
+      `<label class="opt"><input type="radio" name="vote" value="${esc(o)}"${i === 0 ? " required" : ""}><span>${esc(o)}</span></label>`).join(""));
+    if (SITE.bulletin) { $("#bulletin").hidden = false; $("#bulletin-text").textContent = SITE.bulletin; }
+  }
+
+  /* ================= 06 ABOUT ================= */
+  function renderAbout() {
+    const paras = Array.isArray(SITE.about) ? SITE.about : SITE.about ? [SITE.about] : [SITE.note || ""];
+    $("#about-body").innerHTML = paras.filter(Boolean).map(p => `<p>${prose(p)}</p>`).join("");
+    $("#about-portrait").innerHTML = SITE.avatar
+      ? `<img src="${esc(SITE.avatar)}" alt="${esc(SITE.avatarAlt || "")}">`
+      : `<span class="seal seal-lg" aria-hidden="true"><span>${esc($("#seal-letter").textContent)}</span></span>`;
+    const vibes = SITE.vibes && SITE.vibes.length ? SITE.vibes : ["slow burn", "soft but guarded", "fandom & original"];
+    $("#vibes").innerHTML = vibes.map(v => `<li>${esc(v)}</li>`).join("");
+    const sh = SITE.sheet;
+    if (sh) {
+      const mod = n => { const m = Math.floor((Number(n) - 10) / 2); return (m >= 0 ? "+" : "") + m; };
+      const rule = '<svg class="taper" viewBox="0 0 400 6" preserveAspectRatio="none"><path d="M0 3L400 0V6Z" fill="currentColor"/></svg>';
+      const box = $("#statblock");
+      box.hidden = false;
+      box.innerHTML = `
+        <p class="sb-name">${hearts(sh.name || NAME)}</p>
+        <p class="sb-type">${esc(sh.type || "")}</p>
+        ${rule}
+        ${(sh.lines || []).map(l => `<p class="sb-line"><b>${esc(l[0])}</b> ${esc(l[1])}</p>`).join("")}
+        ${rule}
+        ${(sh.scores || []).length ? `<dl class="sb-scores">${sh.scores.map(x =>
+          `<div><dt>${esc(x[0])}</dt><dd>${esc(x[1])} <span>(${mod(x[1])})</span></dd></div>`).join("")}</dl>${rule}` : ""}
+        ${(sh.traits || []).map(l => `<p class="sb-line"><b><i>${esc(l[0])}.</i></b> ${esc(l[1])}</p>`).join("")}`;
+    }
+    const copy = $("#copy-discord");
+    if (SITE.discord) {
+      copy.hidden = false;
+      copy.addEventListener("click", async () => {
+        const st = $("#copy-status");
+        try { await navigator.clipboard.writeText(SITE.discord); st.textContent = `Copied “${SITE.discord}” ♡ come say hi.`; }
+        catch (e) { st.textContent = `My Discord is ${SITE.discord}`; }
+      });
+    }
+  }
+
+  /* ================= SCROLLING ================= */
+  function jump(sel, smooth = true) {
+    const el = typeof sel === "string" ? $(sel) : sel;
+    if (!el) return;
+    const top = el.getBoundingClientRect().top + window.scrollY - ($("#topbar").offsetHeight + 12);
+    window.scrollTo({ top: Math.max(0, top), behavior: smooth && !reduceMotion ? "smooth" : "auto" });
+  }
+  document.addEventListener("click", e => {
+    const a = e.target.closest("a[data-jump]");
+    if (!a) return;
+    e.preventDefault();
+    closeMenu();
+    jump(a.getAttribute("href"));
+  });
+
+  // mobile menu
+  const menuBtn = $("#menu-btn");
+  function closeMenu() { document.body.classList.remove("menu-open"); menuBtn.setAttribute("aria-expanded", "false"); }
+  menuBtn.addEventListener("click", () => {
+    const open = !document.body.classList.contains("menu-open");
+    document.body.classList.toggle("menu-open", open);
+    menuBtn.setAttribute("aria-expanded", String(open));
+  });
+
+  // the bar turns solid once you scroll, and the back-to-top button appears
+  const topbar = $("#topbar"), toTop = $("#to-top");
+  function onScroll() {
+    const y = window.scrollY;
+    topbar.classList.toggle("solid", y > 40);
+    toTop.hidden = y < 900;
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  toTop.addEventListener("click", () => jump("#home"));
+
+  // highlight the section you're in
+  if ("IntersectionObserver" in window) {
+    const links = $$(".nav a[data-jump]");
+    const spy = new IntersectionObserver(entries => {
+      entries.forEach(en => {
+        if (!en.isIntersecting) return;
+        links.forEach(l => l.classList.toggle("here", l.getAttribute("href") === "#" + en.target.id));
+      });
+    }, { rootMargin: "-45% 0px -50% 0px" });
+    ["#loved", "#collections", "#archive", "#desk", "#about"].forEach(s => { const el = $(s); if (el) spy.observe(el); });
+
+    // things drift up into place as they scroll in
+    const rev = new IntersectionObserver(entries => {
+      entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add("in"); rev.unobserve(en.target); } });
+    }, { rootMargin: "0px 0px -8% 0px" });
+    document.documentElement.classList.add("js-reveal");
+    $$(".reveal").forEach(el => rev.observe(el));
+
+    // the numbers in the hero count up once
+    const counter = new IntersectionObserver(entries => {
+      entries.forEach(en => {
+        if (!en.isIntersecting) return;
+        counter.unobserve(en.target);
+        if (reduceMotion) return;
+        $$("dd[data-count]", en.target).forEach(dd => {
+          const end = Number(dd.dataset.count); if (!end) return;
+          const t0 = performance.now(), dur = 1400;
+          (function tick(t) {
+            const p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+            dd.textContent = fmt(Math.round(end * e));
+            if (p < 1) requestAnimationFrame(tick);
+          })(t0);
+        });
+      });
+    });
+    counter.observe($("#stats"));
+  }
+
   /* ================= ROUTES =================
      #/                 home
-     #/folder/<name>    one collection
-     #/all              every bot
-     #/desk             everything on the desk
+     #/folder/<name>    the archive, opened to one collection
+     #/all              the archive, every bot
+     #/desk             the desk
      #/<bot-id>         opens that bot (old links keep working)        */
   let lastRoute = "#/";
-  function showView(name) {
-    $("#view-home").hidden = name !== "home";
-    $("#view-list").hidden = name !== "list";
-  }
   function route(first) {
     const h = location.hash || "#/";
     if (!h.startsWith("#/")) return;                 // e.g. the skip link
     const path = decodeURIComponent(h.slice(2));
     let m;
     if (path === "") {
-      showView("home"); lastRoute = "#/";
-    } else if (path === "all" || path === "desk" || (m = path.match(/^folder\/(.+)$/))) {
-      const changed = lastRoute !== h;
-      if (path === "all") mode = { type: "all" };
-      else if (path === "desk") mode = { type: "desk" };
-      else {
-        const name = collections.find(c => slug(c) === m[1]);
-        if (!name) { location.replace("#/"); return; }
-        mode = { type: "folder", name };
+      lastRoute = "#/";
+      if (!first) jump("#home");
+    } else if (path === "all" || (m = path.match(/^folder\/(.+)$/))) {
+      let col = "";
+      if (m) {
+        col = collections.find(c => slug(c) === m[1]) || "";
+        if (!col) { location.replace("#/all"); return; }
       }
-      if (pendingQuery !== null) { query = pendingQuery; pendingQuery = null; }
-      else if (changed) query = "";
-      searchEl.value = query;
-      showView("list"); renderTabs(); renderList();
+      if (filter.col !== col) { filter.col = col; }
+      renderTabs(); renderList();
       lastRoute = h;
-      if (changed && !first) window.scrollTo({ top: $("#shelf").offsetTop - 20 });
+      setTimeout(() => jump("#archive", !first), first ? 60 : 0);
+    } else if (path === "desk") {
+      lastRoute = h;
+      setTimeout(() => jump(desk.length ? "#desk" : "#archive", !first), first ? 60 : 0);
     } else {
-      // a bot id: open it over whatever is showing (home on a fresh visit)
-      if (first) showView("home");
       openBot(path, true);
     }
   }
   window.addEventListener("hashchange", () => route(false));
 
-  /* ---- clicks on any bot card ---- */
-  document.addEventListener("click", e => {
-    const btn = e.target.closest("[data-bot]");
-    if (btn && !btn.closest("dialog")) openBot(btn.dataset.bot);
-  });
-
-  /* ---- dialogs ---- */
+  /* ================= DIALOGS ================= */
   function openDialog(d) { if (!d.open) d.showModal(); }
   document.addEventListener("click", e => {
     const closer = e.target.closest("[data-close]");
     if (closer) closer.closest("dialog").close();
     const opener = e.target.closest("[data-open]");
-    if (opener) openDialog(document.getElementById(opener.dataset.open));
+    if (opener) { closeMenu(); openDialog(document.getElementById(opener.dataset.open)); }
   });
-  document.querySelectorAll("dialog").forEach(d => {
+  $$("dialog").forEach(d => {
     d.addEventListener("click", e => { if (e.target === d) d.close(); }); // click the dark backdrop to close
   });
 
@@ -275,71 +495,165 @@
   $("#gate-yes").addEventListener("click", () => {
     confirmAdult();
     $("#gate").close();
-    renderFeatured(); renderFolders(); renderDeskPreview(); renderList();
     if (afterGate) { const f = afterGate; afterGate = null; f(); }
   });
   $("#gate").addEventListener("close", () => {
     if (!adultOK && afterGate) { afterGate = null; history.replaceState(null, "", lastRoute); }
   });
 
-  /* ---- bot detail ---- */
+  /* ---- surprise me ---- */
+  // open the zine to a random page
+  const toast = $("#roll-toast");
+  let flipping = false;
+  document.addEventListener("click", e => {
+    if (!e.target.closest("[data-surprise]") || flipping) return;
+    const pool = live.filter(b => adultOK || !b.adult);
+    const pick = pool[Math.floor(Math.random() * pool.length)];
+    if (!pick) return;
+    const page = 1 + live.indexOf(pick);
+    toast.hidden = false;
+    toast.innerHTML = `<span class="fleuron">❦</span><span>opened to <span class="roll-n">p. ${reduceMotion ? page : "…"}</span> <span class="roll-say"></span></span>`;
+    flipping = true;
+    let t = 0;
+    const flip = setInterval(() => {
+      if (!reduceMotion) $(".roll-n", toast).textContent = "p. " + (1 + Math.floor(Math.random() * live.length));
+      if (++t > 8 || reduceMotion) {
+        clearInterval(flip);
+        $(".roll-n", toast).textContent = "p. " + page;
+        $(".roll-say", toast).textContent = "— " + pick.name;
+        setTimeout(() => { flipping = false; toast.hidden = true; openBot(pick.id, false, live); }, 850);
+      }
+    }, 70);
+  });
+
+  /* ---- clicks on any bot card ---- */
+  const lists = { nine, desk, archive: null };
+  document.addEventListener("click", e => {
+    const btn = e.target.closest("[data-bot]");
+    if (!btn || btn.closest("dialog")) return;
+    const list = btn.dataset.list === "archive" ? (archiveList.length ? archiveList : live) : lists[btn.dataset.list];
+    openBot(btn.dataset.bot, false, list);
+  });
+
+  /* ================= BOT DETAIL ================= */
   const botDialog = $("#bot-dialog");
   let currentImages = [];
+  let navList = live;
+  let currentId = null;
 
-  function openBot(id, fromHash) {
+  function related(b) {
+    const tags = new Set((b.tags || []).map(t => t.toLowerCase()));
+    return live.filter(x => x.id !== b.id)
+      .map(x => ({ x, s: (x.collection === b.collection ? 2 : 0) + (x.tags || []).filter(t => tags.has(t.toLowerCase())).length }))
+      .filter(r => r.s > 0)
+      .sort((p, q) => q.s - p.s || (q.x.chats || 0) - (p.x.chats || 0))
+      .slice(0, 4).map(r => r.x);
+  }
+
+  function openBot(id, fromHash, list) {
     const b = BOTS.find(x => x.id === id);
     if (!b) { if (fromHash) history.replaceState(null, "", lastRoute); return; }
-    if (b.adult && !adultOK) return requireAdult(() => openBot(id, fromHash));
+    if (b.adult && !adultOK) return requireAdult(() => openBot(id, fromHash, list));
+    if (list && list.includes(b)) navList = list;
+    else if (!navList.includes(b)) navList = b.status === "desk" ? desk : live;
+    currentId = b.id;
 
     currentImages = [b.cover, ...(b.gallery || [])].filter(Boolean);
     const plate = b.cover
-      ? `<button class="cover" data-lb="0" aria-label="View full image">${imgHTML(b, b.cover, false)}</button>`
+      ? `<button class="cover" data-lb="0" aria-label="View full image">${b.adult ? '<span class="adult-flag">18+</span>' : ""}${imgHTML(b, b.cover, false)}</button>`
       : coverHTML(b, "");
     const thumbs = (b.gallery || []).length
       ? `<div class="thumbs">${b.gallery.map((src, i) =>
           `<button data-lb="${i + (b.cover ? 1 : 0)}" aria-label="View image ${i + 1}"><img src="${esc(src)}" alt="" loading="lazy"></button>`).join("")}</div>`
       : "";
     const facts = [
-      ["Collection", b.collection],
-      ["Category", b.category],
-      ["Chats", b.chats ? fmt(b.chats) : ""],
-      ["POV", b.pov],
-      ["Rating", b.adult ? "18+" : ""],
-      ["Warnings", (b.warnings || []).join(", ")]
+      ["world", b.collection],
+      ["category", b.category],
+      ["chats", b.chats ? fmt(b.chats) : ""],
+      ["pov", b.pov],
+      ["rating", b.adult ? "18+" : ""],
+      ["heads up", (b.warnings || []).join(", ")]
     ].filter(f => f[1]);
     const scenes = (b.scenes || []).length
-      ? `<div class="scenes"><h3>Scenes</h3><ol>${b.scenes.map(s =>
-          `<li><strong>${esc(s.name)}</strong>${s.line ? `. ${esc(s.line)}` : ""}</li>`).join("")}</ol></div>`
+      ? `<div class="scenes"><h3>scenes <span>${b.scenes.length}</span></h3><ol>${b.scenes.map(s =>
+          `<li><strong>${esc(s.name)}</strong>${s.line ? `<span>${esc(s.line)}</span>` : ""}</li>`).join("")}</ol></div>`
       : "";
+    const rel = related(b);
+    const relHTML = rel.length ? `<div class="related"><h3>if you like ${esc(b.name.split(" ")[0])}…</h3><ul>${rel.map(r =>
+      `<li><button data-rel="${esc(r.id)}" aria-label="${label(r)}">${coverHTML(r, r.cover)}<span>${esc(r.name)}</span></button></li>`).join("")}</ul></div>` : "";
+    const idx = navList.indexOf(b);
 
     $("#bot-body").innerHTML = `
-      <div class="plate">${plate}${thumbs}</div>
+      <div class="plate">${plate}${thumbs}
+        ${navList.length > 1 ? `<p class="plate-count">${idx + 1} of ${navList.length}</p>` : ""}
+      </div>
       <div class="text">
+        <p class="eyebrow">${esc(b.status === "desk" ? "✒ on the desk" : "☾ " + (b.collection || "the archive"))}</p>
         <h2 id="bot-name">${esc(b.name)}</h2>
         ${b.title ? `<p class="sub">${esc(b.title)}</p>` : ""}
         ${b.blurb ? `<p class="blurb">${prose(b.blurb)}</p>` : ""}
         ${facts.length ? `<dl class="facts">${facts.map(f => `<dt>${f[0]}</dt><dd>${esc(f[1])}</dd>`).join("")}</dl>` : ""}
         ${(b.tags || []).length ? `<ul class="tags" aria-label="Tags">${b.tags.map(t =>
-            `<li><button data-tag="${esc(t)}" aria-label="Show other bots tagged ${esc(t)}">${esc(t)}</button></li>`).join("")}</ul>` : ""}
+            `<li><button data-tag="${esc(t)}" aria-label="Show other bots tagged ${esc(t)}">#${esc(t)}</button></li>`).join("")}</ul>` : ""}
+        <div class="actions spread-actions">
+          ${b.link
+            ? `<a class="btn" href="${esc(b.link)}" target="_blank" rel="noopener">chat on dreamjourney ↗</a>`
+            : `<span class="sub">${b.status === "desk" ? "still on the desk." : "link coming soon."}</span>`}
+          <button class="btn btn-ghost" data-copylink>⧉ copy link</button>
+          <button class="btn btn-ghost" data-reqbot="${esc(b.name)}">✦ request a scene</button>
+        </div>
+        <p class="form-status" id="link-status" role="status"></p>
         ${scenes}
-        ${b.link
-          ? `<a class="btn" href="${esc(b.link)}" target="_blank" rel="noopener">Chat on DreamJourney</a>`
-          : `<p class="sub">${b.status === "desk" ? "Still on the desk." : "Link coming soon."}</p>`}
+        ${relHTML}
       </div>`;
+    $("#bot-prev").hidden = $("#bot-next").hidden = navList.length < 2;
     openDialog(botDialog);
+    $(".text", botDialog).scrollTop = 0;
+    botDialog.scrollTop = 0;
     history.replaceState(null, "", "#/" + b.id);
   }
+  function stepBot(d) {
+    if (navList.length < 2) return;
+    const i = navList.findIndex(x => x.id === currentId);
+    let j = i, tries = 0;
+    do { j = (j + d + navList.length) % navList.length; tries++; }
+    while (navList[j].adult && !adultOK && tries < navList.length);
+    openBot(navList[j].id, false, navList);
+  }
+  $("#bot-prev").addEventListener("click", () => stepBot(-1));
+  $("#bot-next").addEventListener("click", () => stepBot(1));
+  botDialog.addEventListener("keydown", e => {
+    if (e.target.matches("input, textarea, select")) return;
+    if (e.key === "ArrowLeft") stepBot(-1);
+    if (e.key === "ArrowRight") stepBot(1);
+  });
 
   botDialog.addEventListener("close", () => {
     if (location.hash !== lastRoute) history.replaceState(null, "", lastRoute);
   });
-  botDialog.addEventListener("click", e => {
+  botDialog.addEventListener("click", async e => {
     const tag = e.target.closest("[data-tag]");
     if (tag) {
       botDialog.close();
-      pendingQuery = tag.dataset.tag;
-      if (lastRoute === "#/all") { query = pendingQuery; pendingQuery = null; searchEl.value = query; renderList(); }
-      else location.hash = "#/all";
+      filter.col = ""; filter.q = tag.dataset.tag; searchEl.value = filter.q;
+      renderTabs(); renderList();
+      history.replaceState(null, "", "#/all"); lastRoute = "#/all";
+      jump("#archive");
+      return;
+    }
+    const rel = e.target.closest("[data-rel]");
+    if (rel) { openBot(rel.dataset.rel, false, navList); return; }
+    if (e.target.closest("[data-copylink]")) {
+      const url = location.href.split("#")[0] + "#/" + currentId;
+      try { await navigator.clipboard.writeText(url); $("#link-status").textContent = "link copied ♡"; }
+      catch (err) { $("#link-status").textContent = url; }
+      return;
+    }
+    const rq = e.target.closest("[data-reqbot]");
+    if (rq) {
+      botDialog.close();
+      $("#request-bot").value = rq.dataset.reqbot;
+      openDialog($("#request"));
       return;
     }
     const lb = e.target.closest("[data-lb]");
@@ -360,21 +674,22 @@
   $("#lb-prev").addEventListener("click", () => showImage(lbIndex - 1));
   $("#lb-next").addEventListener("click", () => showImage(lbIndex + 1));
   lbox.addEventListener("keydown", e => {
+    e.stopPropagation();
     if (e.key === "ArrowLeft") showImage(lbIndex - 1);
     if (e.key === "ArrowRight") showImage(lbIndex + 1);
   });
 
-  /* ---- forms (emailed to you through Web3Forms) ---- */
-  $("#request-bot").innerHTML = `<option value="">Any / not sure</option>` +
+  /* ================= FORMS (emailed to you through Web3Forms) ================= */
+  $("#request-bot").innerHTML = `<option value="">any / not sure</option>` +
     BOTS.map(b => `<option>${esc(b.name)}</option>`).join("");
 
-  document.querySelectorAll("form[data-form]").forEach(form => {
+  $$("form[data-form]").forEach(form => {
     const status = $(".form-status", form);
     form.addEventListener("submit", async e => {
       e.preventDefault();
       status.className = "form-status";
       if (!SITE.formKey) {
-        status.textContent = "This form isn't connected yet. Add your Web3Forms key to bots.js (README step 6).";
+        status.textContent = "this form isn't connected yet. add your Web3Forms key to bots.js (README step 6).";
         status.classList.add("err");
         return;
       }
@@ -382,11 +697,13 @@
       if (data.botcheck) return; // spam trap
       delete data.botcheck;
       data.access_key = SITE.formKey;
-      data.subject = `${form.dataset.form} from your gallery${data.bot ? " — " + data.bot : ""}`;
-      data.from_name = (SITE.name || "Wren") + "'s Gallery";
+      const what = data.bot || data.vote;
+      data.subject = `${form.dataset.form} from your gallery${what ? " — " + what : ""}`;
+      data.from_name = NAME.replace(/[♡♥]/g, "").trim() + "'s Gallery";
+      if (data.vote && !data.message) data.message = "Vote: " + data.vote;
       const btn = $("button[type=submit]", form);
       btn.disabled = true;
-      status.textContent = "Sending…";
+      status.textContent = "sending…";
       try {
         const res = await fetch("https://api.web3forms.com/submit", {
           method: "POST",
@@ -396,9 +713,9 @@
         const out = await res.json();
         if (!out.success) throw new Error(out.message || "Not sent");
         form.reset();
-        status.textContent = "Sent ♡ thank you for trusting me with it.";
+        status.textContent = data.vote ? "vote sealed ♡ thank you." : "sent ♡ thank you for trusting me with it.";
       } catch (err) {
-        status.textContent = "That didn't send. Check your connection and try again.";
+        status.textContent = "that didn't send. check your connection and try again?";
         status.classList.add("err");
       } finally {
         btn.disabled = false;
@@ -406,9 +723,60 @@
     });
   });
 
+  /* ================= GOLD CONSTELLATIONS ================= */
+  (function sky() {
+    const c = $("#sky"); if (!c || !c.getContext) return;
+    const ctx = c.getContext("2d");
+    let w, h, stars = [], lines = [], sparks = [];
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    function build() {
+      w = c.width = innerWidth * dpr; h = c.height = innerHeight * dpr;
+      c.style.width = innerWidth + "px"; c.style.height = innerHeight + "px";
+      const n = Math.round(Math.min(120, innerWidth * innerHeight / 12000));
+      stars = Array.from({ length: n }, () => ({
+        x: Math.random() * w, y: Math.random() * h,
+        r: (Math.random() * 1 + .3) * dpr, p: Math.random() * Math.PI * 2, s: .3 + Math.random()
+      }));
+      // a handful of four-point "sparkle" stars, like the ones in the pfp
+      sparks = stars.filter(s => s.r > 1 * dpr).slice(0, 10).map(s => Object.assign(s, { spark: true, r: s.r * 3.2 }));
+      lines = [];
+      const bright = stars.filter(s => s.spark || s.r > .9 * dpr).slice(0, 24);
+      bright.forEach(a => {
+        const b = bright.filter(x => x !== a).sort((p, q) => Math.hypot(p.x - a.x, p.y - a.y) - Math.hypot(q.x - a.x, q.y - a.y))[0];
+        if (b && Math.hypot(b.x - a.x, b.y - a.y) < 240 * dpr) lines.push([a, b]);
+      });
+    }
+    function sparkle(x, y, r, a) {
+      ctx.fillStyle = `rgba(230, 205, 146, ${a})`;
+      ctx.beginPath();
+      ctx.moveTo(x, y - r); ctx.quadraticCurveTo(x, y, x + r, y); ctx.quadraticCurveTo(x, y, x, y + r);
+      ctx.quadraticCurveTo(x, y, x - r, y); ctx.quadraticCurveTo(x, y, x, y - r); ctx.fill();
+    }
+    function draw(t) {
+      ctx.clearRect(0, 0, w, h);
+      ctx.strokeStyle = "rgba(201, 164, 92, .14)"; ctx.lineWidth = dpr * .9;
+      lines.forEach(([a, b]) => { ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke(); });
+      stars.forEach(s => {
+        const tw = reduceMotion ? .75 : .5 + .5 * Math.sin(s.p + t / 1000 * s.s);
+        if (s.spark) sparkle(s.x, s.y, s.r * (.85 + .15 * tw), .55 + .35 * tw);
+        else { ctx.fillStyle = `rgba(230, 205, 146, ${.55 * tw})`; ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2); ctx.fill(); }
+      });
+    }
+    let last = 0;
+    function loop(t) { if (t - last > 50) { draw(t); last = t; } requestAnimationFrame(loop); }
+    build();
+    if (reduceMotion) draw(0); else requestAnimationFrame(loop);
+    let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => { build(); draw(performance.now()); }, 150); });
+  })();
+
   /* ---- go ---- */
   renderFeatured();
+  renderNine();
   renderFolders();
-  renderDeskPreview();
+  renderTabs();
+  renderList();
+  renderDesk();
+  renderAbout();
+  onScroll();
   route(true);
 })();

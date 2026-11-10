@@ -93,10 +93,25 @@ The key is safe to have in a public file; it can only send email *to you*. Visit
 
 
 ## How the site is laid out
-- **Home** (your main link): the masthead, your note with the Request a scene and Contact me buttons, your featured bot, a folder for each collection, and a preview of what's on the desk.
-- **Folders** come from `collections` in `bots.js`, in that order. Each bot's `collection` must match a folder name exactly, capitals included.
-- **Folder notes:** the line under a folder's title when it's open. Edit them in `collectionNotes`.
-- **Featured bot:** `featured: "the-pitt"`. Leave it `""` and your most-chatted bot is featured instead.
-- **On the desk:** any bot with `status: "desk"`. Home shows the first three.
-- **Links people can share:** `/#/folder/rust-harbour` opens a folder, `/#/all` shows every bot, `/#/desk` shows the desk, and `/#/clarke-hayes` opens one bot.
-- **Scene lists:** every scene line needs a comma after its closing `}` except the last one in the list.
+One long page, top to bottom, with a bar across the top that jumps to each part:
+
+1. **The hero:** your name, tagline, live counts (bots, chats, worlds, scenes) and the sealed letter (`note`) with the Request a scene and Write to me buttons.
+2. **The ticker:** the scrolling line of phrases. Edit them in `ticker`.
+3. **01 Featured:** `featured: "the-pitt"`. Leave it `""` and your most-chatted bot is featured instead.
+4. **02 The Top Nine:** your nine most-chatted bots, ranked. Updates itself from the `chats` numbers. "Surprise me" opens a random bot.
+5. **03 Collections:** a folder for each name in `collections`, in that order, with its `collectionNotes` line underneath.
+6. **04 The archive:** every bot, with search, collection tabs, Category / POV / Rating filters, sorting, and a cards-or-list switch. Shows 12 at a time.
+7. **05 On the desk:** any bot with `status: "desk"`, plus a "which one should i finish first?" vote once there are at least two. Votes are emailed to you through the same Web3Forms key as the other forms. `bulletin` adds a "currently plotting" note. The whole section disappears when nothing is on the desk.
+8. **06 About:** `about` (one paragraph per line in the list), `vibes`, `avatar`, and `discord` for the copy-handle button.
+
+**Inside a bot:** arrows (or ← → keys) step through whatever list you opened it from, tags search the archive, "Copy link" copies that bot's own link, "Request a scene" opens the form with the bot already picked, and "If you like…" suggests bots from the same collection or with the same tags.
+
+**Links people can share:** `/#/folder/rust-harbour` opens the archive to one collection, `/#/all` jumps to the archive, `/#/desk` jumps to the desk, and `/#/clarke-hayes` opens one bot.
+
+**Your picture:** put it in `images/` and set `avatar: "images/yourfile.jpg"`. It shows in an arched frame in About and as a small round portrait on the letter, replacing the wax seal.
+
+**New background:** put the image in `images/`, point `backdrop` at it, and set `backdropTint: false` (the tint only exists to warm the old purple castle).
+
+**Gamer bits:** `rarity` sets the chat counts for legendary / epic / rare loot on each card. `sheet` is the D&D stat block in About; edit any line, or delete the whole `sheet` block to hide it. "Roll for a bot" rolls a d20 and opens a random bot.
+
+**Scene lists:** every scene line needs a comma after its closing `}` except the last one in the list.
