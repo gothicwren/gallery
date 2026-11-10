@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Pirata+One&family=Tangerine:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Special+Elite&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=2026-11-09c">
+  <link rel="stylesheet" href="style.css?v=2026-11-09d">
 </head>
 <body>
   <a class="skip" href="#archive">skip to the bots</a>
@@ -30,6 +30,7 @@
       <a href="#collections" data-jump>worlds</a>
       <a href="#archive" data-jump>the archive</a>
       <a href="#desk" data-jump id="nav-desk">on the desk</a>
+      <a href="#listening" data-jump id="nav-listen" hidden>listening</a>
       <a href="#about" data-jump>about me</a>
       <a class="nav-dj" id="nav-dj" href="#" target="_blank" rel="noopener">dreamjourney ↗</a>
     </nav>
@@ -180,6 +181,29 @@
       </div>
     </section>
 
+    <!-- LISTENING -->
+    <section class="sect" id="listening" aria-labelledby="listen-h" hidden>
+      <div class="ornament reveal" aria-hidden="true"></div>
+      <p class="num reveal"><span>pg. 06</span> — on the record player</p>
+      <div class="row-head reveal">
+        <div class="head-with-note">
+          <h2 id="listen-h">the listening corner</h2>
+          <p class="hand margin-note" aria-hidden="true">headphones on, door closed.</p>
+        </div>
+      </div>
+      <div class="listen reveal">
+        <span class="tape tape-l" aria-hidden="true"></span>
+        <div class="listen-art" id="listen-art" aria-hidden="true"></div>
+        <div class="listen-text">
+          <p class="eyebrow"><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span> now spinning</p>
+          <h3 id="listen-title"></h3>
+          <p class="listen-note" id="listen-note" hidden></p>
+          <div class="listen-embed" id="listen-embed"></div>
+          <a class="btn btn-ghost" id="listen-link" href="#" target="_blank" rel="noopener">open the playlist ↗</a>
+        </div>
+      </div>
+    </section>
+
     <!-- 06 ABOUT -->
     <section class="sect" id="about" aria-labelledby="about-h">
       <div class="ornament reveal" aria-hidden="true"></div>
@@ -290,7 +314,7 @@
     </form>
   </dialog>
 
-  <script src="bots.js?v=2026-11-09c"></script>
-  <script src="app.js?v=2026-11-09c"></script>
+  <script src="bots.js?v=2026-11-09d"></script>
+  <script src="app.js?v=2026-11-09d"></script>
 </body>
 </html>

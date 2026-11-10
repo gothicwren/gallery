@@ -71,6 +71,15 @@ window.SITE = {
   bulletin: "",                        // a "currently plotting…" note under On the desk
   credit: "made with ink, lore & questionable sleep.",
 
+  // "what i've been listening to": paste a Spotify or YouTube playlist link.
+  // Leave url "" to hide the whole section. embed: false shows just the button, no player.
+  playlist: {
+    url: "",
+    title: "what i've been listening to",
+    note: "",                          // optional line under the title
+    embed: true
+  },
+
   backdropTint: false,                 // true tints the background toward the site colors (was for the old castle)
 
 

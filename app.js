@@ -3,6 +3,10 @@
   "use strict";
 
   const SITE = window.SITE || {};
+  // every image gets the same ?v= as app.js in index.html, so bumping that one tag
+  // makes browsers fetch fresh copies of everything instead of old saved ones
+  const ASSET_V = (() => { try { return new URL(document.currentScript.src).searchParams.get("v") || ""; } catch (e) { return ""; } })();
+  const asset = src => !src || !ASSET_V || /^(https?:|data:)/.test(src) ? src : src + (src.includes("?") ? "&" : "?") + "v=" + ASSET_V;
   const BOTS = (window.BOTS || []).filter(b => b && b.id && b.name && b.status !== "hidden");
   const $ = (s, root = document) => root.querySelector(s);
   const $$ = (s, root = document) => Array.from(root.querySelectorAll(s));
@@ -51,11 +55,11 @@
   });
   if (SITE.avatar) {
     const seal = $(".letter .seal");
-    seal.outerHTML = `<span class="letter-pfp" aria-hidden="true"><img src="${esc(SITE.avatar)}" alt=""></span>`;
+    seal.outerHTML = `<span class="letter-pfp" aria-hidden="true"><img src="${esc(asset(SITE.avatar))}" alt=""></span>`;
   }
   $("#note").innerHTML = SITE.note
     ? `<p>${esc(SITE.note)}</p><p class="sig">${hearts(NAME)}</p>` : "";
-  if (SITE.backdrop) document.documentElement.style.setProperty("--backdrop", `url("${SITE.backdrop}")`);
+  if (SITE.backdrop) document.documentElement.style.setProperty("--backdrop", `url("${asset(SITE.backdrop)}")`);
   if (SITE.backdropTint !== false) document.documentElement.classList.add("tint");
 
   /* ---- ticker ---- */
@@ -93,6 +97,7 @@
   function imgHTML(b, src, lazy = true) {
     const st = [b.focus ? `object-position:${b.focus}` : "", b.fit === "whole" ? "object-fit:contain" : ""].filter(Boolean).join(";");
     const pos = st ? ` style="${esc(st)}"` : "";
+    src = asset(src);
     const bleed = b.fit === "whole" ? `<img class="bleed" src="${esc(src)}" alt="" aria-hidden="true"${lazy ? ' loading="lazy"' : ""}>` : "";
     return `${bleed}<img src="${esc(src)}" alt=""${lazy ? ' loading="lazy"' : ""}${pos} onerror="this.replaceWith(document.createRange().createContextualFragment(this.dataset.fallback))" data-fallback="${esc(typeset(b))}">`;
   }
@@ -310,7 +315,7 @@
     const sect = $("#desk");
     sect.hidden = desk.length === 0;
     $("#nav-desk").hidden = desk.length === 0;
-    if (!desk.length) { $("#about-num").textContent = "pg. 05"; return; }
+    if (!desk.length) return;
     $("#desk-cards").innerHTML = desk.map((b, i) => `<li style="--i:${i}">
       <button class="desk-card" data-bot="${esc(b.id)}" data-list="desk">
         <span class="desk-thumb">${coverHTML(b, b.cover)}</span>
@@ -331,12 +336,101 @@
     if (SITE.bulletin) { $("#bulletin").hidden = false; $("#bulletin-text").textContent = SITE.bulletin; }
   }
 
+  /* ================= THE RECORD PLAYER ================= */
+  const RECORD_PLAYER = `<svg viewBox="0 0 320 230" role="img" aria-label="">
+    <defs>
+      <radialGradient id="vinyl" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#2a2d36"/><stop offset=".7" stop-color="#14161c"/><stop offset="1" stop-color="#0c0d11"/></radialGradient>
+      <linearGradient id="wood" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5a3f2c"/><stop offset="1" stop-color="#3a281c"/></linearGradient>
+    </defs>
+    <!-- desk line -->
+    <path d="M6 206H314" stroke="var(--line)" stroke-width="1.5"/>
+    <!-- record player -->
+    <rect x="22" y="128" width="190" height="72" rx="8" fill="url(#wood)" stroke="var(--rose)" stroke-width="1.4"/>
+    <rect x="30" y="190" width="14" height="10" rx="2" fill="#2a1d14"/><rect x="190" y="190" width="14" height="10" rx="2" fill="#2a1d14"/>
+    <ellipse cx="108" cy="140" rx="78" ry="20" fill="#1b1d24" stroke="rgba(201,164,92,.5)"/>
+    <g class="lp-spin">
+      <ellipse cx="108" cy="138" rx="70" ry="17" fill="url(#vinyl)"/>
+      <ellipse cx="108" cy="138" rx="56" ry="13.5" fill="none" stroke="rgba(255,255,255,.07)"/>
+      <ellipse cx="108" cy="138" rx="44" ry="10.5" fill="none" stroke="rgba(255,255,255,.07)"/>
+      <ellipse cx="108" cy="138" rx="17" ry="4.4" fill="var(--wax)"/>
+      <path d="M96 136.5q12-3 24 0" stroke="var(--rose-lit)" stroke-width="1" fill="none" opacity=".8"/>
+      <ellipse cx="108" cy="138" rx="2" ry=".8" fill="#0c0d11"/>
+    </g>
+    <circle cx="190" cy="138" r="6" fill="#26201a" stroke="var(--rose)"/>
+    <path class="lp-arm" d="M190 138L176 112L142 132" stroke="var(--silver)" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="160" y="168" width="34" height="14" rx="3" fill="#2a1d14" stroke="rgba(201,164,92,.4)"/>
+    <circle cx="168" cy="175" r="3" fill="var(--rose)"/><circle cx="180" cy="175" r="3" fill="var(--rose)" opacity=".6"/>
+    <!-- headphones, resting against the player -->
+    <g transform="translate(226 132)">
+      <path d="M6 48C2 18 18 2 38 2S74 18 70 48" fill="none" stroke="var(--blood-lit)" stroke-width="6" stroke-linecap="round"/>
+      <path d="M6 48C2 18 18 2 38 2S74 18 70 48" fill="none" stroke="var(--rose)" stroke-width="1" stroke-linecap="round" opacity=".7"/>
+      <rect x="-2" y="40" width="18" height="30" rx="8" fill="#2c2018" stroke="var(--rose)"/>
+      <rect x="60" y="40" width="18" height="30" rx="8" fill="#2c2018" stroke="var(--rose)"/>
+    </g>
+    <!-- a mug, still warm -->
+    <g transform="translate(250 82)">
+      <rect x="0" y="12" width="30" height="34" rx="5" fill="var(--parchment)" opacity=".92"/>
+      <path d="M30 20h5a7 7 0 0 1 0 14h-5" fill="none" stroke="var(--parchment)" stroke-width="3" opacity=".92"/>
+      <path class="steam s1" d="M9 8c-4-6 4-8 0-14" stroke="var(--toner)" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+      <path class="steam s2" d="M19 8c-4-6 4-8 0-14" stroke="var(--toner)" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+    </g>
+    <!-- stacked records -->
+    <rect x="26" y="96" width="70" height="8" rx="1.5" fill="var(--moss-deep)" stroke="rgba(138,154,120,.6)"/>
+    <rect x="30" y="104" width="64" height="8" rx="1.5" fill="#3e2c22" stroke="rgba(201,164,92,.4)"/>
+    <rect x="24" y="112" width="72" height="8" rx="1.5" fill="#2f3446" stroke="rgba(195,203,226,.4)"/>
+    <!-- notes drifting up -->
+    <g fill="var(--rose-lit)" font-family="EB Garamond, serif">
+      <text class="note n1" x="120" y="96" font-size="20">♪</text>
+      <text class="note n2" x="150" y="84" font-size="16">♫</text>
+      <text class="note n3" x="98" y="80" font-size="14">♪</text>
+    </g>
+    <!-- a little sparkle star -->
+    <path class="twinkle" d="M290 30Q290 40 300 40Q290 40 290 50Q290 40 280 40Q290 40 290 30Z" fill="var(--rose-lit)"/>
+  </svg>`;
+
+  function playlistEmbed(url) {
+    try {
+      const u = new URL(url);
+      if (/spotify\.com$/.test(u.hostname)) {
+        const m = u.pathname.match(/(playlist|album|track|artist|show|episode)\/([A-Za-z0-9]+)/);
+        if (m) return { kind: "spotify", src: `https://open.spotify.com/embed/${m[1]}/${m[2]}?utm_source=generator&theme=0` };
+      }
+      if (/youtube\.com$|youtu\.be$/.test(u.hostname)) {
+        const list = u.searchParams.get("list");
+        if (list) return { kind: "youtube", src: `https://www.youtube-nocookie.com/embed/videoseries?list=${encodeURIComponent(list)}` };
+        const v = u.searchParams.get("v") || (u.hostname.endsWith("youtu.be") ? u.pathname.slice(1) : "");
+        if (v) return { kind: "youtube", src: `https://www.youtube-nocookie.com/embed/${encodeURIComponent(v)}` };
+      }
+    } catch (e) {}
+    return null;
+  }
+  function renderListening() {
+    const pl = SITE.playlist || {};
+    const on = !!pl.url;
+    $("#listening").hidden = !on;
+    $("#nav-listen").hidden = !on;
+    if (!on) return;
+    $("#listen-art").innerHTML = RECORD_PLAYER;
+    $("#listen-title").textContent = pl.title || "what i've been listening to";
+    $("#listen-note").textContent = pl.note || "";
+    $("#listen-note").hidden = !pl.note;
+    const host = /spotify/.test(pl.url) ? "spotify" : /youtu/.test(pl.url) ? "youtube" : "";
+    const link = $("#listen-link");
+    link.href = pl.url;
+    link.textContent = host ? `open in ${host} ↗` : "open the playlist ↗";
+    const emb = pl.embed === false ? null : playlistEmbed(pl.url);
+    if (emb) {
+      $("#listen-embed").innerHTML = `<iframe class="embed-${emb.kind}" src="${esc(emb.src)}" title="${esc(pl.title || "Playlist")}" loading="lazy"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
+    }
+  }
+
   /* ================= 06 ABOUT ================= */
   function renderAbout() {
     const paras = Array.isArray(SITE.about) ? SITE.about : SITE.about ? [SITE.about] : [SITE.note || ""];
     $("#about-body").innerHTML = paras.filter(Boolean).map(p => `<p>${prose(p)}</p>`).join("");
     $("#about-portrait").innerHTML = SITE.avatar
-      ? `<img src="${esc(SITE.avatar)}" alt="${esc(SITE.avatarAlt || "")}">`
+      ? `<img src="${esc(asset(SITE.avatar))}" alt="${esc(SITE.avatarAlt || "")}">`
       : `<span class="seal seal-lg" aria-hidden="true"><span>${esc($("#seal-letter").textContent)}</span></span>`;
     const vibes = SITE.vibes && SITE.vibes.length ? SITE.vibes : ["slow burn", "soft but guarded", "fandom & original"];
     $("#vibes").innerHTML = vibes.map(v => `<li>${esc(v)}</li>`).join("");
@@ -410,7 +504,7 @@
         links.forEach(l => l.classList.toggle("here", l.getAttribute("href") === "#" + en.target.id));
       });
     }, { rootMargin: "-45% 0px -50% 0px" });
-    ["#loved", "#collections", "#archive", "#desk", "#about"].forEach(s => { const el = $(s); if (el) spy.observe(el); });
+    ["#loved", "#collections", "#archive", "#desk", "#listening", "#about"].forEach(s => { const el = $(s); if (el) spy.observe(el); });
 
     // things drift up into place as they scroll in
     const rev = new IntersectionObserver(entries => {
@@ -564,7 +658,7 @@
       : coverHTML(b, "");
     const thumbs = (b.gallery || []).length
       ? `<div class="thumbs">${b.gallery.map((src, i) =>
-          `<button data-lb="${i + (b.cover ? 1 : 0)}" aria-label="View image ${i + 1}"><img src="${esc(src)}" alt="" loading="lazy"></button>`).join("")}</div>`
+          `<button data-lb="${i + (b.cover ? 1 : 0)}" aria-label="View image ${i + 1}"><img src="${esc(asset(src))}" alt="" loading="lazy"></button>`).join("")}</div>`
       : "";
     const facts = [
       ["world", b.collection],
@@ -665,7 +759,7 @@
   let lbIndex = 0;
   function showImage(i) {
     lbIndex = (i + currentImages.length) % currentImages.length;
-    $("#lb-img").src = currentImages[lbIndex];
+    $("#lb-img").src = asset(currentImages[lbIndex]);
     const many = currentImages.length > 1;
     $("#lb-prev").hidden = $("#lb-next").hidden = !many;
     $("#lb-count").textContent = many ? `${lbIndex + 1} of ${currentImages.length}` : "";
@@ -777,6 +871,11 @@
   renderList();
   renderDesk();
   renderAbout();
+  renderListening();
+  $$("main > .sect").filter(sec => !sec.hidden).forEach((sec, i) => {
+    const tag = $(".num > span", sec);
+    if (tag) tag.textContent = "pg. " + String(i + 1).padStart(2, "0");
+  });
   onScroll();
   route(true);
 })();
