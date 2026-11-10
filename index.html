@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Pirata+One&family=Tangerine:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Special+Elite&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=2026-11-09f">
+  <link rel="stylesheet" href="style.css?v=2026-11-09m">
 </head>
 <body>
   <a class="skip" href="#archive">skip to the bots</a>
@@ -62,7 +62,14 @@
     </aside>
   </section>
 
-  <div class="ticker" aria-hidden="true"><div class="ticker-track" id="ticker"></div></div>
+  <div class="typeslip-wrap">
+    <div class="typeslip reveal">
+      <span class="tape tape-c" aria-hidden="true"></span>
+      <span class="ts-label">filed under:</span>
+      <span class="ts-line" aria-hidden="true"><span class="ts-text" id="ts-text"></span><span class="ts-caret"></span></span>
+      <span class="visually-hidden" id="ts-all"></span>
+    </div>
+  </div>
 
   <main id="shelf">
 
@@ -160,6 +167,7 @@
         </div>
       </div>
       <p class="sect-sub reveal" id="desk-sub">active quests. half-inked and drying. ask about any of them.</p>
+      <div class="desk-feature reveal" id="desk-feature" hidden></div>
       <div class="desk-layout" id="desk-layout">
         <ul class="desk-cards" id="desk-cards"></ul>
         <aside class="poll reveal" id="poll" aria-labelledby="poll-h" hidden>
@@ -314,7 +322,7 @@
     </form>
   </dialog>
 
-  <script src="bots.js?v=2026-11-09f"></script>
-  <script src="app.js?v=2026-11-09f"></script>
+  <script src="bots.js?v=2026-11-09m"></script>
+  <script src="app.js?v=2026-11-09m"></script>
 </body>
 </html>

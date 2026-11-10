@@ -62,15 +62,69 @@
   if (SITE.backdrop) document.documentElement.style.setProperty("--backdrop", `url("${asset(SITE.backdrop)}")`);
   if (SITE.backdropTint !== false) document.documentElement.classList.add("tint");
 
-  /* ---- ticker ---- */
+  /* ---- the typewriter slip ----
+     Types each line from SITE.ticker, strikes it through (typewriters can't backspace),
+     then types the next. Wrap a word in ~~tildes~~ and it gets typed, then crossed out. */
   const tickerWords = SITE.ticker && SITE.ticker.length ? SITE.ticker
-    : ["slow burn", "soft but guarded", "fandom & original", "will tag like it's AO3", "for the love of lore", "come for the angst, stay for the yearning"];
-  const tickerRun = tickerWords.map(w => `<span>${esc(w)}</span><i>✦</i>`).join("");
-  $("#ticker").innerHTML = tickerRun + tickerRun; // doubled so the loop is seamless
+    : ["slow burn", "soft but guarded", "fandom & original", "will tag like it's ~~tumblr~~ AO3"];
+  $("#ts-all").textContent = "Filed under: " + tickerWords.map(w => w.replace(/~~.+?~~\s*/g, "")).join(", ");
+  (function typewriter() {
+    const out = $("#ts-text");
+    const caret = $(".ts-caret");
+    if (reduceMotion) {
+      out.innerHTML = tickerWords.map(w => esc(w.replace(/~~.+?~~\s*/g, ""))).join(' <i class="ts-dot">✦</i> ');
+      caret.hidden = true;
+      return;
+    }
+    const wait = ms => new Promise(r => setTimeout(r, ms));
+    const key = () => 38 + Math.random() * 80 + (Math.random() < .08 ? 160 : 0); // uneven, like real keys
+    async function typeInto(el, text) {
+      for (const ch of text) {
+        el.textContent += ch;
+        caret.classList.add("strike-key"); setTimeout(() => caret.classList.remove("strike-key"), 60);
+        await wait(ch === " " ? key() * 1.4 : key());
+      }
+    }
+    async function run() {
+      let i = 0;
+      // wait until the slip is actually on screen before the first line
+      await wait(700);
+      for (;;) {
+        const line = tickerWords[i % tickerWords.length];
+        out.innerHTML = "";
+        // split into plain runs and ~~typo~~ runs
+        const parts = line.split(/(~~.+?~~)/).filter(Boolean);
+        for (const part of parts) {
+          const typo = /^~~(.+)~~$/.exec(part);
+          const span = document.createElement("span");
+          out.appendChild(span);
+          await typeInto(span, typo ? typo[1] : part);
+          if (typo) {
+            await wait(380);
+            span.classList.add("ts-typo");          // cross it out
+            await wait(420);
+            out.appendChild(document.createTextNode(" "));
+          }
+        }
+        await wait(2300);
+        out.classList.add("ts-done");               // strike the whole line
+        await wait(650);
+        out.classList.add("ts-out");
+        await wait(380);
+        out.classList.remove("ts-done", "ts-out");
+        i++;
+        await wait(260);
+      }
+    }
+    run();
+  })();
 
   /* ---- ornaments (one drawing, reused) ---- */
   const ORNAMENT = '<svg viewBox="0 0 260 24" width="260" height="24"><path d="M0 13C22 10,50 15,76 11M104 12.5C108 10,110 14,114 11.5M146 11C152 14,156 9,162 12.5M182 11C210 15,232 9,260 13" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" fill="none"/><circle cx="90" cy="12" r="8" fill="currentColor"/><circle cx="93.5" cy="9" r="6.4" fill="var(--paper)"/><path d="M130 2l10 10-10 10-10-10z" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M130 7l5 5-5 5-5-5z" fill="currentColor"/><path d="M172 8L173.2 10.8L176 12L173.2 13.2L172 16L170.8 13.2L168 12L170.8 10.8Z" fill="currentColor"/></svg>';
-  $$(".ornament").forEach(o => { o.innerHTML = ORNAMENT; });
+  // a custom divider image (SITE.divider) replaces the drawn one everywhere
+  $$(".ornament").forEach(o => {
+    o.innerHTML = SITE.divider ? `<img class="divider-img" src="${esc(asset(SITE.divider))}" alt="">` : ORNAMENT;
+  });
   // a pressed sprig, drawn in gold ink
   const SPRIG = '<svg viewBox="0 0 120 160" width="120" height="160" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><path d="M60 158C58 120 62 80 54 40C52 28 50 18 52 6"/><path d="M57 120C44 114 36 104 34 92C46 96 54 106 57 120Z" fill="currentColor" fill-opacity=".18"/><path d="M59 98C72 92 80 82 82 70C70 74 62 84 59 98Z" fill="currentColor" fill-opacity=".18"/><path d="M56 74C44 68 38 58 37 48C48 52 54 62 56 74Z" fill="currentColor" fill-opacity=".18"/><path d="M55 52C64 46 70 38 71 30C62 33 57 41 55 52Z" fill="currentColor" fill-opacity=".18"/><circle cx="52" cy="10" r="7" fill="var(--blood-lit)" fill-opacity=".8" stroke="none"/><path d="M47 9c3-4 8-4 10 0M48 13c3 2 6 2 9 0" stroke-width="1"/><circle cx="40" cy="30" r="2.2" fill="currentColor" stroke="none"/><circle cx="74" cy="52" r="1.8" fill="currentColor" stroke="none"/></svg>';
   $$(".sprig").forEach(o => { o.innerHTML = SPRIG; });
@@ -316,7 +370,26 @@
     sect.hidden = desk.length === 0;
     $("#nav-desk").hidden = desk.length === 0;
     if (!desk.length) return;
-    $("#desk-cards").innerHTML = desk.map((b, i) => `<li style="--i:${i}">
+    const star = desk.find(b => b.id === SITE.deskFeature);
+    const spot = $("#desk-feature");
+    if (star) {
+      const n = (star.scenes || []).length;
+      spot.hidden = false;
+      spot.innerHTML = `
+        <button class="df-card" data-bot="${esc(star.id)}" data-list="desk" aria-label="${label(star)}">
+          <span class="df-art">${coverHTML(star, star.cover)}</span>
+          <span class="df-text">
+            <span class="df-stamp">coming soon</span>
+            <span class="eyebrow">✒ the next one off the desk</span>
+            <span class="df-name">${esc(star.name)}</span>
+            ${star.title ? `<span class="df-title">${esc(star.title)}</span>` : ""}
+            ${star.blurb ? `<span class="df-blurb">${prose(star.blurb)}</span>` : ""}
+            ${n ? `<span class="df-scenes">${n} ways in: ${(star.scenes || []).slice(0, 4).map(x => esc(x.name.replace(/^The /, "the ").toLowerCase())).join(" · ")}${n > 4 ? " …" : ""}</span>` : ""}
+            <span class="df-cta">open the draft ↷</span>
+          </span>
+        </button>`;
+    }
+    $("#desk-cards").innerHTML = desk.filter(b => b !== star).map((b, i) => `<li style="--i:${i}">
       <button class="desk-card" data-bot="${esc(b.id)}" data-list="desk">
         <span class="desk-thumb">${coverHTML(b, b.cover)}</span>
         <span class="desk-text">
@@ -327,7 +400,7 @@
         </span>
       </button>
     </li>`).join("");
-    const opts = desk.map(b => b.name + (b.title ? " — " + b.title : "")).concat(["something brand new"]);
+    const opts = (star ? [star, ...desk.filter(b => b !== star)] : desk).map(b => b.name + (b.title ? " — " + b.title : "")).concat(["something brand new"]);
     const polling = desk.length >= 2;
     $("#poll").hidden = !polling;
     $("#desk-layout").classList.toggle("solo", !polling);
@@ -423,7 +496,7 @@
     const emb = pl.embed === false ? null : playlistEmbed(pl.url);
     if (emb) {
       $("#listen-embed").innerHTML = `<iframe class="embed-${emb.kind}" src="${esc(emb.src)}" title="${esc(pl.title || "Playlist")}" loading="lazy"
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>`;
     }
   }
 
@@ -670,44 +743,197 @@
       ["rating", b.adult ? "18+" : ""],
       ["heads up", (b.warnings || []).join(", ")]
     ].filter(f => f[1]);
-    const scenes = (b.scenes || []).length
-      ? `<div class="scenes"><h3>scenes <span>${b.scenes.length}</span></h3><ol>${b.scenes.map(s =>
-          `<li><strong>${esc(s.name)}</strong>${s.line ? `<span>${esc(s.line)}</span>` : ""}</li>`).join("")}</ol></div>`
-      : "";
     const rel = related(b);
-    const relHTML = rel.length ? `<div class="related"><h3>if you like ${esc(b.name.split(" ")[0])}…</h3><ul>${rel.map(r =>
-      `<li><button data-rel="${esc(r.id)}" aria-label="${label(r)}">${coverHTML(r, r.cover)}<span>${esc(r.name)}</span></button></li>`).join("")}</ul></div>` : "";
     const idx = navList.indexOf(b);
+    const first = esc(b.name.split(" ")[0]);
+    const roman = n => { let r = "", v = [[100,"c"],[90,"xc"],[50,"l"],[40,"xl"],[10,"x"],[9,"ix"],[5,"v"],[4,"iv"],[1,"i"]];
+      for (const [x, ch] of v) while (n >= x) { r += ch; n -= x; } return r; };
 
-    $("#bot-body").innerHTML = `
-      <div class="plate">${plate}${thumbs}
-        ${navList.length > 1 ? `<p class="plate-count">${idx + 1} of ${navList.length}</p>` : ""}
+    /* ---- the pages of the book ---- */
+    const pages = [];
+    // p.0 — the tipped-in plate
+    pages.push(`
+      <div class="pg-plate">
+        <div class="plate-frame">${plate}<span class="corner c1"></span><span class="corner c2"></span><span class="corner c3"></span><span class="corner c4"></span></div>
+        ${thumbs}
+        <p class="plate-cap">plate ${roman(Math.max(1, idx + 1))}. <em>${esc(b.name)}</em></p>
+        ${navList.length > 1 ? `<p class="plate-count">${idx + 1} of ${navList.length} in this shelf</p>` : ""}
+      </div>`);
+    // p.1 — title page
+    pages.push(`
+      <p class="eyebrow">${esc(b.status === "desk" ? "✒ on the desk" : "☾ " + (b.collection || "the archive"))}</p>
+      <h2 id="bot-name">${esc(b.name)}</h2>
+      ${b.title ? `<p class="sub">${esc(b.title)}</p>` : ""}
+      <p class="fleuron-rule" aria-hidden="true">❦</p>
+      ${b.blurb ? `<p class="blurb dropcap">${prose(b.blurb)}</p>` : ""}
+      ${facts.length ? `<dl class="facts">${facts.map(f => `<dt>${f[0]}</dt><dd>${esc(f[1])}</dd>`).join("")}</dl>` : ""}
+      ${(b.tags || []).length ? `<ul class="tags" aria-label="Tags">${b.tags.map(t =>
+          `<li><button data-tag="${esc(t)}" aria-label="Show other bots tagged ${esc(t)}">#${esc(t)}</button></li>`).join("")}</ul>` : ""}
+      <div class="actions spread-actions">
+        ${b.link
+          ? `<a class="btn" href="${esc(b.link)}" target="_blank" rel="noopener">chat on dreamjourney ↗</a>`
+          : `<span class="sub">${b.status === "desk" ? "still on the desk." : "link coming soon."}</span>`}
+        <button class="btn btn-ghost" data-copylink>⧉ copy link</button>
+        <button class="btn btn-ghost" data-reqbot="${esc(b.name)}">✦ request a scene</button>
       </div>
-      <div class="text">
-        <p class="eyebrow">${esc(b.status === "desk" ? "✒ on the desk" : "☾ " + (b.collection || "the archive"))}</p>
-        <h2 id="bot-name">${esc(b.name)}</h2>
-        ${b.title ? `<p class="sub">${esc(b.title)}</p>` : ""}
-        ${b.blurb ? `<p class="blurb">${prose(b.blurb)}</p>` : ""}
-        ${facts.length ? `<dl class="facts">${facts.map(f => `<dt>${f[0]}</dt><dd>${esc(f[1])}</dd>`).join("")}</dl>` : ""}
-        ${(b.tags || []).length ? `<ul class="tags" aria-label="Tags">${b.tags.map(t =>
-            `<li><button data-tag="${esc(t)}" aria-label="Show other bots tagged ${esc(t)}">#${esc(t)}</button></li>`).join("")}</ul>` : ""}
-        <div class="actions spread-actions">
-          ${b.link
-            ? `<a class="btn" href="${esc(b.link)}" target="_blank" rel="noopener">chat on dreamjourney ↗</a>`
-            : `<span class="sub">${b.status === "desk" ? "still on the desk." : "link coming soon."}</span>`}
-          <button class="btn btn-ghost" data-copylink>⧉ copy link</button>
-          <button class="btn btn-ghost" data-reqbot="${esc(b.name)}">✦ request a scene</button>
-        </div>
-        <p class="form-status" id="link-status" role="status"></p>
-        ${scenes}
-        ${relHTML}
-      </div>`;
+      <p class="form-status" id="link-status" role="status"></p>`);
+    // scene chapters, four to a page
+    const sc = b.scenes || [];
+    const PER = 4;
+    for (let k = 0; k < sc.length; k += PER) {
+      const chunk = sc.slice(k, k + PER);
+      pages.push(`
+        ${k === 0 ? `<p class="eyebrow">❦ the contents</p><h3 class="pg-title">scenes <span>${sc.length}</span></h3>
+          <p class="pg-sub">each one is its own way in. pick a door.</p>` : `<p class="eyebrow">❦ scenes, continued</p>`}
+        <ol class="chapters" start="${k + 1}">${chunk.map((s, j) => `
+          <li>
+            <span class="ch-num">chapter ${roman(k + j + 1)}</span>
+            <strong class="ch-name">${esc(s.name)}</strong>
+            ${s.line ? `<span class="ch-line">${esc(s.line)}</span>` : ""}
+          </li>`).join("")}
+        </ol>`);
+    }
+    if (!sc.length) {
+      pages.push(`
+        <p class="eyebrow">❦ the contents</p><h3 class="pg-title">one way in</h3>
+        <p class="pg-sub">no alternate scenes for ${first} yet, just the one door. it's a good door.</p>
+        ${b.link ? `<a class="btn" href="${esc(b.link)}" target="_blank" rel="noopener">knock ↗</a>` : ""}`);
+    }
+    // the last page: if you like…
+    if (rel.length) {
+      pages.push(`
+        <p class="eyebrow">✦ further reading</p>
+        <h3 class="pg-title">if you like ${first}…</h3>
+        <ul class="related-list">${rel.map(r => `
+          <li><button data-rel="${esc(r.id)}" aria-label="${label(r)}">
+            <span class="rl-thumb">${coverHTML(r, r.cover)}</span>
+            <span class="rl-text"><strong>${esc(r.name)}</strong>${r.title ? `<em>${esc(r.title)}</em>` : ""}<small>${esc(r.collection || "")}</small></span>
+          </button></li>`).join("")}
+        </ul>`);
+    }
+
+    renderBook(b, pages);
     $("#bot-prev").hidden = $("#bot-next").hidden = navList.length < 2;
     openDialog(botDialog);
-    $(".text", botDialog).scrollTop = 0;
     botDialog.scrollTop = 0;
     history.replaceState(null, "", "#/" + b.id);
   }
+  /* ---- the book: leaves that turn ----
+     Desktop: the plate sits on the left; every other page is printed on a leaf
+     (front = right page, back = the next left page) that turns over its spine.
+     Phones: one page at a time, turned like a single sheet. */
+  let book = { page: 0, total: 0, mode: "spread", leaves: 0 };
+  const bookMQ = window.matchMedia("(max-width: 860px)");
+  function pageHTML(inner, n, side, name) {
+    return `<div class="page page-${side}">
+      <div class="pg-head"><span>${side === "left" ? hearts(NAME) : esc(name)}</span></div>
+      <div class="pg-body">${inner}</div>
+      <div class="pg-foot">— ${n} —</div>
+    </div>`;
+  }
+  const ENDPAPER = `<div class="endpaper"><p class="fleuron-big">❦</p><p class="the-end">the end, for now.</p><p class="pg-sub">close the book, or turn back.</p></div>`;
+  function renderBook(b, pages) {
+    const body = $("#bot-body");
+    const single = bookMQ.matches;
+    book = { page: 0, total: pages.length, mode: single ? "single" : "spread", pages, name: b.name };
+    if (single) {
+      body.innerHTML = `<div class="book book-single">
+        <div class="book-cover">${pages.map((p, i) =>
+          `<div class="sheet${i === 0 ? " is-current" : ""}" data-sheet="${i}" ${i ? 'aria-hidden="true"' : ""}>${pageHTML(p, i + 1, "right", b.name)}</div>`).join("")}
+        </div>
+        ${turnersHTML()}
+      </div>`;
+    } else {
+      // leaves carry pages 1..n in pairs
+      const rest = pages.slice(1);
+      const padded = rest.length % 2 === 1;
+      if (padded) rest.push(ENDPAPER);
+      const leaves = [];
+      for (let i = 0; i < rest.length; i += 2) leaves.push([rest[i], rest[i + 1]]);
+      book.leaves = leaves.length;
+      // if the last real page landed on a leaf's front, stop there instead of turning to blank endpapers
+      book.stop = padded ? leaves.length - 1 : leaves.length;
+      body.innerHTML = `<div class="book book-spread">
+        <div class="book-cover">
+          <span class="ribbon" aria-hidden="true"></span>
+          <div class="book-left">${pageHTML(pages[0], 1, "left", b.name)}</div>
+          <div class="book-right-base">${pageHTML(ENDPAPER, "", "right", b.name)}</div>
+          ${leaves.map((lf, i) => `<div class="leaf" data-leaf="${i}" style="z-index:${leaves.length - i + 1}">
+              <div class="leaf-face leaf-front"${i ? ' aria-hidden="true"' : ""}>${pageHTML(lf[0], i * 2 + 2, "right", b.name)}</div>
+              <div class="leaf-face leaf-back" aria-hidden="true">${pageHTML(lf[1], i * 2 + 3, "left", b.name)}</div>
+            </div>`).join("")}
+        </div>
+        ${turnersHTML()}
+      </div>`;
+    }
+    updateTurners();
+  }
+  function turnersHTML() {
+    return `<div class="turners">
+      <button class="turn turn-back" data-turn="-1" aria-label="Previous page">↶ <span>back a page</span></button>
+      <span class="turn-where" id="turn-where"></span>
+      <button class="turn turn-fwd" data-turn="1" aria-label="Next page"><span>turn the page</span> ↷</button>
+    </div>`;
+  }
+  // how far the book can turn: spreads count leaves, phones count pages
+  const lastStop = () => book.mode === "single" ? book.total - 1 : book.stop;
+  function updateTurners() {
+    const back = $(".turn-back", botDialog), fwd = $(".turn-fwd", botDialog);
+    if (!back) return;
+    back.disabled = book.page <= 0;
+    fwd.disabled = book.page >= lastStop();
+    const where = $("#turn-where");
+    if (book.mode === "single") where.textContent = `page ${book.page + 1} of ${book.total}`;
+    else {
+      const l = book.page * 2 + 1, r = Math.min(l + 1, book.total);
+      where.textContent = l === book.total ? `page ${l} of ${book.total} · the end` : `pages ${l}–${r} of ${book.total}`;
+    }
+    const fwdLabel = $("span", fwd), backLabel = $("span", back);
+    if (book.mode === "single") { fwdLabel.textContent = "next"; backLabel.textContent = "back"; }
+    else fwdLabel.textContent = book.page === 0 ? "see the scenes" : "turn the page";
+  }
+  let turning = false;
+  function turnPage(d) {
+    if (turning) return false;
+    const next = book.page + d;
+    if (next < 0 || next > lastStop()) return false;
+    turning = true;
+    if (book.mode === "single") {
+      const cur = $(`.sheet[data-sheet="${book.page}"]`, botDialog), nxt = $(`.sheet[data-sheet="${next}"]`, botDialog);
+      cur.classList.add(d > 0 ? "flip-out-fwd" : "flip-out-back");
+      setTimeout(() => {
+        cur.classList.remove("is-current", "flip-out-fwd", "flip-out-back"); cur.setAttribute("aria-hidden", "true");
+        nxt.classList.add("is-current", d > 0 ? "flip-in-fwd" : "flip-in-back"); nxt.removeAttribute("aria-hidden");
+        $(".pg-body", nxt).scrollTop = 0;
+        setTimeout(() => { nxt.classList.remove("flip-in-fwd", "flip-in-back"); turning = false; }, reduceMotion ? 0 : 260);
+      }, reduceMotion ? 0 : 240);
+    } else {
+      const i = d > 0 ? book.page : book.page - 1;      // the leaf that moves
+      const leaf = $(`.leaf[data-leaf="${i}"]`, botDialog);
+      leaf.style.zIndex = 50;
+      leaf.classList.toggle("turned", d > 0);
+      $$(".leaf-face", leaf).forEach(f => f.setAttribute("aria-hidden", "true"));
+      setTimeout(() => {
+        // settle the stacking: turned leaves pile on the left, the rest on the right
+        $$(".leaf", botDialog).forEach(l => {
+          const k = +l.dataset.leaf;
+          l.style.zIndex = l.classList.contains("turned") ? k + 1 : book.leaves - k + 1;
+        });
+        // only the visible faces are readable by screen readers
+        const vis = next;
+        $$(".leaf", botDialog).forEach(l => {
+          const k = +l.dataset.leaf;
+          if (k === vis) $(".leaf-front", l).removeAttribute("aria-hidden");
+          if (k === vis - 1) $(".leaf-back", l).removeAttribute("aria-hidden");
+        });
+        turning = false;
+      }, reduceMotion ? 0 : 820);
+    }
+    book.page = next;
+    updateTurners();
+    return true;
+  }
+
   function stepBot(d) {
     if (navList.length < 2) return;
     const i = navList.findIndex(x => x.id === currentId);
@@ -718,16 +944,19 @@
   }
   $("#bot-prev").addEventListener("click", () => stepBot(-1));
   $("#bot-next").addEventListener("click", () => stepBot(1));
+  // ← → turn the pages; past the last page they move on to the next bot
   botDialog.addEventListener("keydown", e => {
     if (e.target.matches("input, textarea, select")) return;
-    if (e.key === "ArrowLeft") stepBot(-1);
-    if (e.key === "ArrowRight") stepBot(1);
+    if (e.key === "ArrowLeft" && !turnPage(-1) && !turning) stepBot(-1);
+    if (e.key === "ArrowRight" && !turnPage(1) && !turning) stepBot(1);
   });
 
   botDialog.addEventListener("close", () => {
     if (location.hash !== lastRoute) history.replaceState(null, "", lastRoute);
   });
   botDialog.addEventListener("click", async e => {
+    const tb = e.target.closest("[data-turn]");
+    if (tb) { turnPage(+tb.dataset.turn); return; }
     const tag = e.target.closest("[data-tag]");
     if (tag) {
       botDialog.close();
