@@ -410,7 +410,9 @@
     $("#listening").hidden = !on;
     $("#nav-listen").hidden = !on;
     if (!on) return;
-    $("#listen-art").innerHTML = RECORD_PLAYER;
+    $("#listen-art").innerHTML = pl.art
+      ? `<img class="listen-img" src="${esc(asset(pl.art))}" alt="">`
+      : RECORD_PLAYER;
     $("#listen-title").textContent = pl.title || "what i've been listening to";
     $("#listen-note").textContent = pl.note || "";
     $("#listen-note").hidden = !pl.note;

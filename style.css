@@ -899,6 +899,11 @@ html.tint body::before { filter: saturate(.45) hue-rotate(-38deg) brightness(.9)
   border: 1px solid var(--line);
 }
 .listen-art svg { width: 100%; height: auto; display: block; overflow: visible; }
+.listen-img {
+  width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 14px;
+  -webkit-mask-image: radial-gradient(ellipse 72% 72% at 50% 50%, #000 62%, transparent 100%);
+          mask-image: radial-gradient(ellipse 72% 72% at 50% 50%, #000 62%, transparent 100%);
+}
 .listen-text h3 { font: 400 clamp(34px, 4vw, 44px)/1 var(--display); margin: 0 0 8px; text-transform: lowercase; }
 .listen-note { margin: 0 0 14px; font-style: italic; color: var(--toner); }
 .listen-embed iframe { display: block; width: 100%; border: 0; border-radius: 12px; margin: 6px 0 16px; background: var(--deep); }

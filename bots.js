@@ -77,6 +77,7 @@ window.SITE = {
     url: "",
     title: "what i've been listening to",
     note: "",                          // optional line under the title
+    art: "",                           // e.g. "images/record-player.jpg" — a picture instead of the little drawing
     embed: true
   },
 
