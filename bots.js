@@ -39,8 +39,13 @@ window.SITE = {
   issue: "@flightless on DreamJourney",
   messages: "",            // leave "" and the site adds up the chat counts below
   note:
-    "TYSM for taking the time to check out my bots :) i'm so thankful for this community! " +
-    "Request a scene or say hello at the bottom of the page.",
+    "welcome to the archive, aka where my sleep schedule went. " +
+    "these are the people who live in my head when the lamp's still on at 3am: the soft ones, the guarded ones, the ones who take a while. " +
+    "thank you for letting them live in yours too. " +
+    "every chat and every star means more than i know how to say, and this little corner of the internet is so warm because of you. " +
+    "pull up a chair and stay as long as you like. " +
+    "if a scene's been living rent-free in your head, leave me a prompt or a hello at the bottom of the page. " +
+    "and yes, i will absolutely yearn about it.",
   dreamjourney: "https://dreamjourneyai.com/profile/flightless",
   backdrop: "images/study.jpg",   // the big image behind the masthead ("" for none)
   featured: "the-pitt",    // id of the bot to spotlight at the top ("" for none)
