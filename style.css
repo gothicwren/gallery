@@ -133,7 +133,7 @@ html { scrollbar-color: var(--taupe) var(--deep); }
   position: relative;
   min-height: min(100vh, 920px);
   padding: calc(var(--bar) + 60px) max(24px, calc((100vw - var(--wide)) / 2 + 24px)) 70px;
-  display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(300px, .85fr);
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, 1.12fr);
   align-items: end; gap: 40px 56px;
   isolation: isolate;
 }
@@ -149,7 +149,7 @@ html { scrollbar-color: var(--taupe) var(--deep); }
 .eyebrow { color: var(--rose); }
 .nameplate {
   margin: 0 0 0 -.04em;
-  font: 700 clamp(96px, 15vw, 236px)/.9 var(--signature);
+  font: 700 clamp(96px, 12vw, 200px)/.9 var(--signature); white-space: nowrap;
   overflow-wrap: anywhere;
   color: var(--ink);
   text-shadow: 0 3px 18px rgba(62, 44, 34, .6), 0 0 46px rgba(201, 164, 92, .5), 0 0 100px rgba(62, 44, 34, .4);
@@ -191,7 +191,7 @@ html { scrollbar-color: var(--taupe) var(--deep); }
   box-shadow: 0 0 50px rgba(0, 0, 0, .5), inset 0 0 0 6px rgba(19, 21, 27, .35), inset 0 0 0 7px rgba(201, 164, 92, .16);
   transform: rotate(.6deg);
 }
-.letter-head { margin: 0 0 10px; font-style: italic; color: var(--toner); font-size: 15px; }
+.letter-head { margin: 0 150px 10px 0; font-style: italic; color: var(--toner); font-size: 15px; }
 .letter p { margin: 0 0 10px; }
 .letter .sig { font: 700 50px/1 var(--signature); color: var(--rose-lit); margin: 6px 0 0; }
 .letter .actions { margin-top: 18px; }
@@ -857,9 +857,10 @@ html.tint body::before { filter: saturate(.45) hue-rotate(-38deg) brightness(.9)
 /* About: pfp in an arched frame, like a portrait in a library */
 .about-portrait img { border-radius: 160px 160px 14px 14px; border: 2px solid var(--rose); outline: 1px solid var(--line); outline-offset: 6px; box-shadow: 0 0 50px rgba(47, 58, 42, .6); }
 .letter-pfp {
-  position: absolute; top: -40px; right: 22px; width: 84px; height: 84px; border-radius: 50%; overflow: hidden;
-  border: 2px solid var(--rose); outline: 1px solid var(--line); outline-offset: 4px; box-shadow: 0 6px 18px rgba(0, 0, 0, .55);
-  transform: rotate(4deg);
+  position: absolute; top: -78px; right: 18px; width: 140px; height: 140px; border-radius: 50%; overflow: hidden; z-index: 5;
+  border: 3px solid var(--rose); outline: 1px solid var(--line); outline-offset: 5px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, .65), 0 0 30px rgba(201, 164, 92, .25);
+  transform: rotate(3deg);
 }
 .letter-pfp img { width: 100%; height: 100%; object-fit: cover; }
 
@@ -1294,7 +1295,9 @@ html.tint body::before { filter: saturate(.45) hue-rotate(-38deg) brightness(.9)
   .sb-scores { grid-template-columns: repeat(3, 1fr); }
   .listen { grid-template-columns: 1fr; padding: 22px 18px; }
   .listen-embed .embed-spotify { height: 352px; }
-  .letter-pfp { width: 66px; height: 66px; top: -30px; }
+  .letter-pfp { width: 104px; height: 104px; top: -56px; right: 12px; }
+  .letter { margin-top: 34px; }
+  .letter-head { margin-right: 112px; }
 }
 
 @media (hover: none) { .search kbd { display: none; } .search input { padding-right: 16px; } }
