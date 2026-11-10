@@ -35,7 +35,7 @@
 
 window.SITE = {
   name: "♡flightless♡",
-  tagline: "bots, scenarios & the towns they live in",
+  tagline: "bots, scenarios, worldbuilding & lore",
   issue: "@flightless on DreamJourney",
   messages: "",            // leave "" and the site adds up the chat counts below
   note:
