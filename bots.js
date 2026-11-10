@@ -74,10 +74,10 @@ window.SITE = {
   // "what i've been listening to": paste a Spotify or YouTube playlist link.
   // Leave url "" to hide the whole section. embed: false shows just the button, no player.
   playlist: {
-    url: "",
+    url: "https://open.spotify.com/playlist/5ykEEo6KVWTuypZWkUqIVt",
     title: "what i've been listening to",
     note: "",                          // optional line under the title
-    art: "",                           // e.g. "images/record-player.jpg" — a picture instead of the little drawing
+    art: "images/writing-and-sipping.gif", // e.g. "images/record-player.jpg" — a picture instead of the little drawing
     embed: true
   },
 
