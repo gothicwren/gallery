@@ -920,20 +920,6 @@ window.BOTS = [
     blurb: "A rainy little port town where the queer kids run the east side and everybody feeds you before they know your name. Come stay.",
     scenes: [], link: "https://dreamjourneyai.com/creation/e8ad7a34-dbbe-4bf4-99a5-e60e306e46e2", cover: "images/rust-harbour-small-town.jpg", gallery: []
   },
-
-  /* ======================= ON THE DESK (not public yet) ======================= */
-  {
-    id: "beacon", name: "BEACON", title: "a safe place for you :)",
-    collection: "Scenarios", category: "Other", status: "desk", chats: 0,
-    pov: "AnyPOV", adult: false, warnings: [],
-    tags: ["monster romance", "scenario", "multi-character", "monsterfucker", "dark but soft", "found family"],
-    blurb: "A research facility for monsters, with soft lighting and a welcome sign that says this is a safe place for you :). Director Enoch Crane means it. Arkwright Dynamics, who sign the checks, has other plans. Romance anyone, or anything.",
-    scenes: [
-      { name: "New Staff", line: "First day at BEACON. Your badge works on every door except the one the Director keeps glancing at." },
-      { name: "Intake", line: "You are the newest resident. The paperwork calls it a welcome. The room has a lock on the outside." },
-      { name: "Wellness Check", line: "A missing-persons tip led you to a facility that doesn't exist on any map. The Director is very polite about that." }
-    ], link: "", cover: "images/beacon.jpg", gallery: []
-  },
   {
     id: "blackthorn-estate", name: "Blackthorn Estate", title: "The Hunt",
     collection: "Scenarios", category: "Other", status: "live", chats: 376,
@@ -954,6 +940,19 @@ window.BOTS = [
       { name: "The Debt", line: "The Thayers bought what your family owed. The terms: one week at Blackthorn. Jack Thayer drives you up himself." },
       { name: "The Plus One", line: "You came to Blackthorn as Kip Endicott's date. You didn't know you were the family's offering. Charlie did." }
     ], link: "https://dreamjourneyai.com/creation/9a47e7aa-9d32-4fad-8cc1-b87c50862e3e", cover: "images/blackthorn-estate.jpg", gallery: []
+  },
+  /* ======================= ON THE DESK (not public yet) ======================= */
+  {
+    id: "beacon", name: "BEACON", title: "a safe place for you :)",
+    collection: "Scenarios", category: "Other", status: "desk", chats: 0,
+    pov: "AnyPOV", adult: false, warnings: [],
+    tags: ["monster romance", "scenario", "multi-character", "monsterfucker", "dark but soft", "found family"],
+    blurb: "A research facility for monsters, with soft lighting and a welcome sign that says this is a safe place for you :). Director Ezekiel Crane means it. Arkwright Dynamics, who sign the checks, has other plans. Romance anyone, or anything.",
+    scenes: [
+      { name: "New Staff", line: "First day at BEACON. Your badge works on every door except the one the Director keeps glancing at." },
+      { name: "Intake", line: "You are the newest resident. The paperwork calls it a welcome. The room has a lock on the outside." },
+      { name: "Wellness Check", line: "A missing-persons tip led you to a facility that doesn't exist on any map. The Director is very polite about that." }
+    ], link: "", cover: "images/beacon.jpg", gallery: []
   },
   {
     id: "rue", name: "Rue", title: "In Sheep's Clothing",
@@ -995,11 +994,7 @@ window.BOTS = [
     blurb: "Rosalind Pryce. More soon.",
     scenes: [], link: "", cover: "images/rosalind-pryce.jpg", gallery: []
   },
-
-  /* ======================= NOT PUBLIC (status: "hidden") =======================
-     These don't show anywhere on the site. When one goes public, change
-     its status to "live" and fill in its chats. */
-  {
+ {
     id: "the-crucible", name: "The Crucible", title: "Blood of Hercules",
     collection: "Fandom", category: "Historical", status: "desk", chats: 8,
     pov: "", adult: false, warnings: [],
@@ -1017,7 +1012,10 @@ window.BOTS = [
     blurb: "🥐 PINE FOR IT || open 5:30 · cash only when the reader's down · which is often",
     scenes: [], link: "https://dreamjourneyai.com/creation/4ebbd216-2bbf-4461-a64e-3bc41116d6f2", cover: "images/rowan-nicholson.jpg", focus: "35% 30%", gallery: []
   },
-  {
+  /* ======================= NOT PUBLIC (status: "hidden") =======================
+     These don't show anywhere on the site. When one goes public, change
+     its status to "live" and fill in its chats. */
+    {
     id: "cole-dawson", name: "Cole Dawson", title: "",
     collection: "Standalone Romances", category: "OC", status: "hidden", chats: 0,
     pov: "AnyPOV", adult: false, warnings: [],
