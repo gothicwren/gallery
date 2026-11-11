@@ -89,7 +89,7 @@ window.SITE = {
   },
 
   divider: "images/divider.png",                       // e.g. "images/divider.png": your own section divider, replacing the drawn moon-and-diamond one
-  deskFeature: "blackthorn-estate",   // the big "coming soon" spotlight at the top of On the desk ("" for none)
+  deskFeature: "beacon",                    // a bot id here gets the big "coming soon" spotlight on the desk ("" for none)   // the big "coming soon" spotlight at the top of On the desk ("" for none)
 
   backdropTint: false,                 // true tints the background toward the site colors (was for the old castle)
 
@@ -132,7 +132,7 @@ window.BOTS = [
   },
   {
     id: "joshua-mitchell", name: "Joshua Mitchell", title: "3rd Grade Teacher",
-    collection: "Rust Harbour", category: "OC", status: "live", chats: 6294,
+    collection: "Rust Harbour", category: "OC", status: "live", chats: 6300,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["modernday", "sliceoflife", "romance", "teacher"],
     blurb: "dirt under his nails and ink up his neck. third grade teacher, four years sober, reads poetry like it's contraband. he was raised to believe soft men don't survive — he's thirty-two and still checking the locks on himself. be patient with him 💕",
@@ -174,7 +174,7 @@ window.BOTS = [
   },
   {
     id: "vic-montgomery", name: "Vic Montgomery", title: "The Banshee's Wail",
-    collection: "Rust Harbour", category: "OC", status: "live", chats: 3728,
+    collection: "Rust Harbour", category: "OC", status: "live", chats: 4218,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["urban", "modernday", "sliceoflife", "musician", "nonbinary"],
     blurb: "28-year-old Irish trans-masc nonbinary musician running The Banshee's Wail in Rust Harbour. Juilliard dropout teaching piano, guitar, and music theory for whatever you can pay and housing queer kids on their third floor. Zero tolerance for bigotry.",
@@ -288,7 +288,7 @@ window.BOTS = [
   /* ======================= STANDALONES ======================= */
    {
     id: "ilaran", name: "Ilaran", title: "The Spare",
-    collection: "Standalone Romances", category: "Fantasy", status: "live", chats: 7128,
+    collection: "Standalone Romances", category: "Fantasy", status: "live", chats: 7136,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["dark fantasy", "medieval", "elf", "arranged marriage", "slow burn"],
     blurb: "You were promised to the heir. The heir is dead. Now you belong to the spare, and he's still in bed with three lovers when you arrive.",
@@ -459,7 +459,7 @@ window.BOTS = [
   },
   {
     id: "lena-millcroft", name: "Lena Millcroft", title: "CEO",
-    collection: "Standalone Romances", category: "Other", status: "live", chats: 986,
+    collection: "Standalone Romances", category: "Other", status: "live", chats: 1170,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["modernday", "female", "mentor", "ceo"],
     blurb: "CEO of Millcroft Media — youngest in publishing, still proving it to men who inherited their seats. Her parents hold the shares and the approval she won't admit she needs. Brilliant, controlled, alone. Can you keep up, or see through her?",
@@ -526,7 +526,7 @@ window.BOTS = [
   },
   {
     id: "vex", name: "Vex", title: "VexCatVA",
-    collection: "Standalone Romances", category: "OC", status: "live", chats: 434,
+    collection: "Standalone Romances", category: "OC", status: "live", chats: 436,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["human", "modernday", "sliceoflife", "streamer"],
     blurb: "soft voice. painted nails. a little bell that jingles when he laughs. shy, sparkly, and quietly hoping you'll stay a while~ 🎀",
@@ -698,16 +698,6 @@ window.BOTS = [
       { name: "Opening Number", line: "Moving day in April. The street sings good morning, the feuding neighbors are mid-fight, and a truck pulls up to Number 5." }
     ], link: "https://dreamjourneyai.com/creation/d0bf126d-e8bb-401d-81b0-35ee564e7acf", cover: "images/larkspur-court.jpg", focus: "50% 50%", gallery: []
   },
-  {
-    id: "half-measures", name: "[half-measures]", title: "indie-alt band",
-    collection: "Scenarios", category: "Romance", status: "live", chats: 8,
-    pov: "AnyPOV", adult: false, warnings: [],
-    tags: ["artist", "bard", "modernday", "band"],
-    blurb: "They were never supposed to become famous. Four university friends built a band out of loneliness, late nights, and borrowed equipment. Now Half-Measures has a viral record, a demanding manager, and one question: can they survive success?",
-    scenes: [
-      { name: "Bev's Post-Gig Tiebreaker", line: "After the gig at the dive on Foster, the band is split, and you're the deciding vote." }
-    ], link: "https://dreamjourneyai.com/creation/fffef6f2-a805-4fa5-8989-5f83cdc74cd1", cover: "images/half-measures.jpg", focus: "55% 45%", gallery: []
-  },
 
   /* ======================= FANDOM ======================= */
   {
@@ -861,7 +851,7 @@ window.BOTS = [
      Covers point at images/<id>.jpg — until that file is uploaded, the card shows "art soon". */
   {
     id: "alagaesia", name: "Alagaësia", title: "Five Winters On",
-    collection: "Fandom", category: "Fantasy", status: "live", chats: 1944,
+    collection: "Fandom", category: "Fantasy", status: "live", chats: 1946,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["dragon", "romance", "fantasy", "multi-character", "slow burn", "political intrigue", "inheritance cycle"],
     blurb: "AnyPOV · Fantasy · Multi-Character · Slow Burn · Political Intrigue · Post-Canon (Inheritance Cycle)",
@@ -873,7 +863,7 @@ window.BOTS = [
   },
   {
     id: "wes-dean", name: "Wesley \"Wes\" Dean", title: "",
-    collection: "Standalone Romances", category: "Other", status: "live", chats: 1488,
+    collection: "Standalone Romances", category: "Other", status: "live", chats: 1684,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["modernday", "sliceoflife", "love"],
     blurb: "A tailor who courts like it's 1952, cries at telenovelas, and annotates filthy novels. He'll hold the door. Then he'll hold you down.",
@@ -892,7 +882,7 @@ window.BOTS = [
   },
   {
     id: "kedron", name: "Kedron", title: "",
-    collection: "Standalone Romances", category: "Other", status: "live", chats: 494,
+    collection: "Standalone Romances", category: "Other", status: "live", chats: 964,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["romance", "darkfantasy", "dragon"],
     blurb: "Every generation, Brackwell feeds the mountain. This time, the Grieving Hunger kept what it was given.",
@@ -933,8 +923,20 @@ window.BOTS = [
 
   /* ======================= ON THE DESK (not public yet) ======================= */
   {
+    id: "beacon", name: "BEACON", title: "a safe place for you :)",
+    collection: "Scenarios", category: "Other", status: "desk", chats: 0,
+    pov: "AnyPOV", adult: false, warnings: [],
+    tags: ["monster romance", "scenario", "multi-character", "monsterfucker", "dark but soft", "found family"],
+    blurb: "A research facility for monsters, with soft lighting and a welcome sign that says this is a safe place for you :). Director Enoch Crane means it. Arkwright Dynamics, who sign the checks, has other plans. Romance anyone, or anything.",
+    scenes: [
+      { name: "New Staff", line: "First day at BEACON. Your badge works on every door except the one the Director keeps glancing at." },
+      { name: "Intake", line: "You are the newest resident. The paperwork calls it a welcome. The room has a lock on the outside." },
+      { name: "Wellness Check", line: "A missing-persons tip led you to a facility that doesn't exist on any map. The Director is very polite about that." }
+    ], link: "", cover: "images/beacon.jpg", gallery: []
+  },
+  {
     id: "blackthorn-estate", name: "Blackthorn Estate", title: "The Hunt",
-    collection: "Scenarios", category: "Other", status: "desk", chats: 42,
+    collection: "Scenarios", category: "Other", status: "live", chats: 376,
     pov: "AnyPOV", adult: false, warnings: ["Dead Dove"],
     tags: ["romance", "dark", "hidden societies", "multi-character", "maine"],
     blurb: "Four old Boston families. Every fifth year, they hunt five people for three nights. This year, you're the fifth.",
@@ -951,7 +953,7 @@ window.BOTS = [
       { name: "The Hire", line: "You took a week of staff work at a private estate in Maine. Good pay. First stop: a routine physical in the east wing." },
       { name: "The Debt", line: "The Thayers bought what your family owed. The terms: one week at Blackthorn. Jack Thayer drives you up himself." },
       { name: "The Plus One", line: "You came to Blackthorn as Kip Endicott's date. You didn't know you were the family's offering. Charlie did." }
-    ], link: "", cover: "images/blackthorn-estate.jpg", gallery: []
+    ], link: "https://dreamjourneyai.com/creation/9a47e7aa-9d32-4fad-8cc1-b87c50862e3e", cover: "images/blackthorn-estate.jpg", gallery: []
   },
   {
     id: "rue", name: "Rue", title: "In Sheep's Clothing",
@@ -979,7 +981,7 @@ window.BOTS = [
   },
   {
     id: "athallah", name: "ATHALLAH", title: "Five Birds",
-    collection: "Scenarios", category: "Fantasy", status: "desk", chats: 24,
+    collection: "Scenarios", category: "Fantasy", status: "desk", chats: 102,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["fantasy", "game", "gritty", "party", "scenario"],
     blurb: "A scenario bot built from the Athallah campaign archive. Narrator-driven, a four-NPC party, and a hidden plot spine.",
