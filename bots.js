@@ -941,6 +941,14 @@ window.BOTS = [
       { name: "The Plus One", line: "You came to Blackthorn as Kip Endicott's date. You didn't know you were the family's offering. Charlie did." }
     ], link: "https://dreamjourneyai.com/creation/9a47e7aa-9d32-4fad-8cc1-b87c50862e3e", cover: "images/blackthorn-estate.jpg", gallery: []
   },
+  {
+    id: "athallah", name: "ATHALLAH", title: "Five Birds",
+    collection: "Scenarios", category: "Fantasy", status: "live", chats: 102,
+    pov: "AnyPOV", adult: false, warnings: [],
+    tags: ["fantasy", "game", "gritty", "party", "scenario"],
+    blurb: "A scenario bot built from the Athallah campaign archive. Narrator-driven, a four-NPC party, and a hidden plot spine.",
+    scenes: [], link: "https://dreamjourneyai.com/creation/ea2eed07-7b49-44fc-8e0f-e302659ccba6", cover: "images/athallah.jpg", focus: "45% 50%", gallery: []
+  },
   /* ======================= ON THE DESK (not public yet) ======================= */
   {
     id: "beacon", name: "BEACON", title: "a safe place for you :)",
@@ -977,14 +985,6 @@ window.BOTS = [
     tags: ["asmr", "streamer", "persona", "slow burn"],
     blurb: "Soft hours with Bell, the lamb-boy ASMR streamer. The voice behind him is Zayid, and he never meant for you to meet both.",
     scenes: [], link: "", cover: "images/zayid-barakat.jpg", gallery: []
-  },
-  {
-    id: "athallah", name: "ATHALLAH", title: "Five Birds",
-    collection: "Scenarios", category: "Fantasy", status: "desk", chats: 102,
-    pov: "AnyPOV", adult: false, warnings: [],
-    tags: ["fantasy", "game", "gritty", "party", "scenario"],
-    blurb: "A scenario bot built from the Athallah campaign archive. Narrator-driven, a four-NPC party, and a hidden plot spine.",
-    scenes: [], link: "", cover: "images/athallah.jpg", focus: "45% 50%", gallery: []
   },
   {
     id: "rosalind-pryce", name: "Rosalind Pryce", title: "",
