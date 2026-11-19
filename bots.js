@@ -89,7 +89,7 @@ window.SITE = {
   },
 
   divider: "images/divider.png",                       // e.g. "images/divider.png": your own section divider, replacing the drawn moon-and-diamond one
-  deskFeature: "beacon",                    // a bot id here gets the big "coming soon" spotlight on the desk ("" for none)   // the big "coming soon" spotlight at the top of On the desk ("" for none)
+  deskFeature: "silvano",                    // a bot id here gets the big "coming soon" spotlight on the desk ("" for none)   // the big "coming soon" spotlight at the top of On the desk ("" for none)
 
   backdropTint: false,                 // true tints the background toward the site colors (was for the old castle)
 
@@ -886,7 +886,11 @@ window.BOTS = [
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["romance", "darkfantasy", "dragon"],
     blurb: "Every generation, Brackwell feeds the mountain. This time, the Grieving Hunger kept what it was given.",
-    scenes: [], link: "https://dreamjourneyai.com/creation/65041257-fd6a-4c7a-896f-e15f5342c23a", cover: "images/kedron.jpg", gallery: []
+    scenes: [
+      { name: "The Scholar", line: "" },
+      { name: "The Stranger in the Riverbed", line: "" },
+      { name: "The Hunter", line: "" }
+    ], link: "https://dreamjourneyai.com/creation/65041257-fd6a-4c7a-896f-e15f5342c23a", cover: "images/kedron.jpg", gallery: []
   },
   {
     id: "in-sheeps-clothing", name: "In Sheep's Clothing", title: "",
@@ -949,17 +953,63 @@ window.BOTS = [
     blurb: "A scenario bot built from the Athallah campaign archive. Narrator-driven, a four-NPC party, and a hidden plot spine.",
     scenes: [], link: "https://dreamjourneyai.com/creation/ea2eed07-7b49-44fc-8e0f-e302659ccba6", cover: "images/athallah.jpg", focus: "45% 50%", gallery: []
   },
+  {
+    id: "bad-concrete", name: "Bad Concrete", title: "Rory & Dre",
+    collection: "Standalone Romances", category: "OC", status: "live", chats: 0,
+    pov: "AnyPOV", adult: false, warnings: [],
+    tags: ["romance", "anypov", "modernday", "outcast", "omegaverse"],
+    blurb: "Philly skate crew. Two alphas who love you: the best friend who'd bleed for you, and the boyfriend behind the camera.",
+    scenes: [
+      { name: "Hitch's Cut", line: "" },
+      { name: "The Lot", line: "" },
+      { name: "Torque Degreez", line: "" },
+      { name: "Two Alphas, One Bed", line: "" }
+    ], link: "", cover: "images/bad-concrete.jpg", gallery: []
+  },
+  {
+    id: "ravencliff", name: "Ravencliff", title: "Academy of the Unseen Arts",
+    collection: "Scenarios", category: "Fantasy", status: "live", chats: 0,
+    pov: "AnyPOV", adult: false, warnings: [],
+    tags: ["anypov", "conspiracy", "darkfantasy", "mystery", "scenario"],
+    blurb: "Sophomore year at Ravencliff Academy of the Unseen Arts. Three strange roommates, and one bed that was never meant to be yours.",
+    scenes: [
+      { name: "The Lockdown", line: "" }
+    ], link: "", cover: "images/ravencliff.jpg", gallery: []
+  },
+  {
+    id: "mick-kearney", name: "Mick Kearney", title: "Rent-A-Villian",
+    collection: "Standalone Romances", category: "Other", status: "live", chats: 0,
+    pov: "AnyPOV", adult: false, warnings: [],
+    tags: ["antihero", "anypov", "assassin", "dark"],
+    blurb: "For the right price, he'll be the worst man you ever met. Somebody just paid him to become yours.",
+    scenes: [], link: "", cover: "images/mick-kearney.jpg", gallery: []
+  },
   /* ======================= ON THE DESK (not public yet) ======================= */
   {
-    id: "beacon", name: "BEACON", title: "a safe place for you :)",
+    id: "silvano", name: "Silvano", title: "The Moth Court",
     collection: "Scenarios", category: "Other", status: "desk", chats: 0,
     pov: "AnyPOV", adult: false, warnings: [],
-    tags: ["monster romance", "scenario", "multi-character", "monsterfucker", "dark but soft", "found family"],
-    blurb: "A research facility for monsters, with soft lighting and a welcome sign that says this is a safe place for you :). Director Ezekiel Crane means it. Arkwright Dynamics, who sign the checks, has other plans. Romance anyone, or anything.",
+    tags: ["fantasy", "mystery", "anypov", "nonhuman", "political intrigue"],
+    blurb: "Eight months since the queen died. One regent, two heirs, eight houses, and somebody at this masque poisoned her.",
+    scenes: [], link: "", cover: "images/silvano.jpg", gallery: []
+  },
+  {
+    id: "roscoe-dempsey", name: "Roscoe Dempsey", title: "",
+    collection: "Standalone Romances", category: "Other", status: "desk", chats: 0,
+    pov: "AnyPOV", adult: false, warnings: [],
+    tags: ["romance", "anypov", "gritty", "modernday"],
+    blurb: "Your ex's best friend brought the truck when your mate left. Months later, Roscoe is back with a box of your things.",
+    scenes: [], link: "", cover: "images/roscoe-dempsey.jpg", gallery: []
+  },
+  {
+    id: "beacon", name: "B.E.A.C.O.N.", title: "",
+    collection: "Scenarios", category: "Fantasy", status: "live", chats: 0,
+    pov: "AnyPOV", adult: false, warnings: [],
+    tags: ["angel", "anypov", "dragon", "mermaid", "monster romance", "scenario"],
+    blurb: "A sanctuary for monsters. Warm beds, group dinner at six, a Director who means it. Underneath, Arkwright is taking notes.",
     scenes: [
-      { name: "New Staff", line: "First day at BEACON. Your badge works on every door except the one the Director keeps glancing at." },
-      { name: "Intake", line: "You are the newest resident. The paperwork calls it a welcome. The room has a lock on the outside." },
-      { name: "Wellness Check", line: "A missing-persons tip led you to a facility that doesn't exist on any map. The Director is very polite about that." }
+      { name: "Missing Person", line: "A missing-persons tip led you to a facility that doesn't exist on any map. The Director is very polite about that." },
+      { name: "Intake", line: "You are the newest resident. The paperwork calls it a welcome. The room has a lock on the outside." }
     ], link: "", cover: "images/beacon.jpg", gallery: []
   },
   {
@@ -980,10 +1030,10 @@ window.BOTS = [
   },
   {
     id: "zayid-barakat", name: "Zayid Barakat", title: "ASMR Streamer",
-    collection: "Standalone Romances", category: "Anime", status: "desk", chats: 84,
+    collection: "Standalone Romances", category: "VTuber", status: "live", chats: 84,
     pov: "AnyPOV", adult: true, warnings: [],
     tags: ["asmr", "streamer", "persona", "slow burn"],
-    blurb: "Soft hours with Bell, the lamb-boy ASMR streamer. The voice behind him is Zayid, and he never meant for you to meet both.",
+    blurb: "A cold, exacting professional who sells tenderness by the minute and feels nothing while he does it. ASMR streamer.",
     scenes: [], link: "", cover: "images/zayid-barakat.jpg", gallery: []
   },
   {
