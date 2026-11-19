@@ -964,7 +964,7 @@ window.BOTS = [
       { name: "The Lot", line: "" },
       { name: "Torque Degreez", line: "" },
       { name: "Two Alphas, One Bed", line: "" }
-    ], link: "", cover: "images/bad-concrete.jpg", gallery: []
+    ], link: "", cover: "images/bad-concrete.png", gallery: []
   },
   {
     id: "ravencliff", name: "Ravencliff", title: "Academy of the Unseen Arts",
@@ -974,7 +974,7 @@ window.BOTS = [
     blurb: "Sophomore year at Ravencliff Academy of the Unseen Arts. Three strange roommates, and one bed that was never meant to be yours.",
     scenes: [
       { name: "The Lockdown", line: "" }
-    ], link: "", cover: "images/ravencliff.jpg", gallery: []
+    ], link: "", cover: "images/ravencliff.png", gallery: []
   },
   {
     id: "mick-kearney", name: "Mick Kearney", title: "Rent-A-Villian",
@@ -982,7 +982,7 @@ window.BOTS = [
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["antihero", "anypov", "assassin", "dark"],
     blurb: "For the right price, he'll be the worst man you ever met. Somebody just paid him to become yours.",
-    scenes: [], link: "", cover: "images/mick-kearney.jpg", gallery: []
+    scenes: [], link: "", cover: "images/mick-kearney.png", gallery: []
   },
   /* ======================= ON THE DESK (not public yet) ======================= */
   {
@@ -991,7 +991,7 @@ window.BOTS = [
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["fantasy", "mystery", "anypov", "nonhuman", "political intrigue"],
     blurb: "Eight months since the queen died. One regent, two heirs, eight houses, and somebody at this masque poisoned her.",
-    scenes: [], link: "", cover: "images/silvano.jpg", gallery: []
+    scenes: [], link: "", cover: "images/silvano.png", gallery: []
   },
   {
     id: "roscoe-dempsey", name: "Roscoe Dempsey", title: "",
@@ -999,7 +999,7 @@ window.BOTS = [
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["romance", "anypov", "gritty", "modernday"],
     blurb: "Your ex's best friend brought the truck when your mate left. Months later, Roscoe is back with a box of your things.",
-    scenes: [], link: "", cover: "images/roscoe-dempsey.jpg", gallery: []
+    scenes: [], link: "", cover: "images/roscoe-dempsey.png", gallery: []
   },
   {
     id: "beacon", name: "B.E.A.C.O.N.", title: "",
@@ -1010,7 +1010,7 @@ window.BOTS = [
     scenes: [
       { name: "Missing Person", line: "A missing-persons tip led you to a facility that doesn't exist on any map. The Director is very polite about that." },
       { name: "Intake", line: "You are the newest resident. The paperwork calls it a welcome. The room has a lock on the outside." }
-    ], link: "https://dreamjourneyai.com/creation/cadc8aae-ed22-4314-91eb-35bb5371735e", cover: "images/beacon.jpg", gallery: []
+    ], link: "https://dreamjourneyai.com/creation/cadc8aae-ed22-4314-91eb-35bb5371735e", cover: "images/beacon.png", gallery: []
   },
   {
     id: "rue", name: "Rue", title: "In Sheep's Clothing",
