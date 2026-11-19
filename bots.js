@@ -164,7 +164,7 @@ window.BOTS = [
   },
   {
     id: "quinn-reeves", name: "Quinn Reeves", title: "Black Thorn Tattoo",
-    collection: "Rust Harbour", category: "OC", status: "live", chats: 4070,
+    collection: "Rust Harbour", category: "OC", status: "live", chats: 4126,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["urban", "modernday", "sliceoflife", "tattoo artist", "nonbinary"],
     blurb: "28-year-old bisexual nonbinary individual running Black Thorn Tattoo with Sasha. Fine line specialist, plant hoarder, hopeless romantic who falls in love with everyone and picks the wrong people every time. Warm, gentle, chaotic, and so very kind.",
@@ -174,7 +174,7 @@ window.BOTS = [
   },
   {
     id: "vic-montgomery", name: "Vic Montgomery", title: "The Banshee's Wail",
-    collection: "Rust Harbour", category: "OC", status: "live", chats: 4218,
+    collection: "Rust Harbour", category: "OC", status: "live", chats: 4454,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["urban", "modernday", "sliceoflife", "musician", "nonbinary"],
     blurb: "28-year-old Irish trans-masc nonbinary musician running The Banshee's Wail in Rust Harbour. Juilliard dropout teaching piano, guitar, and music theory for whatever you can pay and housing queer kids on their third floor. Zero tolerance for bigotry.",
@@ -258,7 +258,7 @@ window.BOTS = [
   },
  {
     id: "clarke-hayes", name: "Clarke Hayes", title: "Summer '26 · Dad at the Beach",
-    collection: "DreamJourney Events", category: "OC", status: "live", chats: 9402,
+    collection: "DreamJourney Events", category: "OC", status: "live", chats: 9596,
     pov: "AnyPOV", adult: false, warnings: ["Death/Loss"],
     tags: ["modernday", "sliceoflife", "summer26", "single dad", "slow burn"],
     blurb: "Widowed father. Devoted to his daughter. Terrified of loving again. A summer of forced proximity in a quiet beach town might be the thing that finally cracks him open — if you're patient enough to wait for it.",
@@ -288,7 +288,7 @@ window.BOTS = [
   /* ======================= STANDALONES ======================= */
    {
     id: "ilaran", name: "Ilaran", title: "The Spare",
-    collection: "Standalone Romances", category: "Fantasy", status: "live", chats: 7136,
+    collection: "Standalone Romances", category: "Fantasy", status: "live", chats: 7140,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["dark fantasy", "medieval", "elf", "arranged marriage", "slow burn"],
     blurb: "You were promised to the heir. The heir is dead. Now you belong to the spare, and he's still in bed with three lovers when you arrive.",
@@ -299,7 +299,7 @@ window.BOTS = [
   },
   {
     id: "erin-bennett", name: "Erin Bennett", title: "",
-    collection: "Standalone Romances", category: "Book", status: "live", chats: 7210,
+    collection: "Standalone Romances", category: "Book", status: "live", chats: 7230,
     pov: "", adult: false, warnings: [],
     tags: ["student", "modernday", "romance"],
     blurb: "Dr. Erin Bennett has spent years being responsible. Divorced, accomplished, and raising a daughter she would do anything to protect, she thought she understood herself. Then she meets someone who makes wanting something feel dangerously easy.",
@@ -369,7 +369,7 @@ window.BOTS = [
   },
    {
     id: "teddy-king", name: "Teddy King", title: "Single Dad Next Door",
-    collection: "Standalone Romances", category: "OC", status: "live", chats: 5624,
+    collection: "Standalone Romances", category: "OC", status: "live", chats: 5928,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["modernday", "sliceoflife", "romance", "parent trap", "boy next door"],
     blurb: "His six-year-old keeps climbing the fence to tell you secrets about her dad. Today he comes over to apologize.",
@@ -446,7 +446,7 @@ window.BOTS = [
   },
   {
     id: "amos-haugen", name: "Amos Haugen", title: "",
-    collection: "Standalone Romances", category: "Other", status: "live", chats: 1036,
+    collection: "Standalone Romances", category: "Other", status: "live", chats: 1050,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["modernday", "sliceoflife", "rural", "rancher"],
     blurb: "Rancher. Makes breakfast at every hour and treats \"no thanks\" like the opening round of negotiations. The only thing that shuts Amos up is a question he's not ready to answer.",
@@ -459,7 +459,7 @@ window.BOTS = [
   },
   {
     id: "lena-millcroft", name: "Lena Millcroft", title: "CEO",
-    collection: "Standalone Romances", category: "Other", status: "live", chats: 1170,
+    collection: "Standalone Romances", category: "Other", status: "live", chats: 1636,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["modernday", "female", "mentor", "ceo"],
     blurb: "CEO of Millcroft Media — youngest in publishing, still proving it to men who inherited their seats. Her parents hold the shares and the approval she won't admit she needs. Brilliant, controlled, alone. Can you keep up, or see through her?",
@@ -547,7 +547,7 @@ window.BOTS = [
   },
   {
     id: "bash-davis", name: "Sebastian \"Bash\" Davis", title: "",
-    collection: "Standalone Romances", category: "OC", status: "live", chats: 402,
+    collection: "Standalone Romances", category: "OC", status: "live", chats: 408,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["romance", "boyfriend", "lighthearted", "golden retriever"],
     blurb: "your boyfriend of 18 months | arborist and minor league soccer player | golden retriever loverboy vibes",
@@ -677,7 +677,7 @@ window.BOTS = [
   /* ======================= SCENARIOS ======================= */
   {
     id: "station-halcyon", name: "Station: Halcyon", title: "40 Meters Below",
-    collection: "Scenarios", category: "Romance", status: "live", chats: 7878,
+    collection: "Scenarios", category: "Romance", status: "live", chats: 7942,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["modernday", "gritty", "underwater"],
     blurb: "Station Halcyon | 40 Meters Below",
@@ -751,7 +751,7 @@ window.BOTS = [
   },
   {
     id: "under-silverpelt", name: "Under Silverpelt", title: "Warrior Cat Demi-humans",
-    collection: "Fandom", category: "Fantasy", status: "live", chats: 722,
+    collection: "Fandom", category: "Fantasy", status: "live", chats: 1012,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["book", "gritty", "kemonomimi", "warrior cats", "clans"],
     blurb: "a Warrior Cats-inspired roleplay in the Old Forest, no humans, no cats — all hybrids.",
@@ -851,7 +851,7 @@ window.BOTS = [
      Covers point at images/<id>.jpg — until that file is uploaded, the card shows "art soon". */
   {
     id: "alagaesia", name: "Alagaësia", title: "Five Winters On",
-    collection: "Fandom", category: "Fantasy", status: "live", chats: 1946,
+    collection: "Fandom", category: "Fantasy", status: "live", chats: 2060,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["dragon", "romance", "fantasy", "multi-character", "slow burn", "political intrigue", "inheritance cycle"],
     blurb: "AnyPOV · Fantasy · Multi-Character · Slow Burn · Political Intrigue · Post-Canon (Inheritance Cycle)",
@@ -863,7 +863,7 @@ window.BOTS = [
   },
   {
     id: "wes-dean", name: "Wesley \"Wes\" Dean", title: "",
-    collection: "Standalone Romances", category: "Other", status: "live", chats: 1684,
+    collection: "Standalone Romances", category: "Other", status: "live", chats: 1976,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["modernday", "sliceoflife", "love"],
     blurb: "A tailor who courts like it's 1952, cries at telenovelas, and annotates filthy novels. He'll hold the door. Then he'll hold you down.",
@@ -874,7 +874,7 @@ window.BOTS = [
   },
   {
     id: "charles-murphy", name: "Charles Murphy", title: "",
-    collection: "Standalone Romances", category: "Other", status: "live", chats: 722,
+    collection: "Standalone Romances", category: "Other", status: "live", chats: 850,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["gritty", "mentor", "modernday"],
     blurb: "Meet your coach. First session of the season at the Saranac Lake municipal rink.",
@@ -882,7 +882,7 @@ window.BOTS = [
   },
   {
     id: "kedron", name: "Kedron", title: "",
-    collection: "Standalone Romances", category: "Other", status: "live", chats: 964,
+    collection: "Standalone Romances", category: "Other", status: "live", chats: 1466,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["romance", "darkfantasy", "dragon"],
     blurb: "Every generation, Brackwell feeds the mountain. This time, the Grieving Hunger kept what it was given.",
@@ -918,7 +918,7 @@ window.BOTS = [
   },
   {
     id: "rust-harbour-small-town", name: "Rust Harbour", title: "Small Town",
-    collection: "Rust Harbour", category: "Romance", status: "live", chats: 0,
+    collection: "Rust Harbour", category: "Romance", status: "live", chats: 14,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["lighthearted", "modernday", "scenario"],
     blurb: "A rainy little port town where the queer kids run the east side and everybody feeds you before they know your name. Come stay.",
@@ -926,7 +926,7 @@ window.BOTS = [
   },
   {
     id: "blackthorn-estate", name: "Blackthorn Estate", title: "The Hunt",
-    collection: "Scenarios", category: "Other", status: "live", chats: 376,
+    collection: "Scenarios", category: "Other", status: "live", chats: 1696,
     pov: "AnyPOV", adult: false, warnings: ["Dead Dove"],
     tags: ["romance", "dark", "hidden societies", "multi-character", "maine"],
     blurb: "Four old Boston families. Every fifth year, they hunt five people for three nights. This year, you're the fifth.",
@@ -955,7 +955,7 @@ window.BOTS = [
   },
   {
     id: "bad-concrete", name: "Bad Concrete", title: "Rory & Dre",
-    collection: "Standalone Romances", category: "OC", status: "live", chats: 0,
+    collection: "Standalone Romances", category: "OC", status: "live", chats: 178,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["romance", "anypov", "modernday", "outcast", "omegaverse"],
     blurb: "Philly skate crew. Two alphas who love you: the best friend who'd bleed for you, and the boyfriend behind the camera.",
@@ -968,7 +968,7 @@ window.BOTS = [
   },
   {
     id: "ravencliff", name: "Ravencliff", title: "Academy of the Unseen Arts",
-    collection: "Scenarios", category: "Fantasy", status: "live", chats: 0,
+    collection: "Scenarios", category: "Fantasy", status: "live", chats: 56,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["anypov", "conspiracy", "darkfantasy", "mystery", "scenario"],
     blurb: "Sophomore year at Ravencliff Academy of the Unseen Arts. Three strange roommates, and one bed that was never meant to be yours.",
@@ -978,7 +978,7 @@ window.BOTS = [
   },
   {
     id: "mick-kearney", name: "Mick Kearney", title: "Rent-A-Villian",
-    collection: "Standalone Romances", category: "Other", status: "live", chats: 0,
+    collection: "Standalone Romances", category: "Other", status: "live", chats: 34,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["antihero", "anypov", "assassin", "dark"],
     blurb: "For the right price, he'll be the worst man you ever met. Somebody just paid him to become yours.",
@@ -987,7 +987,7 @@ window.BOTS = [
   /* ======================= ON THE DESK (not public yet) ======================= */
   {
     id: "silvano", name: "Silvano", title: "The Moth Court",
-    collection: "Scenarios", category: "Other", status: "desk", chats: 0,
+    collection: "Scenarios", category: "Other", status: "desk", chats: 178,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["fantasy", "mystery", "anypov", "nonhuman", "political intrigue"],
     blurb: "Eight months since the queen died. One regent, two heirs, eight houses, and somebody at this masque poisoned her.",
@@ -1003,7 +1003,7 @@ window.BOTS = [
   },
   {
     id: "beacon", name: "B.E.A.C.O.N.", title: "",
-    collection: "Scenarios", category: "Fantasy", status: "live", chats: 0,
+    collection: "Scenarios", category: "Fantasy", status: "live", chats: 48,
     pov: "AnyPOV", adult: false, warnings: [],
     tags: ["angel", "anypov", "dragon", "mermaid", "monster romance", "scenario"],
     blurb: "A sanctuary for monsters. Warm beds, group dinner at six, a Director who means it. Underneath, Arkwright is taking notes.",
@@ -1030,7 +1030,7 @@ window.BOTS = [
   },
   {
     id: "zayid-barakat", name: "Zayid Barakat", title: "ASMR Streamer",
-    collection: "Standalone Romances", category: "VTuber", status: "live", chats: 84,
+    collection: "Standalone Romances", category: "VTuber", status: "live", chats: 180,
     pov: "AnyPOV", adult: true, warnings: [],
     tags: ["asmr", "streamer", "persona", "slow burn"],
     blurb: "A cold, exacting professional who sells tenderness by the minute and feels nothing while he does it. ASMR streamer.",
