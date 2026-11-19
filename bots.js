@@ -1010,7 +1010,7 @@ window.BOTS = [
     scenes: [
       { name: "Missing Person", line: "A missing-persons tip led you to a facility that doesn't exist on any map. The Director is very polite about that." },
       { name: "Intake", line: "You are the newest resident. The paperwork calls it a welcome. The room has a lock on the outside." }
-    ], link: "", cover: "images/beacon.jpg", gallery: []
+    ], link: "https://dreamjourneyai.com/creation/cadc8aae-ed22-4314-91eb-35bb5371735e", cover: "images/beacon.jpg", gallery: []
   },
   {
     id: "rue", name: "Rue", title: "In Sheep's Clothing",
